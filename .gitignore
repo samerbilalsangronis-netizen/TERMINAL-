@@ -9,3 +9,5 @@ build/
 *.swo
 .vscode/
 .idea/
+.agents/
+.claude/
