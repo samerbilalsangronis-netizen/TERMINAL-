@@ -1,0 +1,23 @@
+{
+  "name": "terminal-",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samerbilalsangronis-netizen/TERMINAL-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samerbilalsangronis-netizen/TERMINAL-/issues"
+  },
+  "homepage": "https://github.com/samerbilalsangronis-netizen/TERMINAL-#readme",
+  "dependencies": {
+    "ui-ux-pro-max-cli": "^2.15.0"
+  }
+}
