@@ -323,12 +323,9 @@ body {
   font-family: var(--font-mono) !important;
 }
 
-.leaflet-pane {
-  z-index: 100 !important;
-}
-
-.leaflet-overlay-pane {
-  z-index: 200 !important;
+.leaflet-bottleneck-pane {
+  z-index: 9999 !important;
+  pointer-events: auto !important;
 }
 
 .leaflet-control-zoom {
