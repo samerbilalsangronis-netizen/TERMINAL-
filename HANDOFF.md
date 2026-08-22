@@ -81,6 +81,31 @@ Panel muestra:
 
 ---
 
+## 📊 ESTADÍSTICAS FASE 5
+
+```
+🔴 CUELLOS DE BOTELLA: 17
+   - Criticidad CRÍTICA: 4 (Taiwán, Holanda, Ormuz, Siria)
+   - Criticidad ALTA: 9 (Energía, Materiales, Transporte)
+   - Criticidad MEDIA: 4 (Gas ruso, Litio, Níquel, Trigo)
+
+📍 DISTRIBUCIÓN GLOBAL:
+   - Asia: Taiwán, China, Singapur, Indonesia
+   - Europa: Holanda, Rusia, Ucrania
+   - Oriente Medio: Irán/Omán, Qatar/UAE
+   - América: Panamá, Chile, Brasil
+   - África: Congo, Siria/Levante
+
+🌍 IMPACTO SECTORIAL:
+   - Semiconductores: 3 cuellos
+   - Energía: 4 cuellos
+   - Materiales: 5 cuellos
+   - Alimentos: 2 cuellos
+   - Transporte: 3 cuellos
+```
+
+---
+
 ## 🚀 PRÓXIMAS FASES
 
 ### **FASE 4: ✅ COMPLETADA** - Visualización D3.js
@@ -103,19 +128,34 @@ Panel muestra:
 
 ---
 
-### **FASE 5: Análisis Geopolítico (PENDIENTE)**
+### **FASE 5: ✅ COMPLETADA** - Análisis Geopolítico
 **Objetivo:** Resaltar cuellos de botella críticos
 
-Datos necesarios:
-- `cuellos_botella.json` (ya parcialmente definido)
-- Modo "Conflicto Iran/EEUU"
-- Líneas rojas para puntos críticos
+**Archivos creados:**
+- `scripts/generar_cuellos_botella.js` - script de generación de 17 cuellos de botella
+- `src/data/cuellos_botella.json` - 17 puntos críticos mapeados
+- `public/data/cuellos_botella.json` - datos públicos accesibles
+- `src/components/Map/BottleneckLayer.tsx` - visualización en mapa
+- `src/components/Panels/BottleneckPanel.tsx` - panel de detalles
 
-Puntos clave a mapear:
+**Características implementadas:**
+- ✅ 17 cuellos de botella geopolíticos críticos
+- ✅ Zonas geográficas resaltadas con círculos (no marcadores puntuales, ver SESIÓN 3)
+- ✅ Colores de criticidad (rojo/naranja/amarillo) con relleno semitransparente
+- ✅ Panel detallado con vulnerabilidades, empresas afectadas, consecuencias
+- ✅ Conexiones entre cuellos de botella (líneas punteadas)
+- ✅ Leyenda actualizada en el mapa
+- ✅ Hover effects y selección interactiva
+- ✅ Interactividad y visibilidad corregidas en SESIÓN 3 (ver detalle abajo)
+
+**Puntos críticos mapeados:**
 - 🔴 **Taiwán**: 92% chips 5nm (TSMC monopolio)
 - 🔴 **Holanda**: ASML (única máquina de litografía)
 - 🔴 **Estrecho de Ormuz**: 35% petróleo global
 - 🔴 **China**: 85% tierras raras, 65% aluminio
+- 🟠 **Siria**: 50% fosfato (fertilizantes)
+- 🟠 **Singapur**: 18% refinería global
+- 🟠 Y 11 cuellos de botella más...
 
 ---
 
@@ -336,27 +376,65 @@ node scripts/generar_recursos_empresa.js
 
 ## 🔐 RAMA GIT
 
-**Rama de desarrollo:** `claude/ui-ux-pro-max-cli-install-k1wbdb`
+**Rama de desarrollo:** `claude/lee-el-handoff-kzxdwz`
 
-**Commits recientes:**
+**Commits completados:**
 1. FASE 1: Estructura Next.js + Mapa Bloomberg
 2. FASE 2: 500 Empresas + Dependencias + CompanyPanel
 3. FASE 3: Búsqueda Avanzada + Recursos Críticos
+4. FASE 4: Visualización D3.js de Grafos
+5. FASE 5: Análisis Geopolítico - Cuellos de Botella ✅
 
-**Para empezar nuevo chat:**
+**Para continuar en próximo chat:**
 ```bash
-git checkout claude/ui-ux-pro-max-cli-install-k1wbdb
-git pull origin claude/ui-ux-pro-max-cli-install-k1wbdb
+git checkout claude/lee-el-handoff-kzxdwz
+git pull origin claude/lee-el-handoff-kzxdwz
+npm install && npm run dev
+# Abrirá http://localhost:3000
 ```
+
+---
+
+## 🚀 FASE 6: PRÓXIMAS OPORTUNIDADES
+
+### **Sugerencia 1: Simulación de Escenarios**
+**Objetivo:** Modelar impacto de conflictos en cadenas de suministro
+
+```json
+Escenarios a implementar:
+- Crisis Taiwán: Bloqueo de TSMC → impacto en IA, smartphones
+- Bloqueo Ormuz: Aumento 300% precio petróleo → cascada global
+- Sanciones Rusia: Restricción de gas → Europa sin calefacción
+- Embargo Holanda→China: ASML no vende a Huawei
+```
+
+Datos a crear:
+- `src/data/escenarios.json` - conflictos simulados
+- `src/components/Panels/ScenarioPanel.tsx` - selector de escenarios
+- Cascada de impactos visualizada en grafo D3
+
+### **Sugerencia 2: Análisis de Resilencia**
+**Objetivo:** Sugerir estrategias de diversificación
+
+- Alternativas de proveedores por región
+- Oportunidades de nearshoring
+- Cálculo de "días de cobertura" por recurso
+- Matriz de riesgo país
+
+### **Sugerencia 3: Integración de Datos en Vivo**
+- API de precios de commodities (FRED, Quandl)
+- Alertas de conflictos geopolíticos (NewsAPI)
+- Datos de inversión (Crunchbase)
+- Base de datos de ONG (Toma de datos de conflictos)
 
 ---
 
 ## 🎨 DISEÑO VISUAL
 
-**Colores Bloomberg Terminal:**
-- Fondo: `#0a0a0a`
-- Océanos: `#001a33`
-- Continentes: `#0a0a0a`
+**Colores Bloomberg Terminal (actualizado SESIÓN 3):**
+- Fondo general (UI): `#0a0a0a`
+- Océanos (mapa): `#000000` (negro puro)
+- Continentes/países (mapa): `#4a4a4a` (gris medio)
 - **Bordes países: `#ff8c42` (NARANJA)**
 - Accent: `#00d4ff` (Cian)
 - Crítico: `#ff3333` (Rojo)
@@ -387,6 +465,192 @@ git pull origin claude/ui-ux-pro-max-cli-install-k1wbdb
 
 ---
 
-**Última actualización:** 2025-08-22
-**Estado:** FASE 4 Completa - Listo para FASE 5
-**Siguiente paso:** Análisis Geopolítico - Resaltar cuellos de botella críticos
+**Última actualización:** 2026-08-22 - SESIÓN 3
+**Estado:** FASE 5 ✅ COMPLETADA - Mapa 100% interactivo y visualmente corregido
+**Rama actual:** `claude/lee-el-handoff-kzxdwz`
+
+---
+
+## 🔧 HISTORIAL DE PROBLEMAS Y FIXES - SESIÓN 2 → 3 (2026-08-22)
+
+### ❌ Síntoma Reportado (fin de SESIÓN 2)
+✅ Mapa carga (bordes naranja, gridlines visibles)
+❌ NO hay tooltips al pasar ratón
+❌ NO abre panel al click (sin errores en consola)
+❌ NO se ven cuellos de botella (puntos rojos)
+
+### 🔍 DIAGNÓSTICO COMPLETADO - SESIÓN 3 (2026-08-22)
+
+**PROBLEMA RAÍZ IDENTIFICADO:** Las propiedades del GeoJSON no coincidían
+
+El archivo GeoJSON original de GitHub tiene propiedades diferentes:
+```
+Esperado:  ADMIN, ISO_A2
+Encontrado: name, ISO3166-1-Alpha-2
+```
+
+### ✅ SOLUCIONES IMPLEMENTADAS
+
+1. **Descargar GeoJSON localmente**
+   - Archivo agregado: `/public/data/countries.geojson`
+   - Razón: Evita dependencias remotas y problemas de CORS
+
+2. **Usar archivo local en MapContainer**
+   - Cambio: `fetch('https://raw.githubusercontent.com/...')` → `fetch('/data/countries.geojson')`
+   - Línea modificada: `src/components/Map/MapContainer.tsx:83`
+
+3. **Corregir nombres de propiedades**
+   - `ADMIN` → `name` (nombre del país)
+   - `ISO_A2` → `ISO3166-1-Alpha-2` (código del país)
+   - Líneas modificadas: `src/components/Map/MapContainer.tsx:99-100`
+
+4. **Agregar logs de debug**
+   - Console logs para verificar fetch, onEachFeature, clicks
+   - Verificación de BottleneckLayer
+
+### ✅ VERIFICACIÓN CON PLAYWRIGHT
+
+Corrida de test con Playwright confirmó:
+```
+✓ GeoJSON cargado: 258 características
+✓ 258 países procesados correctamente en onEachFeature
+✓ 17 cuellos de botella renderizados
+✓ 285 elementos interactivos encontrados en el mapa
+✓ BottleneckLayer ejecuta correctamente
+```
+
+**Conclusión:** Todo funciona. El mapa, países y cuellos de botella están operacionales.
+
+### Rama y commits
+- Rama: `claude/lee-el-handoff-kzxdwz`
+- Commits agregados en esta sesión:
+  - `8b59ea0` - Agregar logs de debug
+  - `e5290cf` - Usar GeoJSON local
+  - `efb6a9c` - Corregir propiedades
+  - `c3892ca` - Agregar Playwright como dev dependency
+- Build: ✅ Compila sin errores
+- Runtime: ✅ Todos los eventos funcionan (confirmado por Playwright logs)
+
+### 🎨 MEJORA VISUAL - Zonas Geográficas + Esquema de Colores
+
+**CAMBIO 1: Visualización de Cuellos de Botella**
+- De: Puntos rojos pequeños con baja opacidad (0.08)
+- A: Círculos Leaflet que representan zonas geográficas
+- Opacidad aumentada: 0.20/0.35 (mucho más visibles)
+- Radio proporcional a: criticidad + impacto global (%)
+- Relleno semitransparente para ver países debajo
+- Bordes punteados (normal) → sólidos (seleccionado)
+
+**CAMBIO 2: Esquema de Colores Invertido**
+- Océano: Negro puro (#0a0a0a)
+- Países: Gris medio (#4a4a4a)
+- Bordes países: Naranja (#ff8c42)
+- Gridlines: Gris claro (#333333)
+- Tile layer: CartoDB dark_all (más oscuro)
+
+**Visualmente:**
+```
+Fondo:  Negro puro (océano)
+Tierra: Gris (países)
+Crítico: Zona roja semitransparente + borde rojo
+Alto:    Zona naranja + borde naranja
+```
+
+**Ejemplos de zonas:**
+- Taiwán: zona roja amplia (92% chips 5nm)
+- Holanda: zona naranja (100% litografía)
+- Ormuz: zona roja (35% petróleo global)
+
+**Interactividad completa:**
+- Click: abre panel de detalles
+- Hover: resalta zona, muestra popup
+- Selección: zona se centra y oscurece
+
+### 🐛 BUG CORREGIDO - Z-index sobrescrito por CSS
+
+**Síntoma:** Océano no negro puro + cuellos de botella debajo del mapa
+
+**Causa:** CSS con `.leaflet-pane { z-index: 100 !important; }` sobrescribía
+el z-index:9999 que JavaScript aplicaba al bottleneckPane vía inline styles.
+El !important en CSS externo gana sobre inline styles de menor especificidad.
+
+**Fix:** Cambiar selector genérico a específico:
+```css
+.leaflet-bottleneck-pane {
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+```
+
+**Verificado con Playwright:**
+```
+leaflet-bottleneck-pane: z-index 9999 ✓
+Todos los demás panes: 200-700 ✓
+Fondo del mapa: rgb(0,0,0) ✓
+```
+
+### 📌 RESUMEN FINAL DE SESIÓN 3
+
+**Estado del mapa:** ✅ 100% funcional
+
+| Elemento | Estado |
+|----------|--------|
+| Nombres de países (tooltip) | ✅ Funciona |
+| Click país → panel de info | ✅ Funciona |
+| Cuellos de botella (zonas) | ✅ Visibles por encima del mapa |
+| Océano negro puro | ✅ `rgb(0,0,0)` |
+| Países en gris | ✅ `#4a4a4a` |
+| Build | ✅ Compila sin errores |
+
+**Todos los commits de la sesión (orden cronológico):**
+```
+8b59ea0 - Agregar logs de debug para diagnóstico
+e5290cf - Usar GeoJSON local en lugar de fetch remoto
+efb6a9c - Corregir propiedades del GeoJSON (ADMIN→name, ISO_A2→ISO3166-1-Alpha-2)
+c3892ca - Agregar @playwright/test como dependencia de dev
+10e569a - Corregir z-index de cuellos de botella (primer intento)
+8d3b5cb - Actualizar HANDOFF con diagnóstico y soluciones
+0fc3c1b - Cambiar visualización de cuellos de botella a zonas geográficas (círculos)
+49c321a - Actualizar HANDOFF con visualización de zonas geográficas
+c73f3a9 - Mejorar opacidad y invertir colores del mapa (océano negro, países gris)
+7455bb9 - Documentar cambios de visualización e inversión de colores
+9dd0b87 - Corregir z-index y color de fondo del mapa
+dcebeac - Corregir z-index de bottleneckPane sobrescrito por CSS (bug real fix)
+273295e - Documentar fix de z-index sobrescrito por CSS
+```
+
+**Lección aprendida:** Un `.leaflet-pane { z-index: 100 !important }` genérico en CSS
+puede sobrescribir silenciosamente z-index inline que Leaflet/JS aplica a panes
+específicos. Siempre usar selectores de clase específicos (`.leaflet-<nombre>-pane`)
+al forzar z-index con `!important` sobre paneles de Leaflet.
+
+### 🐛 BUG CORREGIDO #2 - Océano seguía gris, no negro
+
+**Síntoma:** Después de cambiar `fillColor` del CSS/JS a negro, el océano
+seguía viéndose gris/azulado en el mapa renderizado.
+
+**Causa:** El color del océano viene de las **tiles de CartoDB** (imágenes PNG
+del tile layer `dark_nolabels`/`dark_all`), no del CSS del `.leaflet-container`.
+El background CSS del container solo se ve donde no hay tiles cargados
+(brevemente al hacer pan/zoom). El color real del océano lo define CartoDB,
+que usa un gris-azulado oscuro, no negro puro.
+
+**Fix:** Forzar el color con un filtro CSS sobre el pane de tiles:
+```css
+.leaflet-tile-pane {
+  filter: brightness(0) !important;
+}
+```
+Esto convierte cualquier píxel del tile a negro puro, sin importar el color
+original de CartoDB. Los países se siguen viendo en gris porque nuestra capa
+GeoJSON (fillOpacity 0.95) se dibuja **encima** de los tiles, no depende de ellos.
+
+También se revirtió el tile layer de `dark_all` a `dark_nolabels` (evita
+etiquetas duplicadas de país, ya que mostramos el nombre vía tooltip propio).
+
+**Verificado visualmente con Playwright (screenshot):** océano negro puro,
+países gris medio, zonas de cuellos de botella visibles encima. Commit `1cc6da8`.
+
+---
+
+**Próximo paso:** FASE 6 - Simulación de Escenarios (interactividad y visualización ya resueltas ✅)

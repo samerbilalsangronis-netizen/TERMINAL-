@@ -1,0 +1,510 @@
+[
+  {
+    "id": "taiwan-chips",
+    "nombre": "Taiwán - Fabricación de Chips 5nm",
+    "pais": "Taiwán",
+    "latitud": 23.8978,
+    "longitud": 120.9605,
+    "tipo": "Fabricación",
+    "criticidad": "CRÍTICA",
+    "porcentaje_global": 92,
+    "impacto_sectores": [
+      "Semiconductores",
+      "IA",
+      "Smartphones",
+      "Cloud Computing"
+    ],
+    "descripcion": "TSMC controla el 92% de la fabricación mundial de chips de 5nm y tecnologías más avanzadas",
+    "vulnerabilidades": [
+      "Conflicto US-China",
+      "Dependencia de un solo fabricante",
+      "Limitaciones geográficas de la isla",
+      "Amenaza de invasión"
+    ],
+    "empresas_afectadas": [
+      "Apple",
+      "NVIDIA",
+      "AMD",
+      "MediaTek",
+      "Qualcomm"
+    ],
+    "consecuencias_si_falla": "Colapso de industria de semiconductores mundial, detención de producción de IA, smartphones y computadoras",
+    "color": "#ff3333"
+  },
+  {
+    "id": "holanda-litografia",
+    "nombre": "Holanda - Máquinas ASML",
+    "pais": "Países Bajos",
+    "latitud": 52.1326,
+    "longitud": 5.2913,
+    "tipo": "Manufactura de Equipos",
+    "criticidad": "CRÍTICA",
+    "porcentaje_global": 100,
+    "impacto_sectores": [
+      "Semiconductores",
+      "Tecnología"
+    ],
+    "descripcion": "ASML es el único fabricante mundial de máquinas EUV (litografía de ultravioleta extremo) necesarias para producir chips modernos",
+    "vulnerabilidades": [
+      "Monopolio global de tecnología EUV",
+      "Sanciones a China limitan ventas",
+      "Depende de suministros alemanes de precisión",
+      "Capacidad de producción limitada"
+    ],
+    "empresas_afectadas": [
+      "TSMC",
+      "Samsung",
+      "Intel",
+      "Todos los fabricantes de chips"
+    ],
+    "consecuencias_si_falla": "Imposibilidad de fabricar chips avanzados en cualquier parte del mundo",
+    "color": "#ff3333"
+  },
+  {
+    "id": "ormuz-petroleo",
+    "nombre": "Estrecho de Ormuz - Tránsito de Petróleo",
+    "pais": "Irán/Omán",
+    "latitud": 26.6,
+    "longitud": 56.5,
+    "tipo": "Transporte de Recursos",
+    "criticidad": "CRÍTICA",
+    "porcentaje_global": 35,
+    "impacto_sectores": [
+      "Energía",
+      "Transporte",
+      "Manufactura"
+    ],
+    "descripcion": "El 35% del petróleo global transita por el Estrecho de Ormuz, punto estratégico controlado por Irán",
+    "vulnerabilidades": [
+      "Control geopolítico de Irán",
+      "Riesgo de cierre por conflicto regional",
+      "Única ruta viable sin alternativas cercanas",
+      "Ataques a petroleros frecuentes"
+    ],
+    "empresas_afectadas": [
+      "Todas las petroleras",
+      "Transportistas globales",
+      "Manufactureras"
+    ],
+    "consecuencias_si_falla": "Crisis energética global, colapso de precios del petróleo o escasez, parálisis económica",
+    "color": "#ff6600"
+  },
+  {
+    "id": "china-tierras-raras",
+    "nombre": "China - Producción de Tierras Raras",
+    "pais": "China",
+    "latitud": 35.8617,
+    "longitud": 104.1954,
+    "tipo": "Extracción de Recursos",
+    "criticidad": "CRÍTICA",
+    "porcentaje_global": 85,
+    "impacto_sectores": [
+      "Electrónica",
+      "Defensa",
+      "Renovables",
+      "Tecnología"
+    ],
+    "descripcion": "China produce el 85% de las tierras raras mundiales, elementos esenciales para imanes, baterías y tecnología",
+    "vulnerabilidades": [
+      "Dominio de China sobre producción",
+      "Restricciones de exportación como arma política",
+      "Daño ambiental extremo en minas chinas",
+      "Pocas alternativas globales"
+    ],
+    "empresas_afectadas": [
+      "Tesla",
+      "Apple",
+      "Bosch",
+      "Vestas",
+      "Siemens",
+      "Todos fabricantes de tecnología"
+    ],
+    "consecuencias_si_falla": "Detención de producción de dispositivos electrónicos, vehículos eléctricos y energías renovables",
+    "color": "#ff6600"
+  },
+  {
+    "id": "china-aluminio",
+    "nombre": "China - Producción de Aluminio",
+    "pais": "China",
+    "latitud": 35.8617,
+    "longitud": 104.1954,
+    "tipo": "Extracción de Recursos",
+    "criticidad": "ALTA",
+    "porcentaje_global": 65,
+    "impacto_sectores": [
+      "Manufactura",
+      "Aviación",
+      "Automotriz",
+      "Construcción"
+    ],
+    "descripcion": "China produce el 65% del aluminio global, material crítico para múltiples industrias",
+    "vulnerabilidades": [
+      "Producción concentrada en China",
+      "Restricciones de exportación posibles",
+      "Alto costo energético de extracción",
+      "Impacto ambiental en Xinjiang"
+    ],
+    "empresas_afectadas": [
+      "Boeing",
+      "Airbus",
+      "Todos fabricantes de automóviles",
+      "Constructoras"
+    ],
+    "consecuencias_si_falla": "Escasez de materiales para aviación, automotriz y construcción",
+    "color": "#ff6600"
+  },
+  {
+    "id": "siria-fosfato",
+    "nombre": "Siria/Levante - Fosfato para Fertilizantes",
+    "pais": "Siria",
+    "latitud": 34.8021,
+    "longitud": 38.9968,
+    "tipo": "Extracción de Recursos",
+    "criticidad": "ALTA",
+    "porcentaje_global": 50,
+    "impacto_sectores": [
+      "Agricultura",
+      "Alimentación"
+    ],
+    "descripcion": "Siria y Levante producen el 50% del fosfato mundial, esencial para fertilizantes y producción alimentaria",
+    "vulnerabilidades": [
+      "Conflicto regional en Levante",
+      "Minería afectada por guerra en Siria",
+      "Sanciones internacionales",
+      "Infraestructura dañada"
+    ],
+    "empresas_afectadas": [
+      "Mosaic",
+      "CF Industries",
+      "Yara",
+      "Todos productores de alimentos"
+    ],
+    "consecuencias_si_falla": "Crisis alimentaria global, reducción de producción agrícola, hambruna",
+    "color": "#ff6600"
+  },
+  {
+    "id": "panama-canal",
+    "nombre": "Canal de Panamá - Comercio Global",
+    "pais": "Panamá",
+    "latitud": 9.0765,
+    "longitud": -79.5217,
+    "tipo": "Transporte Comercial",
+    "criticidad": "ALTA",
+    "porcentaje_global": 6,
+    "impacto_sectores": [
+      "Comercio",
+      "Logística",
+      "Manufactura"
+    ],
+    "descripcion": "Canal de Panamá mueve el 6% del comercio global, conecta Atlántico y Pacífico",
+    "vulnerabilidades": [
+      "Control de Panamá sobre paso",
+      "Sequía afecta operaciones",
+      "Tensiones geopolíticas US-China",
+      "Capacidad limitada"
+    ],
+    "empresas_afectadas": [
+      "Todos transportistas",
+      "Compañías navieras",
+      "Exportadores"
+    ],
+    "consecuencias_si_falla": "Aumentar costos de transporte, desvío a Cabo de Hornos agrega 15 días",
+    "color": "#ff9900"
+  },
+  {
+    "id": "estrecho-malaca",
+    "nombre": "Estrecho de Malaca - Tránsito de Petróleo y Comercio",
+    "pais": "Malasia/Singapur/Indonesia",
+    "latitud": 4,
+    "longitud": 102,
+    "tipo": "Transporte de Recursos",
+    "criticidad": "ALTA",
+    "porcentaje_global": 30,
+    "impacto_sectores": [
+      "Energía",
+      "Comercio",
+      "Transporte"
+    ],
+    "descripcion": "El 30% del comercio global de petróleo y 25% del comercio internacional transita por Malaca",
+    "vulnerabilidades": [
+      "Piratería en aguas internacionales",
+      "Control de Singapur sobre paso",
+      "Ruta congestionada",
+      "Tensiones China-USA"
+    ],
+    "empresas_afectadas": [
+      "Todas petroleras",
+      "Transportistas",
+      "Comercio asiático"
+    ],
+    "consecuencias_si_falla": "Crisis energética, aumento de costos de transporte, ruptura comercial Asia-Europa",
+    "color": "#ff9900"
+  },
+  {
+    "id": "mineria-cobalto",
+    "nombre": "República Democrática del Congo - Minería de Cobalto",
+    "pais": "Congo",
+    "latitud": -4.0383,
+    "longitud": 21.7587,
+    "tipo": "Extracción de Recursos",
+    "criticidad": "ALTA",
+    "porcentaje_global": 70,
+    "impacto_sectores": [
+      "Baterías",
+      "Vehículos Eléctricos",
+      "Electrónica"
+    ],
+    "descripcion": "Congo produce el 70% del cobalto mundial, elemento esencial para baterías de iones de litio",
+    "vulnerabilidades": [
+      "Inestabilidad política y conflictos",
+      "Minería artesanal no regulada",
+      "Derechos humanos cuestionables",
+      "Minería de conflicto"
+    ],
+    "empresas_afectadas": [
+      "Tesla",
+      "BMW",
+      "Apple",
+      "Samsung",
+      "Todos fabricantes de baterías"
+    ],
+    "consecuencias_si_falla": "Crisis en producción de vehículos eléctricos, smartphones y dispositivos portátiles",
+    "color": "#ff9900"
+  },
+  {
+    "id": "singapur-refineria",
+    "nombre": "Singapur - Refinería de Petróleo",
+    "pais": "Singapur",
+    "latitud": 1.3521,
+    "longitud": 103.8198,
+    "tipo": "Procesamiento de Recursos",
+    "criticidad": "ALTA",
+    "porcentaje_global": 18,
+    "impacto_sectores": [
+      "Energía",
+      "Petroquímica",
+      "Transporte"
+    ],
+    "descripcion": "Singapur refina el 18% del petróleo global y es hub de petroquímicos asiático",
+    "vulnerabilidades": [
+      "Dependencia de suministros del Golfo",
+      "Localización en zona sísmica",
+      "Proximidad a rutas congestionadas",
+      "Impacto de tensiones China-USA"
+    ],
+    "empresas_afectadas": [
+      "Shell",
+      "ExxonMobil",
+      "Todas petroleras",
+      "Transportistas"
+    ],
+    "consecuencias_si_falla": "Crisis energética asiática, aumento de precios de gasolina y diésel",
+    "color": "#ff9900"
+  },
+  {
+    "id": "rusia-gas-natural",
+    "nombre": "Rusia - Exportación de Gas Natural",
+    "pais": "Rusia",
+    "latitud": 61.52,
+    "longitud": 105.32,
+    "tipo": "Extracción de Recursos",
+    "criticidad": "MEDIA",
+    "porcentaje_global": 40,
+    "impacto_sectores": [
+      "Energía",
+      "Manufactura",
+      "Calefacción"
+    ],
+    "descripcion": "Rusia exporta el 40% del gas natural global, especialmente a Europa",
+    "vulnerabilidades": [
+      "Sanciones internacionales",
+      "Dependencia de tuberías a través de Ucrania",
+      "Conflicto geopolítico con Occidente",
+      "Alternativas en desarrollo (LNG)"
+    ],
+    "empresas_afectadas": [
+      "Gazprom",
+      "Rosneft",
+      "Utilidades europeas",
+      "Manufactureras"
+    ],
+    "consecuencias_si_falla": "Crisis energética europea, desindustrialización, inflación energética",
+    "color": "#ffaa00"
+  },
+  {
+    "id": "australia-litio",
+    "nombre": "Australia - Extracción de Litio",
+    "pais": "Australia",
+    "latitud": -25.2744,
+    "longitud": 133.7751,
+    "tipo": "Extracción de Recursos",
+    "criticidad": "ALTA",
+    "porcentaje_global": 35,
+    "impacto_sectores": [
+      "Baterías",
+      "Vehículos Eléctricos",
+      "Renovables"
+    ],
+    "descripcion": "Australia produce el 35% del litio mundial, elemento crítico para baterías de EV",
+    "vulnerabilidades": [
+      "Demanda creciente de litio",
+      "Dependencia de China para procesamiento",
+      "Presión ambiental por minería",
+      "Volatilidad de precios"
+    ],
+    "empresas_afectadas": [
+      "Tesla",
+      "Volkswagen",
+      "BYD",
+      "CATL",
+      "Todos fabricantes de EV"
+    ],
+    "consecuencias_si_falla": "Freno en transición a vehículos eléctricos, crisis de baterías",
+    "color": "#ff9900"
+  },
+  {
+    "id": "chile-cobre",
+    "nombre": "Chile - Minería de Cobre",
+    "pais": "Chile",
+    "latitud": -30.7,
+    "longitud": -71.5428,
+    "tipo": "Extracción de Recursos",
+    "criticidad": "ALTA",
+    "porcentaje_global": 28,
+    "impacto_sectores": [
+      "Electricidad",
+      "Electrónica",
+      "Construcción"
+    ],
+    "descripcion": "Chile produce el 28% del cobre mundial, esencial para electricidad y electrónica",
+    "vulnerabilidades": [
+      "Inestabilidad política",
+      "Huelgas en minas",
+      "Escasez de agua en desiertos",
+      "Presión ambiental"
+    ],
+    "empresas_afectadas": [
+      "Tesla",
+      "ABB",
+      "Siemens",
+      "Todas compañías de electricidad"
+    ],
+    "consecuencias_si_falla": "Escasez de cobre, aumento de costos de infraestructura eléctrica",
+    "color": "#ff9900"
+  },
+  {
+    "id": "indonesia-niquel",
+    "nombre": "Indonesia - Minería de Níquel",
+    "pais": "Indonesia",
+    "latitud": -0.7893,
+    "longitud": 113.9213,
+    "tipo": "Extracción de Recursos",
+    "criticidad": "MEDIA",
+    "porcentaje_global": 35,
+    "impacto_sectores": [
+      "Baterías",
+      "Acero Inoxidable",
+      "Electrónica"
+    ],
+    "descripcion": "Indonesia produce el 35% del níquel mundial, esencial para baterías y acero",
+    "vulnerabilidades": [
+      "Prohibición de exportación de mineral sin procesar",
+      "Dependencia de procesamiento chino",
+      "Impacto ambiental extremo",
+      "Falta de infraestructura"
+    ],
+    "empresas_afectadas": [
+      "Tesla",
+      "CATL",
+      "Ningbo Shanshan",
+      "Fabricantes de baterías"
+    ],
+    "consecuencias_si_falla": "Crisis en producción de baterías de EV, restricción de cadena de suministro",
+    "color": "#ffaa00"
+  },
+  {
+    "id": "ucrania-trigo",
+    "nombre": "Ucrania - Exportación de Trigo",
+    "pais": "Ucrania",
+    "latitud": 48.3794,
+    "longitud": 31.1656,
+    "tipo": "Producción Agrícola",
+    "criticidad": "MEDIA",
+    "porcentaje_global": 12,
+    "impacto_sectores": [
+      "Alimentación",
+      "Agricultura"
+    ],
+    "descripcion": "Ucrania exporta el 12% del trigo global, exportador importante de granos",
+    "vulnerabilidades": [
+      "Invasión rusa, guerra en curso",
+      "Bloqueo naval del Mar Negro",
+      "Destrucción de infraestructura agrícola",
+      "Minas terrestres en campos"
+    ],
+    "empresas_afectadas": [
+      "Todas compañías de alimentos",
+      "Distribuidoras de granos"
+    ],
+    "consecuencias_si_falla": "Crisis alimentaria en Oriente Medio y Norte de África, inflación de precios",
+    "color": "#ff6600"
+  },
+  {
+    "id": "golfo-gas-natural",
+    "nombre": "Golfo Pérsico - Gas Natural Licuado",
+    "pais": "Qatar/UAE",
+    "latitud": 25.2548,
+    "longitud": 55.3643,
+    "tipo": "Extracción de Recursos",
+    "criticidad": "MEDIA",
+    "porcentaje_global": 45,
+    "impacto_sectores": [
+      "Energía",
+      "Manufactura",
+      "Química"
+    ],
+    "descripcion": "Golfo Pérsico produce el 45% del gas natural licuado global",
+    "vulnerabilidades": [
+      "Tensiones regionales Iran-USA",
+      "Ruta marítima a través de Ormuz",
+      "Dependencia de suministros chinos para equipos",
+      "Cambio climático y calor extremo"
+    ],
+    "empresas_afectadas": [
+      "Qatar Petroleum",
+      "ADNOC",
+      "Shell",
+      "Todas compañías energéticas"
+    ],
+    "consecuencias_si_falla": "Crisis energética global, especialmente en Asia y Europa",
+    "color": "#ffaa00"
+  },
+  {
+    "id": "taiwán-encapsulado",
+    "nombre": "Taiwán - Encapsulado y Pruebas de Chips",
+    "pais": "Taiwán",
+    "latitud": 23.8978,
+    "longitud": 120.9605,
+    "tipo": "Manufactura",
+    "criticidad": "ALTA",
+    "porcentaje_global": 65,
+    "impacto_sectores": [
+      "Semiconductores",
+      "Electrónica"
+    ],
+    "descripcion": "Taiwán encapsula y prueba el 65% de los chips globales, paso final en fabricación",
+    "vulnerabilidades": [
+      "Concentración geográfica",
+      "Dependencia de materiales de otros países",
+      "Amenaza militar directa de China",
+      "Capacidad limitada de expansión"
+    ],
+    "empresas_afectadas": [
+      "Todos fabricantes de chips",
+      "Apple",
+      "Qualcomm"
+    ],
+    "consecuencias_si_falla": "Detención de producción de chips a nivel mundial",
+    "color": "#ff6600"
+  }
+]

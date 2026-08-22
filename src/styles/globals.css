@@ -1,6 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  /* Paleta Bloomberg Terminal */
+  --color-ground: #0a0a0a;
+  --color-neutral-900: #0a0a0a;
+  --color-neutral-800: #1a1a1a;
+  --color-neutral-700: #2a2a2a;
+  --color-neutral-600: #3a3a3a;
+  --color-neutral-400: #7a7a7a;
+  --color-neutral-300: #b0b0b0;
+  --color-neutral-100: #ffffff;
+
+  --color-accent-primary: #ff8c42;
+  --color-accent-secondary: #00d4ff;
+  --color-critical: #ff3333;
+  --color-warning: #ff9900;
+  --color-success: #00cc88;
+
+  --color-border: #2a2a2a;
+  --color-border-accent: #ff8c42;
+
+  /* Tipografía */
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+  --font-weight-heavy: 700;
+
+  /* Espaciado */
+  --space-unit: 8px;
+  --space-xs: calc(var(--space-unit) * 0.5);
+  --space-sm: var(--space-unit);
+  --space-md: calc(var(--space-unit) * 2);
+  --space-lg: calc(var(--space-unit) * 3);
+  --space-xl: calc(var(--space-unit) * 4);
+
+  /* Efectos */
+  --glow-accent: 0 0 8px rgba(255, 140, 66, 0.3);
+  --glow-accent-strong: 0 0 16px rgba(255, 140, 66, 0.5);
+  --glow-critical: 0 0 12px rgba(255, 51, 51, 0.4);
+  --glow-secondary: 0 0 8px rgba(0, 212, 255, 0.2);
+
+  /* Transiciones */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 * {
   margin: 0;
@@ -10,70 +59,277 @@
 
 html {
   scroll-behavior: smooth;
+  font-family: var(--font-mono);
 }
 
 body {
-  background: #0a0a0a;
-  color: #ffffff;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--color-ground);
+  color: var(--color-neutral-100);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5;
   overflow: hidden;
+  letter-spacing: 0.3px;
 }
 
-/* Bloomberg Terminal Styles */
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEADER - Bloomberg Terminal Professional
+   ═════════════════════════════════════════════════════════════════════════ */
+
 .terminal-header {
-  @apply bg-gradient-to-r from-[#2a2a2a] to-[#1a1a1a] border-b border-[#333333] h-[50px] px-5 flex items-center gap-4;
+  background: linear-gradient(
+    90deg,
+    var(--color-neutral-800) 0%,
+    var(--color-neutral-700) 50%,
+    var(--color-neutral-800) 100%
+  );
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  height: 52px;
+  padding: 0 var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  position: relative;
+  z-index: 100;
+}
+
+.terminal-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-accent-primary),
+    transparent
+  );
+  opacity: 0.2;
 }
 
 .search-box {
-  @apply bg-[#ff8c42] text-black border-none px-3 py-2 rounded-sm font-bold text-xs min-w-[140px] placeholder-[#333333];
+  background: var(--color-accent-primary);
+  color: var(--color-neutral-900);
+  border: 1px solid var(--color-accent-primary);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-bold);
+  font-size: 11px;
+  min-width: 140px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all var(--transition-fast);
+  box-shadow: 0 0 8px rgba(255, 140, 66, 0.2);
+}
+
+.search-box:focus {
+  outline: none;
+  box-shadow: 0 0 16px rgba(255, 140, 66, 0.4);
+  transform: scale(1.02);
+}
+
+.search-box::placeholder {
+  color: var(--color-neutral-400);
 }
 
 .btn-action {
-  @apply bg-[#d32f2f] text-white border border-[#ff8c42] px-4 py-2 rounded-sm text-xs font-bold cursor-pointer transition-all hover:bg-[#ff8c42] hover:text-black;
+  background: var(--color-critical);
+  color: var(--color-neutral-100);
+  border: 1px solid var(--color-accent-primary);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-bold);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--glow-critical);
+}
+
+.btn-action:hover {
+  background: var(--color-accent-primary);
+  color: var(--color-neutral-900);
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 0 16px rgba(255, 140, 66, 0.4);
+  transform: scale(1.02);
 }
 
 .nav-tab {
-  @apply text-[#888888] px-5 py-4 text-xs font-bold cursor-pointer border-b-2 border-transparent transition-all hover:text-[#ff8c42] hover:border-[#ff8c42];
+  color: var(--color-neutral-400);
+  padding: 0 var(--space-lg);
+  font-size: 11px;
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-fast);
+  letter-spacing: 0.5px;
+  position: relative;
+  height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-tab:hover {
+  color: var(--color-accent-primary);
+  border-bottom-color: var(--color-accent-primary);
 }
 
 .nav-tab.active {
-  @apply text-white border-[#ff8c42];
+  color: var(--color-neutral-100);
+  border-bottom-color: var(--color-accent-primary);
+  box-shadow: inset 0 -2px 0 var(--color-accent-primary);
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   PANELES - Premium Bloomberg Style
+   ═════════════════════════════════════════════════════════════════════════ */
+
 .panel-title {
-  @apply text-xs font-bold text-[#ff8c42] uppercase tracking-widest mb-2;
+  font-size: 10px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.panel-title::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  background: var(--color-accent-primary);
+  border-radius: 50%;
+  box-shadow: var(--glow-accent);
 }
 
 .panel-content {
-  @apply text-xs text-[#aaaaaa] leading-relaxed;
+  font-size: 11px;
+  color: var(--color-neutral-300);
+  line-height: 1.6;
+  letter-spacing: 0.2px;
 }
+
+.panel-section {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  transition: all var(--transition-normal);
+}
+
+.panel-section:hover {
+  background: rgba(255, 140, 66, 0.02);
+  border-bottom-color: var(--color-accent-primary);
+}
+
+.panel-section:last-child {
+  border-bottom: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONTROLES - Map Controls
+   ═════════════════════════════════════════════════════════════════════════ */
 
 .control-btn {
-  @apply w-9 h-9 bg-[#1a1a1a] border border-[#333333] text-[#ff8c42] text-lg cursor-pointer flex items-center justify-center rounded-sm transition-all hover:bg-[#ff8c42] hover:text-[#0a0a0a] hover:border-[#ff8c42];
+  width: 36px;
+  height: 36px;
+  background: var(--color-neutral-800);
+  border: 1px solid var(--color-border);
+  color: var(--color-accent-primary);
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  font-family: var(--font-mono);
 }
 
+.control-btn:hover {
+  background: var(--color-accent-primary);
+  color: var(--color-neutral-900);
+  border-color: var(--color-accent-primary);
+  box-shadow: var(--glow-accent-strong);
+  transform: scale(1.05);
+}
+
+.control-btn:active {
+  transform: scale(0.95);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   POPUPS & TOOLTIPS - Leaflet customization
+   ═════════════════════════════════════════════════════════════════════════ */
+
 .country-popup {
-  background: rgba(10, 10, 10, 0.95) !important;
-  border: 1px solid #ff8c42 !important;
-  border-radius: 3px !important;
-  padding: 10px !important;
-  color: #ffffff;
-  font-size: 12px;
+  background: rgba(10, 10, 10, 0.98) !important;
+  border: 1px solid var(--color-accent-primary) !important;
+  border-radius: 2px !important;
+  padding: 12px !important;
+  color: var(--color-neutral-100);
+  font-size: 11px !important;
+  font-family: var(--font-mono) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8), var(--glow-accent) !important;
 }
 
 .country-tooltip {
-  background: rgba(0, 212, 255, 0.1) !important;
-  border: 1px solid #ff8c42 !important;
-  color: #ff8c42 !important;
-  padding: 4px 8px !important;
-  border-radius: 3px !important;
-  font-size: 11px !important;
-  font-weight: 600 !important;
+  background: rgba(0, 212, 255, 0.08) !important;
+  border: 1px solid var(--color-accent-secondary) !important;
+  color: var(--color-accent-secondary) !important;
+  padding: 6px 10px !important;
+  border-radius: 2px !important;
+  font-size: 10px !important;
+  font-weight: var(--font-weight-bold) !important;
+  font-family: var(--font-mono) !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: var(--glow-secondary) !important;
+  text-transform: uppercase !important;
+  z-index: 1000 !important;
+  pointer-events: none !important;
 }
 
-/* Mapa Leaflet personalizado */
+.leaflet-tooltip {
+  z-index: 1000 !important;
+  pointer-events: none !important;
+}
+
+.bottleneck-popup {
+  background: rgba(10, 10, 10, 0.98) !important;
+  border: 1px solid var(--color-accent-primary) !important;
+  border-radius: 2px !important;
+  padding: 12px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8), var(--glow-accent) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MAPA - Leaflet Container
+   ═════════════════════════════════════════════════════════════════════════ */
+
 .leaflet-container {
-  background: #0a0a0a !important;
+  background: #000000 !important;
+  font-family: var(--font-mono) !important;
+}
+
+.leaflet-tile-pane {
+  filter: brightness(0) !important;
+}
+
+.leaflet-bottleneck-pane {
+  z-index: 9999 !important;
+  pointer-events: auto !important;
 }
 
 .leaflet-control-zoom {
@@ -82,43 +338,58 @@ body {
 
 .leaflet-control-attribution {
   background: transparent !important;
-  color: #666666 !important;
+  color: var(--color-neutral-400) !important;
   font-size: 9px !important;
+  font-family: var(--font-mono) !important;
+  letter-spacing: 0.2px !important;
 }
 
 .leaflet-control-attribution a {
-  color: #ff8c42 !important;
+  color: var(--color-accent-primary) !important;
+  text-decoration: none !important;
+  transition: color var(--transition-fast) !important;
 }
 
-/* Gridlines Leaflet */
+.leaflet-control-attribution a:hover {
+  color: var(--color-accent-secondary) !important;
+}
+
 .gridline {
   pointer-events: none;
 }
 
-/* Scrollbar personalizado */
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCROLLBAR - Custom styling
+   ═════════════════════════════════════════════════════════════════════════ */
+
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: var(--color-ground);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ff8c42;
-  border-radius: 4px;
+  background: var(--color-accent-primary);
+  border-radius: 3px;
+  box-shadow: var(--glow-accent);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ffa060;
+  background: var(--color-accent-secondary);
+  box-shadow: var(--glow-secondary);
 }
 
-/* Animaciones */
+/* ═══════════════════════════════════════════════════════════════════════════
+   ANIMACIONES - Bloomberg smooth transitions
+   ═════════════════════════════════════════════════════════════════════════ */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -126,16 +397,87 @@ body {
   }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.3s ease-in-out;
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-/* Responsive */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: var(--glow-accent);
+  }
+  50% {
+    box-shadow: var(--glow-accent-strong);
+  }
+}
+
+@keyframes criticalPulse {
+  0%, 100% {
+    box-shadow: var(--glow-critical);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 51, 51, 0.6);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--transition-normal);
+}
+
+.animate-slide-in {
+  animation: slideInRight var(--transition-normal);
+}
+
+.animate-glow {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.animate-critical {
+  animation: criticalPulse 1.5s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   INPUT & FORM - Professional styling
+   ═════════════════════════════════════════════════════════════════════════ */
+
+input,
+textarea,
+select {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-neutral-100);
+  background: var(--color-neutral-800);
+  border: 1px solid var(--color-border);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+  letter-spacing: 0.2px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 0 8px rgba(255, 140, 66, 0.2);
+  background: var(--color-neutral-700);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE - Mobile optimization
+   ═════════════════════════════════════════════════════════════════════════ */
+
 @media (max-width: 768px) {
   .terminal-header {
     flex-wrap: wrap;
     height: auto;
-    padding: 10px;
+    padding: var(--space-md);
   }
 
   .search-box {
@@ -143,15 +485,21 @@ body {
   }
 
   .nav-tab {
-    padding: 8px 12px;
+    padding: var(--space-sm) var(--space-md);
     font-size: 10px;
+  }
+
+  .control-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
   }
 }
 
-/* Print styles */
-@media print {
-  body {
-    background: white;
-    color: black;
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
