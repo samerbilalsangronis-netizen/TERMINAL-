@@ -1,15 +1,27 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface TerminalHeaderProps {
   onSearch: (term: string) => void
   searchTerm: string
 }
 
+function formatUTC(date: Date) {
+  const pad = (n: number) => n.toString().padStart(2, '0')
+  return `${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}:${pad(date.getUTCSeconds())}`
+}
+
 export default function TerminalHeader({ onSearch, searchTerm }: TerminalHeaderProps) {
   const [activeTab, setActiveTab] = useState('Map')
   const [searchFocused, setSearchFocused] = useState(false)
+  const [utcTime, setUtcTime] = useState<string | null>(null)
+
+  useEffect(() => {
+    setUtcTime(formatUTC(new Date()))
+    const interval = setInterval(() => setUtcTime(formatUTC(new Date())), 1000)
+    return () => clearInterval(interval)
+  }, [])
 
   const handleSearchChange = (value: string) => {
     onSearch(value)
@@ -81,6 +93,13 @@ export default function TerminalHeader({ onSearch, searchTerm }: TerminalHeaderP
         <div className="flex items-center gap-1 text-[10px]">
           <span className="inline-block w-2 h-2 bg-[#00cc88] rounded-full animate-pulse"></span>
           <span className="text-[#b0b0b0] tracking-wide">EN LÍNEA</span>
+        </div>
+        <div className="w-px h-6 bg-gradient-to-b from-transparent via-[#ff8c42] to-transparent opacity-30"></div>
+        <div className="flex items-center gap-1 text-[10px] font-mono">
+          <span className="text-[#b0b0b0] tracking-wide">UTC</span>
+          <span className="text-[#ff8c42] font-bold tabular-nums min-w-[56px] text-right">
+            {utcTime ?? '--:--:--'}
+          </span>
         </div>
         <div className="w-px h-6 bg-gradient-to-b from-transparent via-[#ff8c42] to-transparent opacity-30"></div>
         <div className="text-[10px] font-bold text-[#ff8c42] tracking-widest">

@@ -40,6 +40,7 @@ export default function MapContainer({
   const mapRef = useRef<L.Map | null>(null)
   const [coords, setCoords] = useState({ lat: 0, lon: 0 })
   const [bottlenecks, setBottlenecks] = useState<Bottleneck[]>([])
+  const [borderError, setBorderError] = useState(false)
 
   // Store callback en ref
   const callbackRef = useRef<typeof onCountrySelect>(onCountrySelect)
@@ -137,6 +138,7 @@ export default function MapContainer({
       })
       .catch(err => {
         console.error('[MapContainer] Error en GeoJSON fetch:', err.message, err)
+        setBorderError(true)
       })
 
     mapRef.current = map
@@ -196,8 +198,15 @@ export default function MapContainer({
         />
       )}
 
+      {/* Aviso de fallo de red al cargar límites de países */}
+      {borderError && (
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-[rgba(10,10,10,0.95)] border border-[#ff3333] text-[#ff3333] px-4 py-2 rounded-sm text-xs z-20 animate-fade-in">
+          ⚠ No se pudieron cargar los límites de países. Verifica tu conexión.
+        </div>
+      )}
+
       {/* Leyenda */}
-      <div className="absolute bottom-20 left-5 bg-[rgba(10,10,10,0.95)] border border-[#333] p-4 rounded-sm text-xs z-10">
+      <div className="absolute bottom-44 left-5 bg-[rgba(10,10,10,0.95)] border border-[#333] p-4 rounded-sm text-xs z-10">
         <div className="panel-title mb-2">Elementos del Mapa</div>
         <div className="space-y-2 text-[#aaa]">
           <div className="flex gap-2 items-center">
@@ -230,7 +239,7 @@ export default function MapContainer({
       <div className="absolute bottom-5 left-5 flex flex-col gap-2 z-10">
         <button id="zoomIn" className="control-btn" title="Zoom In">+</button>
         <button id="zoomOut" className="control-btn" title="Zoom Out">−</button>
-        <button id="resetView" className="control-btn" title="Reset View">⌘</button>
+        <button id="resetView" className="control-btn" title="Restablecer vista">⟲</button>
       </div>
 
       {/* Coordenadas */}
