@@ -2,8 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react'
 import * as d3 from 'd3'
-import empresas from '@/data/empresas_500.json'
-import dependencias from '@/data/dependencias.json'
 import { Empresa, Dependencia } from '@/types'
 
 interface DependencyGraphProps {
@@ -44,48 +42,64 @@ export default function DependencyGraph({ companyId, onNodeClick }: DependencyGr
   const [hoveredNode, setHoveredNode] = useState<string | null>(null)
 
   useEffect(() => {
-    // Construir grafo: empresa central + proveedores + clientes
-    const mainEmpresa = empresas.find(e => e.id === companyId)
-    if (!mainEmpresa) return
+    const loadGraphData = async () => {
+      try {
+        const [empresasRes, dependenciasRes] = await Promise.all([
+          fetch('/data/empresas_500.json'),
+          fetch('/data/dependencias.json'),
+        ])
 
-    const nodes: Map<string, GraphNode> = new Map()
-    const links: GraphLink[] = []
+        const empresas = await empresasRes.json()
+        const dependencias = await dependenciasRes.json()
 
-    // Agregar empresa central
-    nodes.set(companyId, mainEmpresa as GraphNode)
+        // Construir grafo: empresa central + proveedores + clientes
+        const mainEmpresa = empresas.find((e: any) => e.id === companyId)
+        if (!mainEmpresa) return
 
-    // Agregar proveedores (empresas_b de dependencias donde empresa_a = companyId)
-    const misDependencias = dependencias.filter(d => d.empresa_a === companyId)
-    misDependencias.forEach(dep => {
-      const proveedor = empresas.find(e => e.id === dep.empresa_b)
-      if (proveedor) {
-        nodes.set(dep.empresa_b, proveedor as GraphNode)
-        links.push({
-          ...dep,
-          source: companyId,
-          target: dep.empresa_b,
-        } as GraphLink)
-      }
-    })
+        const nodes: Map<string, GraphNode> = new Map()
+        const links: GraphLink[] = []
 
-    // Agregar clientes (empresas_a de dependencias donde empresa_b = companyId)
-    const dependientesDeEsta = dependencias.filter(d => d.empresa_b === companyId)
-    dependientesDeEsta.forEach(dep => {
-      const cliente = empresas.find(e => e.id === dep.empresa_a)
-      if (cliente) {
-        nodes.set(dep.empresa_a, cliente as GraphNode)
-        links.push({
-          ...dep,
+        // Agregar empresa central
+        nodes.set(companyId, mainEmpresa as GraphNode)
+
+        // Agregar proveedores (empresas_b de dependencias donde empresa_a = companyId)
+        const misDependencias = dependencias.filter((d: any) => d.empresa_a === companyId)
+        misDependencias.forEach((dep: any) => {
+          const proveedor = empresas.find((e: any) => e.id === dep.empresa_b)
+          if (proveedor) {
+            nodes.set(dep.empresa_b, proveedor as GraphNode)
+            links.push({
+              ...dep,
+              source: companyId,
+              target: dep.empresa_b,
+            } as GraphLink)
+          }
+        })
+
+        // Agregar clientes (empresas_a de dependencias donde empresa_b = companyId)
+        const dependientesDeEsta = dependencias.filter((d: any) => d.empresa_b === companyId)
+        dependientesDeEsta.forEach((dep: any) => {
+          const cliente = empresas.find((e: any) => e.id === dep.empresa_a)
+          if (cliente) {
+            nodes.set(dep.empresa_a, cliente as GraphNode)
+            links.push({
+              ...dep,
           source: dep.empresa_a,
           target: companyId,
         } as GraphLink)
       }
     })
 
-    setGraphData({
-      nodes: Array.from(nodes.values()),
-      links,
-    })
+        setGraphData({
+          nodes: Array.from(nodes.values()),
+          links,
+        })
+      } catch (error) {
+        console.error('Error loading graph data:', error)
+      }
+    }
+
+    loadGraphData()
   }, [companyId])
 
   useEffect(() => {
@@ -301,9 +315,9 @@ export default function DependencyGraph({ companyId, onNodeClick }: DependencyGr
         className="flex-1 cursor-grab active:cursor-grabbing"
         style={{ background: COLORS.background }}
       />
-      {hoveredNode && (
+      {hoveredNode && graphData && (
         <div className="absolute bottom-2 left-2 bg-[#1a1a1a] border border-[#333] rounded p-2 text-xs text-white">
-          {empresas.find(e => e.id === hoveredNode)?.nombre}
+          {graphData.nodes.find(e => e.id === hoveredNode)?.nombre}
         </div>
       )}
     </div>

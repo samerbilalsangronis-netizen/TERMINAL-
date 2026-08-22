@@ -2,8 +2,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import paises from '@/data/paises.json'
-import empresas from '@/data/empresas_500.json'
 import { Pais, Empresa } from '@/types'
 
 interface CountryPanelProps {
@@ -14,15 +12,34 @@ interface CountryPanelProps {
 export default function CountryPanel({ countryId, onCompanySelect }: CountryPanelProps) {
   const [pais, setPais] = useState<Pais | null>(null)
   const [empresasPais, setEmpresasPais] = useState<Empresa[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const paisData = paises.find(p => p.codigo === countryId)
-    setPais(paisData || null)
+    const loadData = async () => {
+      try {
+        const [paisesRes, empresasRes] = await Promise.all([
+          fetch('/data/paises.json'),
+          fetch('/data/empresas_500.json'),
+        ])
 
-    if (paisData) {
-      const empresasDelPais = empresas.filter(e => e.pais_id === paisData.id).slice(0, 10)
-      setEmpresasPais(empresasDelPais)
+        const paises = await paisesRes.json()
+        const empresas = await empresasRes.json()
+
+        const paisData = paises.find((p: any) => p.codigo === countryId)
+        setPais(paisData || null)
+
+        if (paisData) {
+          const empresasDelPais = empresas.filter((e: any) => e.pais_id === paisData.id).slice(0, 10)
+          setEmpresasPais(empresasDelPais)
+        }
+      } catch (error) {
+        console.error('Error loading data:', error)
+      } finally {
+        setLoading(false)
+      }
     }
+
+    loadData()
   }, [countryId])
 
   if (!pais) {

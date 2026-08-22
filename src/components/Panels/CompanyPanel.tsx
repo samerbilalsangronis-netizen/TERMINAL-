@@ -2,9 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
-import empresas from '@/data/empresas_500.json'
-import dependencias from '@/data/dependencias.json'
-import paises from '@/data/paises.json'
 import { Empresa, Dependencia } from '@/types'
 
 const DependencyGraph = dynamic(() => import('@/components/Graph/DependencyGraph'), {
@@ -24,27 +21,50 @@ export default function CompanyPanel({ companyId, onClose }: CompanyPanelProps) 
   const [paisEmpresa, setPaisEmpresa] = useState<string>('')
   const [showGraph, setShowGraph] = useState(false)
   const [selectedGraphNode, setSelectedGraphNode] = useState<string | null>(null)
+  const [empresas, setEmpresas] = useState<Empresa[]>([])
+  const [dependencias, setDependencias] = useState<Dependencia[]>([])
 
   useEffect(() => {
-    // Obtener datos de la empresa
-    const empresaData = empresas.find(e => e.id === companyId)
-    setEmpresa((empresaData || null) as any)
+    const loadData = async () => {
+      try {
+        const [empresasRes, dependenciasRes, paisesRes] = await Promise.all([
+          fetch('/data/empresas_500.json'),
+          fetch('/data/dependencias.json'),
+          fetch('/data/paises.json'),
+        ])
 
-    if (empresaData) {
-      // Obtener país
-      const pais = paises.find(p => p.id === empresaData.pais_id)
-      setPaisEmpresa(pais?.nombre || 'Desconocido')
+        const empresasData = await empresasRes.json()
+        const dependenciasData = await dependenciasRes.json()
+        const paisesData = await paisesRes.json()
 
-      // Obtener dependencias (donde esta empresa depende)
-      const deps = dependencias.filter(d => d.empresa_a === companyId)
-      setMisDependencias(deps as any)
+        setEmpresas(empresasData)
+        setDependencias(dependenciasData)
 
-      // Obtener proveedores
-      const provs = deps
-        .map(d => empresas.find(e => e.id === d.empresa_b))
-        .filter(Boolean) as Empresa[]
-      setProveedores(provs)
+        // Obtener datos de la empresa
+        const empresaData = empresasData.find((e: any) => e.id === companyId)
+        setEmpresa((empresaData || null) as any)
+
+        if (empresaData) {
+          // Obtener país
+          const pais = paisesData.find((p: any) => p.id === empresaData.pais_id)
+          setPaisEmpresa(pais?.nombre || 'Desconocido')
+
+          // Obtener dependencias
+          const deps = dependenciasData.filter((d: any) => d.empresa_a === companyId)
+          setMisDependencias(deps as any)
+
+          // Obtener proveedores
+          const provs = deps
+            .map((d: any) => empresasData.find((e: any) => e.id === d.empresa_b))
+            .filter(Boolean) as Empresa[]
+          setProveedores(provs)
+        }
+      } catch (error) {
+        console.error('Error loading company data:', error)
+      }
     }
+
+    loadData()
   }, [companyId])
 
   // Manejar selección de nodo en grafo
@@ -79,10 +99,10 @@ export default function CompanyPanel({ companyId, onClose }: CompanyPanelProps) 
             </button>
           </div>
           <p className="text-xs text-[#aaa] mt-2">
-            {empresas.filter(e => {
-              const hasLink = dependencias.some(
-                d => (d.empresa_a === companyId && d.empresa_b === e.id) ||
-                     (d.empresa_a === e.id && d.empresa_b === companyId)
+            {empresas.filter((e: any) => {
+              const hasLink = dependencias.some((d: any) =>
+                (d.empresa_a === companyId && d.empresa_b === e.id) ||
+                (d.empresa_a === e.id && d.empresa_b === companyId)
               )
               return hasLink
             }).length} empresas conectadas
