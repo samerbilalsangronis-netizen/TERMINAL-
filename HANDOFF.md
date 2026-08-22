@@ -140,12 +140,13 @@ Panel muestra:
 
 **Características implementadas:**
 - ✅ 17 cuellos de botella geopolíticos críticos
-- ✅ Marcadores con colores de criticidad (rojo/naranja/amarillo)
-- ✅ Glows y efectos visuales en los marcadores
+- ✅ Zonas geográficas resaltadas con círculos (no marcadores puntuales, ver SESIÓN 3)
+- ✅ Colores de criticidad (rojo/naranja/amarillo) con relleno semitransparente
 - ✅ Panel detallado con vulnerabilidades, empresas afectadas, consecuencias
 - ✅ Conexiones entre cuellos de botella (líneas punteadas)
 - ✅ Leyenda actualizada en el mapa
 - ✅ Hover effects y selección interactiva
+- ✅ Interactividad y visibilidad corregidas en SESIÓN 3 (ver detalle abajo)
 
 **Puntos críticos mapeados:**
 - 🔴 **Taiwán**: 92% chips 5nm (TSMC monopolio)
@@ -430,10 +431,10 @@ Datos a crear:
 
 ## 🎨 DISEÑO VISUAL
 
-**Colores Bloomberg Terminal:**
-- Fondo: `#0a0a0a`
-- Océanos: `#001a33`
-- Continentes: `#0a0a0a`
+**Colores Bloomberg Terminal (actualizado SESIÓN 3):**
+- Fondo general (UI): `#0a0a0a`
+- Océanos (mapa): `#000000` (negro puro)
+- Continentes/países (mapa): `#4a4a4a` (gris medio)
 - **Bordes países: `#ff8c42` (NARANJA)**
 - Accent: `#00d4ff` (Cian)
 - Crítico: `#ff3333` (Rojo)
@@ -464,15 +465,15 @@ Datos a crear:
 
 ---
 
-**Última actualización:** 2026-08-22 - SESIÓN 2
-**Estado:** FASE 5 ✅ COMPLETADA (pero con problema de interactividad del mapa)
+**Última actualización:** 2026-08-22 - SESIÓN 3
+**Estado:** FASE 5 ✅ COMPLETADA - Mapa 100% interactivo y visualmente corregido
 **Rama actual:** `claude/lee-el-handoff-kzxdwz`
 
 ---
 
-## 🔧 PROBLEMA ACTUAL - SESIÓN 2 (2026-08-22)
+## 🔧 HISTORIAL DE PROBLEMAS Y FIXES - SESIÓN 2 → 3 (2026-08-22)
 
-### ❌ Síntoma Reportado
+### ❌ Síntoma Reportado (fin de SESIÓN 2)
 ✅ Mapa carga (bordes naranja, gridlines visibles)
 ❌ NO hay tooltips al pasar ratón
 ❌ NO abre panel al click (sin errores en consola)
@@ -588,6 +589,41 @@ Todos los demás panes: 200-700 ✓
 Fondo del mapa: rgb(0,0,0) ✓
 ```
 
+### 📌 RESUMEN FINAL DE SESIÓN 3
+
+**Estado del mapa:** ✅ 100% funcional
+
+| Elemento | Estado |
+|----------|--------|
+| Nombres de países (tooltip) | ✅ Funciona |
+| Click país → panel de info | ✅ Funciona |
+| Cuellos de botella (zonas) | ✅ Visibles por encima del mapa |
+| Océano negro puro | ✅ `rgb(0,0,0)` |
+| Países en gris | ✅ `#4a4a4a` |
+| Build | ✅ Compila sin errores |
+
+**Todos los commits de la sesión (orden cronológico):**
+```
+8b59ea0 - Agregar logs de debug para diagnóstico
+e5290cf - Usar GeoJSON local en lugar de fetch remoto
+efb6a9c - Corregir propiedades del GeoJSON (ADMIN→name, ISO_A2→ISO3166-1-Alpha-2)
+c3892ca - Agregar @playwright/test como dependencia de dev
+10e569a - Corregir z-index de cuellos de botella (primer intento)
+8d3b5cb - Actualizar HANDOFF con diagnóstico y soluciones
+0fc3c1b - Cambiar visualización de cuellos de botella a zonas geográficas (círculos)
+49c321a - Actualizar HANDOFF con visualización de zonas geográficas
+c73f3a9 - Mejorar opacidad y invertir colores del mapa (océano negro, países gris)
+7455bb9 - Documentar cambios de visualización e inversión de colores
+9dd0b87 - Corregir z-index y color de fondo del mapa
+dcebeac - Corregir z-index de bottleneckPane sobrescrito por CSS (bug real fix)
+273295e - Documentar fix de z-index sobrescrito por CSS
+```
+
+**Lección aprendida:** Un `.leaflet-pane { z-index: 100 !important }` genérico en CSS
+puede sobrescribir silenciosamente z-index inline que Leaflet/JS aplica a panes
+específicos. Siempre usar selectores de clase específicos (`.leaflet-<nombre>-pane`)
+al forzar z-index con `!important` sobre paneles de Leaflet.
+
 ---
 
-**Próximo paso:** FASE 6 - Simulación de Escenarios (interactividad ya resuelta ✅)
+**Próximo paso:** FASE 6 - Simulación de Escenarios (interactividad y visualización ya resueltas ✅)
