@@ -24,9 +24,32 @@ const CompanyPanel = dynamic(() => import('@/components/Panels/CompanyPanel'), {
   loading: () => <div className="w-96 bg-[#0a0a0a] border-l border-[#333]">Cargando empresa...</div>
 })
 
+const BottleneckPanel = dynamic(() => import('@/components/Panels/BottleneckPanel'), {
+  ssr: false,
+  loading: () => <div className="w-96 bg-[#0a0a0a] border-l border-[#333]">Cargando análisis...</div>
+})
+
+interface Bottleneck {
+  id: string
+  nombre: string
+  pais: string
+  latitud: number
+  longitud: number
+  tipo: string
+  criticidad: string
+  porcentaje_global: number
+  impacto_sectores: string[]
+  descripcion: string
+  vulnerabilidades: string[]
+  empresas_afectadas: string[]
+  consecuencias_si_falla: string
+  color: string
+}
+
 export default function Home() {
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null)
   const [selectedCompany, setSelectedCompany] = useState<string | null>(null)
+  const [selectedBottleneck, setSelectedBottleneck] = useState<Bottleneck | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
 
   // Listener para eventos de selección desde el grafo
@@ -55,6 +78,8 @@ export default function Home() {
           <MapContainer
             onCountrySelect={setSelectedCountry}
             selectedCountry={selectedCountry}
+            onBottleneckSelect={setSelectedBottleneck}
+            selectedBottleneck={selectedBottleneck?.id || null}
           />
         </div>
 
@@ -64,6 +89,13 @@ export default function Home() {
             <CompanyPanel
               companyId={selectedCompany}
               onClose={() => setSelectedCompany(null)}
+            />
+          </div>
+        ) : selectedBottleneck ? (
+          <div className="w-96 border-l border-[#333] overflow-y-auto bg-[#0a0a0a]">
+            <BottleneckPanel
+              bottleneck={selectedBottleneck}
+              onClose={() => setSelectedBottleneck(null)}
             />
           </div>
         ) : selectedCountry ? (

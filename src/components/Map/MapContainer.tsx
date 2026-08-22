@@ -1,18 +1,54 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import dynamic from 'next/dynamic'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+
+const BottleneckLayer = dynamic(() => import('./BottleneckLayer'), { ssr: false })
+
+interface Bottleneck {
+  id: string
+  nombre: string
+  pais: string
+  latitud: number
+  longitud: number
+  tipo: string
+  criticidad: string
+  porcentaje_global: number
+  impacto_sectores: string[]
+  descripcion: string
+  vulnerabilidades: string[]
+  empresas_afectadas: string[]
+  consecuencias_si_falla: string
+  color: string
+}
 
 interface MapContainerProps {
   onCountrySelect: (countryId: string) => void
   selectedCountry: string | null
+  onBottleneckSelect?: (bottleneck: Bottleneck) => void
+  selectedBottleneck?: string | null
 }
 
-export default function MapContainer({ onCountrySelect, selectedCountry }: MapContainerProps) {
+export default function MapContainer({
+  onCountrySelect,
+  selectedCountry,
+  onBottleneckSelect,
+  selectedBottleneck
+}: MapContainerProps) {
   const mapRef = useRef<L.Map | null>(null)
   const [coords, setCoords] = useState({ lat: 0, lon: 0 })
+  const [bottlenecks, setBottlenecks] = useState<Bottleneck[]>([])
   const handleCountrySelect = onCountrySelect
+
+  useEffect(() => {
+    // Cargar datos de cuellos de botella
+    fetch('/data/cuellos_botella.json')
+      .then((res) => res.json())
+      .then((data) => setBottlenecks(data))
+      .catch((err) => console.error('Error loading bottlenecks:', err))
+  }, [])
 
   useEffect(() => {
     if (!mapRef.current) {
@@ -182,6 +218,20 @@ export default function MapContainer({ onCountrySelect, selectedCountry }: MapCo
       {/* Mapa Leaflet */}
       <div id="map" className="w-full h-full" />
 
+      {/* Capa de Cuellos de Botella */}
+      {mapRef.current && (
+        <BottleneckLayer
+          map={mapRef.current}
+          bottlenecks={bottlenecks}
+          onBottleneckSelect={(bottleneck) => {
+            if (onBottleneckSelect) {
+              onBottleneckSelect(bottleneck)
+            }
+          }}
+          selectedBottleneck={selectedBottleneck || null}
+        />
+      )}
+
       {/* Leyenda */}
       <div className="absolute bottom-20 left-5 bg-[rgba(10,10,10,0.95)] border border-[#333] p-4 rounded-sm text-xs z-10">
         <div className="panel-title mb-2">Elementos del Mapa</div>
@@ -197,6 +247,21 @@ export default function MapContainer({ onCountrySelect, selectedCountry }: MapCo
           <div className="flex gap-2 items-center">
             <div className="w-3 h-3 border-2 border-[#ff8c42]" />
             Líneas Costeras
+          </div>
+          <div className="border-t border-[#333] mt-2 pt-2">
+            <div className="text-[#ff8c42] font-bold mb-1">Cuellos de Botella</div>
+            <div className="flex gap-2 items-center">
+              <div className="w-3 h-3 bg-[#ff3333] rounded-full" />
+              Crítico
+            </div>
+            <div className="flex gap-2 items-center">
+              <div className="w-3 h-3 bg-[#ff6600] rounded-full" />
+              Alto
+            </div>
+            <div className="flex gap-2 items-center">
+              <div className="w-3 h-3 bg-[#ffaa00] rounded-full" />
+              Medio
+            </div>
           </div>
         </div>
       </div>
