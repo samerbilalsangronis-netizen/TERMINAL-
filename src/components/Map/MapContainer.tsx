@@ -71,7 +71,7 @@ export default function MapContainer({
       doubleClickZoom: true,
     })
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
       attribution: '© OpenStreetMap © CartoDB',
       maxZoom: 19,
     }).addTo(map)
@@ -92,7 +92,7 @@ export default function MapContainer({
             color: '#ff8c42',
             weight: 1.5,
             opacity: 0.6,
-            fillColor: '#0a0a0a',
+            fillColor: '#4a4a4a',
             fillOpacity: 0.95,
           },
           onEachFeature: (feature: any, layer: any) => {
@@ -161,7 +161,7 @@ export default function MapContainer({
   }, [])
 
   function addGridlines(map: L.Map) {
-    const gridColor = '#1a2a3a'
+    const gridColor = '#333333'
     const gridOpacity = 0.3
 
     for (let lat = -80; lat <= 80; lat += 20) {
@@ -201,11 +201,11 @@ export default function MapContainer({
         <div className="panel-title mb-2">Elementos del Mapa</div>
         <div className="space-y-2 text-[#aaa]">
           <div className="flex gap-2 items-center">
-            <div className="w-3 h-3 bg-[#001a33]" />
+            <div className="w-3 h-3 bg-[#0a0a0a]" />
             Océanos
           </div>
           <div className="flex gap-2 items-center">
-            <div className="w-3 h-3 bg-[#0a0a0a] border border-[#ff8c42]" />
+            <div className="w-3 h-3 bg-[#4a4a4a] border border-[#ff8c42]" />
             Continentes
           </div>
           <div className="border-t border-[#333] mt-2 pt-2">

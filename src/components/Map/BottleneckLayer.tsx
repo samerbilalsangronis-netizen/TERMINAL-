@@ -79,7 +79,7 @@ export default function BottleneckLayer({
           opacity: opacity,
           dashArray: dashArray,
           fillColor: bottleneck.color,
-          fillOpacity: isSelected ? 0.15 : 0.08,
+          fillOpacity: isSelected ? 0.35 : 0.20,
           pane: 'bottleneckPane'
         }
       )
