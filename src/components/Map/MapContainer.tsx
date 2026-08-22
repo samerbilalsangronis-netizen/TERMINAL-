@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -63,6 +63,20 @@ export default function MapContainer({
     const saved = window.localStorage.getItem(AIS_KEY_STORAGE)
     if (saved) setAisApiKey(saved)
   }, [])
+
+  // Referencia estable: si esta función se recreara en cada render, el
+  // useEffect de VesselLayer (que depende de ella) cerraría y reabriría el
+  // WebSocket en cada actualización de estado, matándolo antes de conectar.
+  const handleVesselStatusChange = useCallback((status: VesselStatus, count: number) => {
+    setVesselStatus(status)
+    setVesselCount(count)
+  }, [])
+
+  // Misma razón: referencia estable para no reconstruir las capas de
+  // cuellos de botella en cada render.
+  const handleBottleneckSelect = useCallback((bottleneck: Bottleneck) => {
+    onBottleneckSelect?.(bottleneck)
+  }, [onBottleneckSelect])
 
   const handleToggleVessels = () => {
     if (vesselsEnabled) {
@@ -233,11 +247,7 @@ export default function MapContainer({
         <BottleneckLayer
           map={mapRef.current}
           bottlenecks={bottlenecks}
-          onBottleneckSelect={(bottleneck) => {
-            if (onBottleneckSelect) {
-              onBottleneckSelect(bottleneck)
-            }
-          }}
+          onBottleneckSelect={handleBottleneckSelect}
           selectedBottleneck={selectedBottleneck || null}
         />
       )}
@@ -247,10 +257,7 @@ export default function MapContainer({
           map={mapRef.current}
           apiKey={aisApiKey}
           enabled={vesselsEnabled}
-          onStatusChange={(status, count) => {
-            setVesselStatus(status)
-            setVesselCount(count)
-          }}
+          onStatusChange={handleVesselStatusChange}
         />
       )}
 
