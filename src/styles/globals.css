@@ -297,6 +297,13 @@ body {
   letter-spacing: 0.5px !important;
   box-shadow: var(--glow-secondary) !important;
   text-transform: uppercase !important;
+  z-index: 1000 !important;
+  pointer-events: none !important;
+}
+
+.leaflet-tooltip {
+  z-index: 1000 !important;
+  pointer-events: none !important;
 }
 
 .bottleneck-popup {

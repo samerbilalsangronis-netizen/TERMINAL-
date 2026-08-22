@@ -34,7 +34,16 @@ export default function BottleneckLayer({
   useEffect(() => {
     if (!map) return
 
-    // Limpiar capas anteriores
+    // Crear un pane específico para los cuellos de botella
+    let bottleneckPane = map.getPane('bottleneckPane')
+    if (!bottleneckPane) {
+      bottleneckPane = map.createPane('bottleneckPane')
+      if (bottleneckPane) {
+        bottleneckPane.style.zIndex = '150'
+      }
+    }
+
+    // Limpiar capas anteriores de cuellos de botella
     map.eachLayer((layer: any) => {
       if (layer.isBottleneck) {
         map.removeLayer(layer)
@@ -63,16 +72,19 @@ export default function BottleneckLayer({
             box-shadow: 0 0 ${bottleneck.criticidad === 'CRÍTICA' ? '12' : '6'}px ${bottleneck.color};
             transition: all 0.2s ease;
             transform: ${selectedBottleneck === bottleneck.id ? 'scale(1.3)' : 'scale(1)'};
+            pointer-events: auto;
           "></div>
         `,
         className: 'bottleneck-marker',
         iconSize: [iconSize, iconSize],
-        popupAnchor: [0, -iconSize / 2]
+        popupAnchor: [0, -iconSize / 2],
+        pane: 'bottleneckPane'
       })
 
       // Crear marcador
       const marker = L.marker([bottleneck.latitud, bottleneck.longitud], {
-        icon: svgIcon
+        icon: svgIcon,
+        pane: 'bottleneckPane'
       })
 
       // Popup con información
@@ -147,6 +159,15 @@ export default function BottleneckLayer({
 
 // Función para dibujar conexiones entre cuellos de botella
 function drawBottleneckConnections(map: L.Map, bottlenecks: Bottleneck[]) {
+  // Obtener o crear el pane para conexiones
+  let connectionPane = map.getPane('bottleneckPane')
+  if (!connectionPane) {
+    connectionPane = map.createPane('bottleneckPane')
+    if (connectionPane) {
+      connectionPane.style.zIndex = '150'
+    }
+  }
+
   // Definir conexiones lógicas entre cuellos de botella
   const connections = [
     { from: 'taiwan-chips', to: 'holanda-litografia' }, // Chips dependen de máquinas ASML
@@ -178,7 +199,8 @@ function drawBottleneckConnections(map: L.Map, bottlenecks: Bottleneck[]) {
           opacity: 0.3,
           dashArray: '5, 5',
           lineCap: 'round',
-          lineJoin: 'round'
+          lineJoin: 'round',
+          pane: 'bottleneckPane'
         }
       )
 

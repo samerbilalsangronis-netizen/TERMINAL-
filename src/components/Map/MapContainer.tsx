@@ -80,7 +80,7 @@ export default function MapContainer({
       )
         .then((res) => res.json())
         .then((data) => {
-          L.geoJSON(data, {
+          const geoJsonLayer = L.geoJSON(data, {
             style: {
               color: '#ff8c42', // Naranja (no azul)
               weight: 1.5,
@@ -92,9 +92,8 @@ export default function MapContainer({
               const countryName = feature.properties.ADMIN || 'País'
               const countryCode = feature.properties.ISO_A2 || ''
 
-              // @ts-ignore
+              // Configurar eventos ANTES de añadir al mapa
               layer.on('click', () => {
-                // @ts-ignore
                 handleCountrySelect(countryCode)
                 // Resaltar
                 (layer as any).setStyle({
@@ -111,11 +110,15 @@ export default function MapContainer({
                   weight: 2,
                   opacity: 1,
                 })
-                // Tooltip
-                layer.bindTooltip(countryName, {
-                  permanent: false,
-                  direction: 'top',
-                }).openTooltip()
+                // Mostrar tooltip con el nombre del país
+                if (!layer.getTooltip()) {
+                  layer.bindTooltip(countryName, {
+                    permanent: false,
+                    direction: 'top',
+                    className: 'country-tooltip'
+                  })
+                }
+                layer.openTooltip()
               })
 
               layer.on('mouseout', () => {
@@ -137,7 +140,16 @@ export default function MapContainer({
                 </div>
               `)
             }) as any,
-          }).addTo(map)
+          })
+
+          // Añadir la capa geográfica al mapa DESPUÉS de configurar eventos
+          geoJsonLayer.addTo(map)
+
+          // Asegurar que la capa de países tenga mejor z-index que otros elementos
+          const geoJsonPane = map.createPane('geoJsonPane')
+          if (geoJsonPane) {
+            geoJsonPane.style.zIndex = '200'
+          }
         })
 
       mapRef.current = map
