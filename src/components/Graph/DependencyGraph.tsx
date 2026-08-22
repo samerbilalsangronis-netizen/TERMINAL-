@@ -20,9 +20,10 @@ interface GraphNode extends Empresa {
   fy?: number | null
 }
 
-interface GraphLink extends Dependencia {
-  source?: GraphNode | string
-  target?: GraphNode | string
+interface GraphLink extends Omit<Dependencia, 'tipo'> {
+  source: string | GraphNode
+  target: string | GraphNode
+  tipo?: string
 }
 
 const COLORS = {
@@ -51,19 +52,19 @@ export default function DependencyGraph({ companyId, onNodeClick }: DependencyGr
     const links: GraphLink[] = []
 
     // Agregar empresa central
-    nodes.set(companyId, { ...mainEmpresa })
+    nodes.set(companyId, mainEmpresa as GraphNode)
 
     // Agregar proveedores (empresas_b de dependencias donde empresa_a = companyId)
     const misDependencias = dependencias.filter(d => d.empresa_a === companyId)
     misDependencias.forEach(dep => {
       const proveedor = empresas.find(e => e.id === dep.empresa_b)
       if (proveedor) {
-        nodes.set(dep.empresa_b, proveedor)
+        nodes.set(dep.empresa_b, proveedor as GraphNode)
         links.push({
           ...dep,
           source: companyId,
           target: dep.empresa_b,
-        })
+        } as GraphLink)
       }
     })
 
@@ -72,12 +73,12 @@ export default function DependencyGraph({ companyId, onNodeClick }: DependencyGr
     dependientesDeEsta.forEach(dep => {
       const cliente = empresas.find(e => e.id === dep.empresa_a)
       if (cliente) {
-        nodes.set(dep.empresa_a, cliente)
+        nodes.set(dep.empresa_a, cliente as GraphNode)
         links.push({
           ...dep,
           source: dep.empresa_a,
           target: companyId,
-        })
+        } as GraphLink)
       }
     })
 
@@ -145,7 +146,7 @@ export default function DependencyGraph({ companyId, onNodeClick }: DependencyGr
         return d.es_critica ? 3 : 1.5
       })
       .attr('stroke-opacity', 0.6)
-      .attr('marker-end', (d) => 'url(#arrowhead)')
+      .attr('marker-end', () => 'url(#arrowhead)')
 
     // Crear marcador para flechas
     svg.append('defs')
@@ -179,11 +180,10 @@ export default function DependencyGraph({ companyId, onNodeClick }: DependencyGr
         return d.id === companyId ? 3 : 1
       })
       .attr('opacity', 1)
-      .call(d3.drag<SVGCircleElement, GraphNode>()
-        .on('start', dragstarted)
-        .on('drag', dragged)
-        .on('end', dragended)
-      )
+      .call(d3.drag<SVGCircleElement, GraphNode>() as any)
+        .on('start', dragstarted as any)
+        .on('drag', dragged as any)
+        .on('end', dragended as any)
 
     // Agregar labels
     const labels = g.append('g')

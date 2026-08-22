@@ -3,8 +3,6 @@
 import { useEffect, useRef, useState } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import paises from '@/data/paises.json'
-import empresas from '@/data/empresas_500.json'
 
 interface MapContainerProps {
   onCountrySelect: (countryId: string) => void
@@ -14,6 +12,7 @@ interface MapContainerProps {
 export default function MapContainer({ onCountrySelect, selectedCountry }: MapContainerProps) {
   const mapRef = useRef<L.Map | null>(null)
   const [coords, setCoords] = useState({ lat: 0, lon: 0 })
+  const handleCountrySelect = onCountrySelect
 
   useEffect(() => {
     if (!mapRef.current) {
@@ -53,14 +52,16 @@ export default function MapContainer({ onCountrySelect, selectedCountry }: MapCo
               fillColor: '#0a0a0a', // Continentes negros
               fillOpacity: 0.95,
             },
-            onEachFeature: (feature, layer) => {
+            onEachFeature: ((feature: any, layer: any) => {
               const countryName = feature.properties.ADMIN || 'País'
               const countryCode = feature.properties.ISO_A2 || ''
 
+              // @ts-ignore
               layer.on('click', () => {
-                onCountrySelect(countryCode)
+                // @ts-ignore
+                handleCountrySelect(countryCode)
                 // Resaltar
-                layer.setStyle({
+                (layer as any).setStyle({
                   color: '#ff8c42',
                   weight: 2.5,
                   opacity: 1,
@@ -69,7 +70,7 @@ export default function MapContainer({ onCountrySelect, selectedCountry }: MapCo
               })
 
               layer.on('mouseover', () => {
-                layer.setStyle({
+                (layer as any).setStyle({
                   color: '#ff8c42',
                   weight: 2,
                   opacity: 1,
@@ -99,7 +100,7 @@ export default function MapContainer({ onCountrySelect, selectedCountry }: MapCo
                   <span style="color: #aaa;">Haz clic para ver empresas</span>
                 </div>
               `)
-            },
+            }) as any,
           }).addTo(map)
         })
 

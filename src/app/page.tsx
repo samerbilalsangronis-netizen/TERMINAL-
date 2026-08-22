@@ -14,10 +14,6 @@ const CountryPanel = dynamic(() => import('@/components/Panels/CountryPanel'), {
   loading: () => <div className="w-80 bg-[#0a0a0a] border-l border-[#333]">Cargando...</div>
 })
 
-const SearchPanel = dynamic(() => import('@/components/Panels/SearchPanel'), {
-  ssr: false,
-})
-
 const AdvancedSearchPanel = dynamic(() => import('@/components/Panels/AdvancedSearchPanel'), {
   ssr: false,
   loading: () => <div className="w-96 bg-[#0a0a0a] border-l border-[#333]">Buscando...</div>
@@ -32,7 +28,6 @@ export default function Home() {
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null)
   const [selectedCompany, setSelectedCompany] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
-  const [showDependencies, setShowDependencies] = useState(false)
 
   // Listener para eventos de selección desde el grafo
   useEffect(() => {

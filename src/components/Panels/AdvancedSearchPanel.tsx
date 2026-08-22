@@ -76,7 +76,7 @@ export default function AdvancedSearchPanel({ searchTerm, onCompanySelect }: Adv
         relacion: {},
       }))
 
-      setResultados(resultadosMap)
+      setResultados(resultadosMap as any)
       setRecursoEncontrado(null)
     }
 

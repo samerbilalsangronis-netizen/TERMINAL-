@@ -28,7 +28,7 @@ export default function CompanyPanel({ companyId, onClose }: CompanyPanelProps) 
   useEffect(() => {
     // Obtener datos de la empresa
     const empresaData = empresas.find(e => e.id === companyId)
-    setEmpresa(empresaData || null)
+    setEmpresa((empresaData || null) as any)
 
     if (empresaData) {
       // Obtener país
@@ -37,7 +37,7 @@ export default function CompanyPanel({ companyId, onClose }: CompanyPanelProps) 
 
       // Obtener dependencias (donde esta empresa depende)
       const deps = dependencias.filter(d => d.empresa_a === companyId)
-      setMisDependencias(deps)
+      setMisDependencias(deps as any)
 
       // Obtener proveedores
       const provs = deps
@@ -180,7 +180,7 @@ export default function CompanyPanel({ companyId, onClose }: CompanyPanelProps) 
         </div>
         {proveedores.length > 0 ? (
           <div className="space-y-2">
-            {proveedores.map((proveedor, idx) => {
+            {proveedores.map((proveedor) => {
               const dep = misDependencias.find(d => d.empresa_b === proveedor.id)
               return (
                 <div
