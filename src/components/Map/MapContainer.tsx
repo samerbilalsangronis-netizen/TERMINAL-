@@ -41,212 +41,147 @@ export default function MapContainer({
   const [coords, setCoords] = useState({ lat: 0, lon: 0 })
   const [bottlenecks, setBottlenecks] = useState<Bottleneck[]>([])
 
-  // Listener para eventos de selección de país
+  // Listener para eventos de selección de país - versión simplificada
   useEffect(() => {
-    const handleCountryClick = (event: Event) => {
-      const customEvent = event as CustomEvent
-      console.log('selectCountry event received:', customEvent.detail)
-      if (customEvent.detail && typeof onCountrySelect === 'function') {
-        console.log('Calling onCountrySelect with:', customEvent.detail)
-        onCountrySelect(customEvent.detail)
-      } else {
-        console.error('onCountrySelect is not a function or no detail')
+    function handleSelectCountry(event: CustomEvent) {
+      if (event.detail) {
+        onCountrySelect(event.detail)
       }
     }
 
-    console.log('Registering selectCountry listener, onCountrySelect:', typeof onCountrySelect)
-    window.addEventListener('selectCountry', handleCountryClick)
-    return () => window.removeEventListener('selectCountry', handleCountryClick)
+    window.addEventListener('selectCountry', handleSelectCountry as EventListener)
+    return () => window.removeEventListener('selectCountry', handleSelectCountry as EventListener)
   }, [onCountrySelect])
 
+  // Cargar cuellos de botella
   useEffect(() => {
-    // Cargar datos de cuellos de botella
     fetch('/data/cuellos_botella.json')
-      .then((res) => res.json())
-      .then((data) => setBottlenecks(data))
-      .catch((err) => console.error('Error loading bottlenecks:', err))
+      .then(res => res.json())
+      .then(data => setBottlenecks(data))
+      .catch(err => console.error('Error cargando cuellos:', err))
   }, [])
 
+  // Inicializar mapa
   useEffect(() => {
-    if (!mapRef.current) {
-      // Inicializar mapa
-      const map = L.map('map', {
-        center: [20, 0],
-        zoom: 2,
-        minZoom: 2,
-        maxZoom: 6,
-        zoomControl: false,
-        attributionControl: true,
-        dragging: true,
-        scrollWheelZoom: true,
-        doubleClickZoom: true,
-      })
+    if (mapRef.current) return
 
-      // Capa base oscura (CartoDB Dark)
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
-        attribution: '© OpenStreetMap © CartoDB',
-        maxZoom: 19,
-      }).addTo(map)
+    const map = L.map('map', {
+      center: [20, 0],
+      zoom: 2,
+      minZoom: 2,
+      maxZoom: 6,
+      zoomControl: false,
+      attributionControl: true,
+      dragging: true,
+      scrollWheelZoom: true,
+      doubleClickZoom: true,
+    })
 
-      // Agregar gridlines
-      addGridlines(map)
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+      attribution: '© OpenStreetMap © CartoDB',
+      maxZoom: 19,
+    }).addTo(map)
 
-      // Cargar datos geográficos
-      fetch(
-        'https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson'
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          const geoJsonLayer = L.geoJSON(data, {
-            style: {
-              color: '#ff8c42', // Naranja (no azul)
-              weight: 1.5,
-              opacity: 0.6,
-              fillColor: '#0a0a0a', // Continentes negros
-              fillOpacity: 0.95,
-            },
-            onEachFeature: ((feature: any, layer: any) => {
-              const countryName = feature.properties.ADMIN || 'País'
-              const countryCode = feature.properties.ISO_A2 || ''
+    addGridlines(map)
 
-              // Configurar eventos ANTES de añadir al mapa
-              layer.on('click', () => {
-                // Disparar evento personalizado
-                console.log('Country clicked:', countryCode)
-                ;(window as any).dispatchEvent(new CustomEvent('selectCountry', { detail: countryCode }))
-                // Resaltar
-                (layer as any).setStyle({
+    // Cargar GeoJSON de países
+    fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
+      .then(res => res.json())
+      .then(data => {
+        L.geoJSON(data, {
+          style: {
+            color: '#ff8c42',
+            weight: 1.5,
+            opacity: 0.6,
+            fillColor: '#0a0a0a',
+            fillOpacity: 0.95,
+          },
+          onEachFeature: (feature: any, layer: any) => {
+            const countryName = feature.properties.ADMIN || 'País'
+            const countryCode = feature.properties.ISO_A2 || ''
+
+            layer.on('click', () => {
+              window.dispatchEvent(new CustomEvent('selectCountry', { detail: countryCode }))
+              layer.setStyle({
+                color: '#ff8c42',
+                weight: 2.5,
+                opacity: 1,
+                fillOpacity: 1,
+              })
+            })
+
+            layer.on('mouseover', () => {
+              layer.setStyle({ color: '#ff8c42', weight: 2, opacity: 1 })
+              layer.bindTooltip(countryName, {
+                permanent: false,
+                direction: 'top',
+                className: 'country-tooltip'
+              }).openTooltip()
+            })
+
+            layer.on('mouseout', () => {
+              if (selectedCountry !== countryCode) {
+                layer.setStyle({
                   color: '#ff8c42',
-                  weight: 2.5,
-                  opacity: 1,
-                  fillOpacity: 1,
+                  weight: 1.5,
+                  opacity: 0.6,
                 })
-              })
-
-              layer.on('mouseover', () => {
-                (layer as any).setStyle({
-                  color: '#ff8c42',
-                  weight: 2,
-                  opacity: 1,
-                })
-                // Mostrar tooltip con el nombre del país
-                layer.bindTooltip(countryName, {
-                  permanent: false,
-                  direction: 'top',
-                  className: 'country-tooltip'
-                }).openTooltip()
-              })
-
-              layer.on('mouseout', () => {
-                if (selectedCountry !== countryCode) {
-                  layer.setStyle({
-                    color: '#ff8c42',
-                    weight: 1.5,
-                    opacity: 0.6,
-                  })
-                }
-                layer.closeTooltip()
-              })
-
-              // Popup info
-              layer.bindPopup(`
-                <div style="background: #0a0a0a; color: #fff; padding: 10px; border: 1px solid #ff8c42; font-size: 12px;">
-                  <strong style="color: #ff8c42;">${countryName}</strong><br>
-                  <span style="color: #aaa;">Haz clic para ver empresas</span>
-                </div>
-              `)
-            }) as any,
-          })
-
-          // Añadir la capa geográfica al mapa DESPUÉS de configurar eventos
-          geoJsonLayer.addTo(map)
-
-          // Asegurar que la capa de países tenga mejor z-index que otros elementos
-          const geoJsonPane = map.createPane('geoJsonPane')
-          if (geoJsonPane) {
-            geoJsonPane.style.zIndex = '200'
+              }
+              layer.closeTooltip()
+            })
           }
-        })
+        }).addTo(map)
 
-      mapRef.current = map
-
-      // Mouse move para mostrar coordenadas
-      map.on('mousemove', (e) => {
-        setCoords({
-          lat: parseFloat(e.latlng.lat.toFixed(4)),
-          lon: parseFloat(e.latlng.lng.toFixed(4)),
-        })
+        const geoJsonPane = map.createPane('geoJsonPane')
+        if (geoJsonPane) {
+          geoJsonPane.style.zIndex = '200'
+        }
       })
-    }
 
-    // Agregar botones de control
-    const mapElement = document.getElementById('map')
-    if (mapElement) {
-      // Botón zoom in
-      const zoomInBtn = document.getElementById('zoomIn')
-      if (zoomInBtn && mapRef.current) {
-        zoomInBtn.addEventListener('click', () => mapRef.current?.zoomIn())
-      }
+    mapRef.current = map
 
-      // Botón zoom out
-      const zoomOutBtn = document.getElementById('zoomOut')
-      if (zoomOutBtn && mapRef.current) {
-        zoomOutBtn.addEventListener('click', () => mapRef.current?.zoomOut())
-      }
+    map.on('mousemove', (e) => {
+      setCoords({
+        lat: parseFloat(e.latlng.lat.toFixed(4)),
+        lon: parseFloat(e.latlng.lng.toFixed(4)),
+      })
+    })
 
-      // Botón reset
-      const resetBtn = document.getElementById('resetView')
-      if (resetBtn && mapRef.current) {
-        resetBtn.addEventListener('click', () => mapRef.current?.setView([20, 0], 2))
-      }
-    }
+    // Controles
+    const zoomInBtn = document.getElementById('zoomIn')
+    if (zoomInBtn) zoomInBtn.addEventListener('click', () => map.zoomIn())
+
+    const zoomOutBtn = document.getElementById('zoomOut')
+    if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => map.zoomOut())
+
+    const resetBtn = document.getElementById('resetView')
+    if (resetBtn) resetBtn.addEventListener('click', () => map.setView([20, 0], 2))
+
   }, [selectedCountry])
 
   function addGridlines(map: L.Map) {
     const gridColor = '#1a2a3a'
     const gridOpacity = 0.3
 
-    // Líneas de latitud
     for (let lat = -80; lat <= 80; lat += 20) {
       L.polyline(
-        [
-          [lat, -180],
-          [lat, 180],
-        ],
-        {
-          color: gridColor,
-          weight: 1,
-          opacity: gridOpacity,
-          dashArray: '3, 3',
-          interactive: false,
-        }
+        [[lat, -180], [lat, 180]],
+        { color: gridColor, weight: 1, opacity: gridOpacity, dashArray: '3, 3', interactive: false }
       ).addTo(map)
     }
 
-    // Líneas de longitud
     for (let lon = -180; lon <= 180; lon += 30) {
       L.polyline(
-        [
-          [-80, lon],
-          [80, lon],
-        ],
-        {
-          color: gridColor,
-          weight: 1,
-          opacity: gridOpacity,
-          dashArray: '3, 3',
-          interactive: false,
-        }
+        [[-80, lon], [80, lon]],
+        { color: gridColor, weight: 1, opacity: gridOpacity, dashArray: '3, 3', interactive: false }
       ).addTo(map)
     }
   }
 
   return (
     <div className="relative w-full h-full">
-      {/* Mapa Leaflet */}
       <div id="map" className="w-full h-full" />
 
-      {/* Capa de Cuellos de Botella */}
       {mapRef.current && (
         <BottleneckLayer
           map={mapRef.current}
@@ -272,10 +207,6 @@ export default function MapContainer({
             <div className="w-3 h-3 bg-[#0a0a0a] border border-[#ff8c42]" />
             Continentes
           </div>
-          <div className="flex gap-2 items-center">
-            <div className="w-3 h-3 border-2 border-[#ff8c42]" />
-            Líneas Costeras
-          </div>
           <div className="border-t border-[#333] mt-2 pt-2">
             <div className="text-[#ff8c42] font-bold mb-1">Cuellos de Botella</div>
             <div className="flex gap-2 items-center">
@@ -296,15 +227,9 @@ export default function MapContainer({
 
       {/* Controles */}
       <div className="absolute bottom-5 left-5 flex flex-col gap-2 z-10">
-        <button id="zoomIn" className="control-btn" title="Zoom In">
-          +
-        </button>
-        <button id="zoomOut" className="control-btn" title="Zoom Out">
-          −
-        </button>
-        <button id="resetView" className="control-btn" title="Reset View">
-          ⌘
-        </button>
+        <button id="zoomIn" className="control-btn" title="Zoom In">+</button>
+        <button id="zoomOut" className="control-btn" title="Zoom Out">−</button>
+        <button id="resetView" className="control-btn" title="Reset View">⌘</button>
       </div>
 
       {/* Coordenadas */}
