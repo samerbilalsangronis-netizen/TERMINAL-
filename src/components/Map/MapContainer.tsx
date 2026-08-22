@@ -80,7 +80,7 @@ export default function MapContainer({
 
     // Cargar GeoJSON de países
     console.log('[MapContainer] Iniciando fetch de GeoJSON...')
-    fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
+    fetch('/data/countries.geojson')
       .then(res => {
         console.log('[MapContainer] Respuesta fetch:', res.status, res.statusText)
         return res.json()
