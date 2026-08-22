@@ -29,6 +29,15 @@ export default function Home() {
   const [selectedCompany, setSelectedCompany] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
 
+  // Debug: mostrar cambios en estado
+  useEffect(() => {
+    console.log('🌍 País seleccionado:', selectedCountry)
+  }, [selectedCountry])
+
+  useEffect(() => {
+    console.log('🏢 Empresa seleccionada:', selectedCompany)
+  }, [selectedCompany])
+
   // Listener para eventos de selección desde el grafo
   useEffect(() => {
     const handleSelectCompany = (event: Event) => {
