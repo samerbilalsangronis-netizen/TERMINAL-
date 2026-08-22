@@ -40,11 +40,18 @@ export default function MapContainer({
   const mapRef = useRef<L.Map | null>(null)
   const [coords, setCoords] = useState({ lat: 0, lon: 0 })
   const [bottlenecks, setBottlenecks] = useState<Bottleneck[]>([])
-  const onCountrySelectRef = useRef<(countryId: string) => void>(onCountrySelect)
 
-  // Actualizar ref cuando el prop cambia
+  // Listener para eventos de selección de país
   useEffect(() => {
-    onCountrySelectRef.current = onCountrySelect
+    const handleCountryClick = (event: Event) => {
+      const customEvent = event as CustomEvent
+      if (customEvent.detail) {
+        onCountrySelect(customEvent.detail)
+      }
+    }
+
+    window.addEventListener('selectCountry', handleCountryClick)
+    return () => window.removeEventListener('selectCountry', handleCountryClick)
   }, [onCountrySelect])
 
   useEffect(() => {
@@ -99,7 +106,8 @@ export default function MapContainer({
 
               // Configurar eventos ANTES de añadir al mapa
               layer.on('click', () => {
-                (onCountrySelectRef.current as any)(countryCode)
+                // Disparar evento personalizado
+                ;(window as any).dispatchEvent(new CustomEvent('selectCountry', { detail: countryCode }))
                 // Resaltar
                 (layer as any).setStyle({
                   color: '#ff8c42',
