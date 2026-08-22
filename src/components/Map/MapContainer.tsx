@@ -153,7 +153,7 @@ export default function MapContainer({
     const resetBtn = document.getElementById('resetView')
     if (resetBtn) resetBtn.addEventListener('click', () => map.setView([20, 0], 2))
 
-  }, [selectedCountry])
+  }, [])
 
   function addGridlines(map: L.Map) {
     const gridColor = '#1a2a3a'
