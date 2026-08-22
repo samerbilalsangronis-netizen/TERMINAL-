@@ -79,9 +79,14 @@ export default function MapContainer({
     addGridlines(map)
 
     // Cargar GeoJSON de países
+    console.log('[MapContainer] Iniciando fetch de GeoJSON...')
     fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
-      .then(res => res.json())
+      .then(res => {
+        console.log('[MapContainer] Respuesta fetch:', res.status, res.statusText)
+        return res.json()
+      })
       .then(data => {
+        console.log('[MapContainer] GeoJSON cargado:', data.features?.length, 'características')
         L.geoJSON(data, {
           style: {
             color: '#ff8c42',
@@ -93,8 +98,10 @@ export default function MapContainer({
           onEachFeature: (feature: any, layer: any) => {
             const countryName = feature.properties.ADMIN || 'País'
             const countryCode = feature.properties.ISO_A2 || ''
+            console.log('[MapContainer] onEachFeature:', countryName, countryCode)
 
             layer.on('click', () => {
+              console.log('[MapContainer] Click en país:', countryCode)
               if (callbackRef.current) {
                 callbackRef.current(countryCode)
               }
@@ -132,6 +139,9 @@ export default function MapContainer({
         if (geoJsonPane) {
           geoJsonPane.style.zIndex = '200'
         }
+      })
+      .catch(err => {
+        console.error('[MapContainer] Error en GeoJSON fetch:', err.message, err)
       })
 
     mapRef.current = map

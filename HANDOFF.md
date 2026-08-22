@@ -464,7 +464,38 @@ Datos a crear:
 
 ---
 
-**Última actualización:** 2026-08-22
-**Estado:** FASE 5 ✅ COMPLETADA - Listo para FASE 6
-**Siguiente paso:** Simulación de Escenarios Geopolíticos & Análisis de Resilencia
+**Última actualización:** 2026-08-22 - SESIÓN 2
+**Estado:** FASE 5 ✅ COMPLETADA (pero con problema de interactividad del mapa)
 **Rama actual:** `claude/lee-el-handoff-kzxdwz`
+
+---
+
+## 🔧 PROBLEMA ACTUAL - SESIÓN 2 (2026-08-22)
+
+### Síntoma
+✅ Mapa carga (bordes naranja, gridlines visibles)
+❌ NO hay tooltips al pasar ratón
+❌ NO abre panel al click (sin errores en consola)
+❌ NO se ven cuellos de botella (puntos rojos)
+
+### Diagnóstico
+El evento de click en `MapContainer.tsx:100` **NO se dispara** cuando se clickea un país. 
+
+**Causa probable:** El GeoJSON fetch no se está completando, así que `onEachFeature` nunca se ejecuta.
+
+### Solución sugerida para próximo chat
+1. Agregar `console.log` en fetch de GeoJSON (línea 95)
+2. Agregar `console.log` en `then()` callback (línea 99)
+3. Verificar respuesta del fetch en Network tab
+4. **ALTERNATIVA**: Usar archivo local `/public/data/countries.geojson` en lugar de fetch remoto
+5. Debuggear por qué BottleneckLayer no se renderiza
+
+### Rama y commits
+- Rama: `claude/lee-el-handoff-kzxdwz`
+- Último commit: `ffcc316` (arreglar dependencias useEffect)
+- Build: ✅ Compila sin errores
+- Runtime: ❌ Eventos de país no funcionan
+
+---
+
+**Próximo paso:** FASE 6 - Simulación de Escenarios (después de resolver interactividad)

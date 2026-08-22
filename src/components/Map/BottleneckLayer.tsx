@@ -34,6 +34,8 @@ export default function BottleneckLayer({
   useEffect(() => {
     if (!map) return
 
+    console.log('[BottleneckLayer] Renderizando', bottlenecks.length, 'cuellos de botella')
+
     // Crear un pane específico para los cuellos de botella
     let bottleneckPane = map.getPane('bottleneckPane')
     if (!bottleneckPane) {
@@ -54,7 +56,8 @@ export default function BottleneckLayer({
     const bottleneckGroup = L.featureGroup()
 
     // Añadir marcadores para cada cuello de botella
-    bottlenecks.forEach((bottleneck) => {
+    bottlenecks.forEach((bottleneck, idx) => {
+      console.log(`[BottleneckLayer] Marcador ${idx + 1}:`, bottleneck.nombre, `(${bottleneck.latitud}, ${bottleneck.longitud})`)
       // Crear icono personalizado
       const iconSize = bottleneck.criticidad === 'CRÍTICA' ? 20 : 14
       const opacity = selectedBottleneck === bottleneck.id ? 1 : 0.7
