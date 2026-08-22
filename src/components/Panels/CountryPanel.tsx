@@ -12,6 +12,7 @@ export default function CountryPanel({ countryId, onCompanySelect }: CountryPane
   const [empresasPais, setEmpresasPais] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string>('')
+  const [allPaises, setAllPaises] = useState<any[]>([])
 
   useEffect(() => {
     const loadData = async () => {
@@ -33,20 +34,35 @@ export default function CountryPanel({ countryId, onCompanySelect }: CountryPane
         const empresas = await empresasRes.json()
 
         console.log(`📍 CountryPanel: Loaded ${paises.length} countries, ${empresas.length} companies`)
+        console.log(`📍 CountryPanel: Looking for: "${countryId}"`)
+        console.log(`📍 CountryPanel: Available codes:`, paises.map((p: any) => `"${p.id}"/"${p.codigo}"`).join(', '))
+
+        // Store all paises for debugging
+        setAllPaises(paises)
 
         let paisData = paises.find((p: any) => p.id === countryId || p.codigo === countryId)
 
         if (!paisData) {
           console.warn(`⚠️ País no encontrado para: ${countryId}`)
+          console.log('Available country IDs:', paises.map((p: any) => p.id).join(', '))
           console.log('Available country codes:', paises.map((p: any) => p.codigo).join(', '))
-          setError(`País ${countryId} no encontrado`)
-          setPais(null)
-          setEmpresasPais([])
-          setLoading(false)
-          return
+
+          // Try exact case-insensitive match
+          paisData = paises.find((p: any) =>
+            p.id?.toUpperCase() === countryId?.toUpperCase() ||
+            p.codigo?.toUpperCase() === countryId?.toUpperCase()
+          )
+
+          if (!paisData) {
+            setError(`País "${countryId}" no encontrado. Códigos disponibles: ${paises.map((p: any) => p.codigo).join(', ')}`)
+            setPais(null)
+            setEmpresasPais([])
+            setLoading(false)
+            return
+          }
         }
 
-        console.log(`✅ Found country: ${paisData.nombre}`)
+        console.log(`✅ Found country: ${paisData.nombre} (ID: ${paisData.id})`)
         setPais(paisData)
 
         const empresasDelPais = empresas.filter((e: any) => e.pais_id === paisData.id).slice(0, 10)

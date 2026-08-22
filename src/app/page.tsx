@@ -32,7 +32,8 @@ export default function Home() {
   // Debug: mostrar cambios en estado
   useEffect(() => {
     console.log('🌍 País seleccionado:', selectedCountry)
-  }, [selectedCountry])
+    console.log('📊 Estado actual - selectedCountry:', selectedCountry, 'selectedCompany:', selectedCompany, 'searchTerm:', searchTerm)
+  }, [selectedCountry, selectedCompany, searchTerm])
 
   useEffect(() => {
     console.log('🏢 Empresa seleccionada:', selectedCompany)
