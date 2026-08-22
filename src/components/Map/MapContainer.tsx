@@ -1,15 +1,9 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-
-declare global {
-  interface Window {
-    __selectCountry?: (countryCode: string) => void
-  }
-}
 
 const BottleneckLayer = dynamic(() => import('./BottleneckLayer'), { ssr: false })
 
@@ -46,12 +40,11 @@ export default function MapContainer({
   const mapRef = useRef<L.Map | null>(null)
   const [coords, setCoords] = useState({ lat: 0, lon: 0 })
   const [bottlenecks, setBottlenecks] = useState<Bottleneck[]>([])
+  const onCountrySelectRef = useRef<(countryId: string) => void>(onCountrySelect)
 
-  // Update ref when prop changes
+  // Actualizar ref cuando el prop cambia
   useEffect(() => {
-    const countrySelectFn: typeof onCountrySelect = onCountrySelect
-    const handleClick = (countryCode: string) => countrySelectFn(countryCode)
-    window.__selectCountry = handleClick
+    onCountrySelectRef.current = onCountrySelect
   }, [onCountrySelect])
 
   useEffect(() => {
@@ -106,7 +99,7 @@ export default function MapContainer({
 
               // Configurar eventos ANTES de añadir al mapa
               layer.on('click', () => {
-                ;(window as any).__selectCountry?.(countryCode)
+                (onCountrySelectRef.current as any)(countryCode)
                 // Resaltar
                 (layer as any).setStyle({
                   color: '#ff8c42',
