@@ -1,9 +1,15 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+
+declare global {
+  interface Window {
+    __selectCountry?: (countryCode: string) => void
+  }
+}
 
 const BottleneckLayer = dynamic(() => import('./BottleneckLayer'), { ssr: false })
 
@@ -40,7 +46,13 @@ export default function MapContainer({
   const mapRef = useRef<L.Map | null>(null)
   const [coords, setCoords] = useState({ lat: 0, lon: 0 })
   const [bottlenecks, setBottlenecks] = useState<Bottleneck[]>([])
-  const handleCountrySelect = onCountrySelect
+
+  // Update ref when prop changes
+  useEffect(() => {
+    const countrySelectFn: typeof onCountrySelect = onCountrySelect
+    const handleClick = (countryCode: string) => countrySelectFn(countryCode)
+    window.__selectCountry = handleClick
+  }, [onCountrySelect])
 
   useEffect(() => {
     // Cargar datos de cuellos de botella
@@ -94,7 +106,7 @@ export default function MapContainer({
 
               // Configurar eventos ANTES de añadir al mapa
               layer.on('click', () => {
-                handleCountrySelect(countryCode)
+                ;(window as any).__selectCountry?.(countryCode)
                 // Resaltar
                 (layer as any).setStyle({
                   color: '#ff8c42',
@@ -184,7 +196,7 @@ export default function MapContainer({
         resetBtn.addEventListener('click', () => mapRef.current?.setView([20, 0], 2))
       }
     }
-  }, [onCountrySelect, selectedCountry])
+  }, [selectedCountry])
 
   function addGridlines(map: L.Map) {
     const gridColor = '#1a2a3a'
