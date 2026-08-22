@@ -10,6 +10,8 @@ Una plataforma interactiva que mapea conexiones entre empresas, países, sectore
 
 ## ✅ ESTADO ACTUAL DEL PROYECTO
 
+**RESUMEN:** Plataforma interactiva completa con mapa, búsqueda avanzada, panel de empresas Y AHORA visualización D3.js de grafos.
+
 ### **FASE 1: ✅ COMPLETADA** - Estructura Base
 - ✅ Next.js 14 con TypeScript
 - ✅ Mapa Bloomberg (Leaflet.js) con bordes **NARANJA**
@@ -81,19 +83,23 @@ Panel muestra:
 
 ## 🚀 PRÓXIMAS FASES
 
-### **FASE 4: Visualización D3.js (PENDIENTE)**
+### **FASE 4: ✅ COMPLETADA** - Visualización D3.js
 **Objetivo:** Grafo interactivo de dependencias
 
-Componentes a crear:
-- `DependencyGraph.tsx` - Visualización D3.js
-- `ConnectionLine.tsx` - Líneas entre nodos
-- Interactividad: hover, zoom, click
+**Archivos creados:**
+- `src/components/Graph/DependencyGraph.tsx` - Visualización D3.js completa
+- Integración en `CompanyPanel.tsx` - botón "Ver Cadena de Suministro"
+- Actualización de `page.tsx` - soporte para eventos de selección
 
-Características:
-- Nodos = empresas (tamaño por cap. mercado)
-- Líneas = dependencias (grosor por % suministro)
-- Colores = estado geopolítico
-- Click en empresa → resalta proveedores/clientes
+**Características implementadas:**
+- ✅ Grafo con force simulation (D3.js v7.8.5)
+- ✅ Nodos = empresas (tamaño por cap. mercado en escala logarítmica)
+- ✅ Líneas = dependencias (grosor por % suministro)
+- ✅ Colores = estado geopolítico (cian/naranja/rojo)
+- ✅ Interactividad completa: zoom, pan, drag de nodos, hover
+- ✅ Resalte dinámico: pasar mouse destaca proveedores/clientes
+- ✅ Click en nodo → selecciona empresa
+- ✅ Vista toggleable entre detalles y grafo
 
 ---
 
@@ -183,13 +189,20 @@ AdvancedSearchPanel muestra:
 Click en empresa → CompanyPanel
 ```
 
-### **3. Próximo: Visualización D3.js (FASE 4)**
+### **3. Visualización D3.js (FASE 4 ACTIVA)**
 ```
-Seleccionar empresa → Grafo dinámico
-  - Nodos: proveedores + empresa + clientes
-  - Líneas: dependencias (grosor = %)
-  - Colores: estado geopolítico
-  - Interactividad: hover, zoom, click
+CompanyPanel → Click "Ver Cadena de Suministro Completa"
+  ↓
+Grafo D3.js interactivo:
+  - Nodos: proveedores + empresa central + clientes
+  - Líneas: dependencias (grosor según % suministro)
+  - Colores: estado geopolítico (cian/naranja/rojo)
+  - Interactividad completa:
+    • Zoom con rueda del mouse
+    • Pan arrastrando el fondo
+    • Drag de nodos para reorganizar
+    • Hover resalta conexiones
+    • Click en nodo → selecciona empresa
 ```
 
 ---
@@ -228,40 +241,48 @@ Ver abajo: "INSTRUCCIONES PARA FASE 4"
 
 ---
 
-## 📋 INSTRUCCIONES PARA FASE 4 (D3.js)
+## 📋 INSTRUCCIONES PARA FASE 5 (Análisis Geopolítico)
+
+### **Objetivo:** Resaltar cuellos de botella críticos en el mapa
+
+**Datos necesarios a crear:**
+1. `src/data/cuellos_botella.json` - 15-20 puntos críticos
+2. Integración en MapContainer para visualizar puntos rojos
+3. Modal de detalles para cada cuello de botella
+
+**Puntos clave a mapear:**
+```
+🔴 TAIWÁN (92% chips 5nm)
+   - TSMC monopolio mundial
+   - Vulnerabilidad: conflicto US-China
+   - Impacto: semis, IA, smartphones
+
+🔴 HOLANDA (única máquina ASML)
+   - Producción de máquinas de litografía
+   - Vulnerabilidad: embargo a China
+   - Impacto: todos los chips
+
+🔴 ESTRECHO DE ORMUZ (35% petróleo)
+   - Paso obligado Golfo Pérsico
+   - Vulnerabilidad: cierre iranio
+   - Impacto: energía global
+
+🔴 CHINA (85% tierras raras, 65% aluminio)
+   - Dominio de REE y metales
+   - Vulnerabilidad: restricciones de exportación
+   - Impacto: tecnología, defensa
+
+🔴 SIRIA/LEVANTE (fosfato para fertilizantes)
+   - 50% producción mundial
+   - Vulnerabilidad: conflicto regional
+   - Impacto: agricultura global
+```
 
 ### **Archivos a crear:**
-
-1. **`src/components/Graph/DependencyGraph.tsx`**
-```typescript
-// Componente principal de grafo D3.js
-// Props: companyId, dependencias[]
-// Muestra nodos y líneas interactivas
-```
-
-2. **`src/components/Graph/ConnectionLine.tsx`**
-```typescript
-// Línea SVG entre dos empresas
-// Props: empresa_a, empresa_b, porcentaje
-// Color según criticidad
-```
-
-3. **Integración en `page.tsx`:**
-```typescript
-// Agregar DependencyGraph al CompanyPanel
-// Mostrar cuando se selecciona empresa
-```
-
-### **Librerías necesarias:**
-```bash
-npm install d3 @types/d3
-# O usar Cytoscape.js como alternativa
-```
-
-### **Data que necesitarás:**
-- ✅ `empresas_500.json` (ya existe)
-- ✅ `dependencias.json` (ya existe)
-- Solo necesitas conectarlas en D3
+- `scripts/generar_cuellos_botella.js` - script de generación
+- `src/data/cuellos_botella.json` - datos geoespaciales
+- `src/components/Map/BottleneckLayer.tsx` - visualización en mapa
+- `src/components/Panels/BottleneckPanel.tsx` - detalles de puntos críticos
 
 ---
 
@@ -367,5 +388,5 @@ git pull origin claude/ui-ux-pro-max-cli-install-k1wbdb
 ---
 
 **Última actualización:** 2025-08-22
-**Estado:** FASE 3 Completa - Listo para FASE 4
-**Siguiente paso:** Visualización D3.js de grafos de dependencia
+**Estado:** FASE 4 Completa - Listo para FASE 5
+**Siguiente paso:** Análisis Geopolítico - Resaltar cuellos de botella críticos
