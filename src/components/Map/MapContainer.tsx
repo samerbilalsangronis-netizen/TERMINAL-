@@ -168,14 +168,49 @@ export default function MapContainer({ onCountrySelect, selectedCountry }: MapCo
                                 feature.properties.COUNTRY ||
                                 'País'
 
+              // Log all properties to debug
+              console.log(`📍 GeoJSON Feature Properties:`, feature.properties)
+
               // Extract country code from multiple possible properties
-              const countryCode = feature.properties.ISO_A2 ||
+              let countryCode = feature.properties.ISO_A2 ||
                                 feature.properties.iso_a2 ||
                                 feature.properties.code ||
                                 feature.properties.ISO_A3 ||
+                                feature.properties.ISO_N3 ||
                                 ''
 
-              console.log(`📍 GeoJSON Feature: ${countryName} (${countryCode})`, feature.properties)
+              // If still empty, try to derive from country name
+              if (!countryCode && countryName) {
+                // Try to match country name to our paises.json
+                const nameToCode: {[key: string]: string} = {
+                  'United States': 'US',
+                  'United States of America': 'US',
+                  'China': 'CN',
+                  'Japan': 'JP',
+                  'United Kingdom': 'GB',
+                  'Germany': 'DE',
+                  'South Korea': 'KR',
+                  'Korea': 'KR',
+                  'Taiwan': 'TW',
+                  'Netherlands': 'NL',
+                  'Canada': 'CA',
+                  'Australia': 'AU',
+                  'Iran': 'IR',
+                  'France': 'FR',
+                  'Italy': 'IT',
+                  'Spain': 'ES',
+                  'Brazil': 'BR',
+                  'India': 'IN',
+                  'Mexico': 'MX',
+                  'Russia': 'RU',
+                  'Singapore': 'SG',
+                  'Sweden': 'SE',
+                  'Switzerland': 'CH',
+                }
+                countryCode = nameToCode[countryName] || ''
+              }
+
+              console.log(`📍 GeoJSON Feature: ${countryName} (${countryCode})`)
 
               // @ts-ignore
               layer.on('click', () => {
