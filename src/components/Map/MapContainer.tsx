@@ -11,6 +11,9 @@ const VesselLayer = dynamic(() => import('./VesselLayer'), { ssr: false })
 type VesselStatus = 'idle' | 'connecting' | 'connected' | 'error'
 
 const AIS_KEY_STORAGE = 'terminal_aisstream_api_key'
+// Key pública del proyecto (se define en el entorno de build, no en el código
+// fuente) para que el tráfico marítimo funcione sin pedir key a cada visitante.
+const AIS_ENV_KEY = process.env.NEXT_PUBLIC_AISSTREAM_API_KEY || null
 
 interface Bottleneck {
   id: string
@@ -47,14 +50,16 @@ export default function MapContainer({
   const [bottlenecks, setBottlenecks] = useState<Bottleneck[]>([])
   const [borderError, setBorderError] = useState(false)
   const [vesselsEnabled, setVesselsEnabled] = useState(false)
-  const [aisApiKey, setAisApiKey] = useState<string | null>(null)
+  const [aisApiKey, setAisApiKey] = useState<string | null>(AIS_ENV_KEY)
   const [vesselStatus, setVesselStatus] = useState<VesselStatus>('idle')
   const [vesselCount, setVesselCount] = useState(0)
   const [showKeyPrompt, setShowKeyPrompt] = useState(false)
   const [keyInput, setKeyInput] = useState('')
 
-  // Cargar API key de AISStream guardada localmente (nunca en el repo)
+  // Si no hay key del proyecto, permitir que cada visitante use la suya
+  // propia guardada solo en su navegador (nunca en el repo)
   useEffect(() => {
+    if (AIS_ENV_KEY) return
     const saved = window.localStorage.getItem(AIS_KEY_STORAGE)
     if (saved) setAisApiKey(saved)
   }, [])
