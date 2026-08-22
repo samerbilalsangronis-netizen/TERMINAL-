@@ -71,7 +71,13 @@ export default function CompanyPanel({ companyId, onClose }: CompanyPanelProps) 
   useEffect(() => {
     if (companyId) {
       console.log('🗺️ CompanyPanel: Dispatching selectCompany event for:', companyId)
-      window.dispatchEvent(new CustomEvent('selectCompany', { detail: companyId }))
+      try {
+        const event = new CustomEvent('selectCompany', { detail: companyId })
+        window.dispatchEvent(event)
+        console.log('✅ selectCompany event dispatched successfully')
+      } catch (err) {
+        console.error('❌ Error dispatching selectCompany event:', err)
+      }
     }
   }, [companyId])
 

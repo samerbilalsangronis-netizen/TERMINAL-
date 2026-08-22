@@ -21,11 +21,14 @@ export default function MapContainer({ onCountrySelect, selectedCountry }: MapCo
   // Handle company selection and draw supply chain lines
   useEffect(() => {
     const handleSelectCompany = async (event: Event) => {
+      console.log('📡 MapContainer: selectCompany event received')
       const customEvent = event as CustomEvent
       const companyId = customEvent.detail
 
+      console.log('📡 MapContainer: Company ID from event:', companyId)
+
       if (!mapRef.current) {
-        console.warn('Map not initialized yet')
+        console.warn('⚠️ MapContainer: Map not initialized yet')
         return
       }
 
