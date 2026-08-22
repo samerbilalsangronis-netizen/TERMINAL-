@@ -199,17 +199,33 @@ export default function DependencyGraph({ companyId, onNodeClick }: DependencyGr
         .on('drag', dragged as any)
         .on('end', dragended as any)
 
-    // Agregar labels
+    // Agregar labels (debajo del nodo, con el nombre de la empresa)
     const labels = g.append('g')
       .selectAll('text')
       .data(graphData.nodes)
       .join('text')
       .attr('text-anchor', 'middle')
-      .attr('dy', '0.31em')
-      .attr('font-size', '11px')
-      .attr('fill', COLORS.text)
+      .attr('dy', (d) => {
+        const radius = Math.log(d.cap_mercado / 1e9 + 1) * 5 + 15
+        return radius + 14
+      })
+      .attr('font-size', '10px')
+      .attr('fill', (d) => d.id === companyId ? '#ffffff' : COLORS.text)
       .attr('font-weight', (d) => d.id === companyId ? 'bold' : 'normal')
-      .text((d) => d.ticker.substring(0, 6))
+      .text((d) => d.nombre.length > 16 ? `${d.nombre.slice(0, 15)}…` : d.nombre)
+      .attr('pointer-events', 'none')
+
+    // Ticker dentro del nodo
+    const tickerLabels = g.append('g')
+      .selectAll('text')
+      .data(graphData.nodes)
+      .join('text')
+      .attr('text-anchor', 'middle')
+      .attr('dy', '0.31em')
+      .attr('font-size', '10px')
+      .attr('font-weight', 'bold')
+      .attr('fill', COLORS.background)
+      .text((d) => d.ticker.substring(0, 5))
       .attr('pointer-events', 'none')
 
     // Interactividad con hover
@@ -294,6 +310,10 @@ export default function DependencyGraph({ companyId, onNodeClick }: DependencyGr
       labels
         .attr('x', (d) => d.x || 0)
         .attr('y', (d) => d.y || 0)
+
+      tickerLabels
+        .attr('x', (d) => d.x || 0)
+        .attr('y', (d) => d.y || 0)
     })
 
     // Cleanup
@@ -303,12 +323,32 @@ export default function DependencyGraph({ companyId, onNodeClick }: DependencyGr
   }, [graphData, onNodeClick])
 
   return (
-    <div className="w-full h-full flex flex-col bg-[#0a0a0a] border border-[#333] rounded">
-      <div className="p-3 border-b border-[#333] bg-[#1a1a1a]">
-        <h3 className="text-white font-bold text-sm">📊 Grafo de Dependencias</h3>
-        <p className="text-xs text-[#aaa] mt-1">
-          Arrastra para mover • Rueda para zoom • Click en nodo para seleccionar
-        </p>
+    <div className="relative w-full h-full flex flex-col bg-[#0a0a0a] border border-[#333] rounded">
+      <div className="p-3 border-b border-[#333] bg-[#1a1a1a] flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <h3 className="text-white font-bold text-sm">📊 Grafo de Dependencias</h3>
+          <p className="text-xs text-[#aaa] mt-1">
+            Arrastra para mover • Rueda para zoom • Click en nodo para seleccionar
+          </p>
+        </div>
+        <div className="flex gap-3 text-[10px] text-[#aaa] items-center">
+          <div className="flex items-center gap-1">
+            <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ background: COLORS.normal }} />
+            Normal
+          </div>
+          <div className="flex items-center gap-1">
+            <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ background: COLORS.riesgo }} />
+            Riesgo
+          </div>
+          <div className="flex items-center gap-1">
+            <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ background: COLORS.critico }} />
+            Crítico
+          </div>
+          <div className="flex items-center gap-1">
+            <span className="w-2.5 h-2.5 rounded-full inline-block border-2 border-[#ffff00]" />
+            Seleccionada
+          </div>
+        </div>
       </div>
       <svg
         ref={svgRef}
@@ -316,7 +356,7 @@ export default function DependencyGraph({ companyId, onNodeClick }: DependencyGr
         style={{ background: COLORS.background }}
       />
       {hoveredNode && graphData && (
-        <div className="absolute bottom-2 left-2 bg-[#1a1a1a] border border-[#333] rounded p-2 text-xs text-white">
+        <div className="absolute bottom-3 left-3 bg-[#1a1a1a] border border-[#ff8c42] rounded px-3 py-2 text-xs text-white shadow-lg animate-fade-in">
           {graphData.nodes.find(e => e.id === hoveredNode)?.nombre}
         </div>
       )}

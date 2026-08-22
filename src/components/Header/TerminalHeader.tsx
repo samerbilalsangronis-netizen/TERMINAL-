@@ -1,14 +1,26 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface TerminalHeaderProps {
   onSearch: (term: string) => void
   searchTerm: string
 }
 
+function formatUTC(date: Date) {
+  const pad = (n: number) => n.toString().padStart(2, '0')
+  return `${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}:${pad(date.getUTCSeconds())}`
+}
+
 export default function TerminalHeader({ onSearch, searchTerm }: TerminalHeaderProps) {
   const [activeTab, setActiveTab] = useState('Map')
+  const [utcTime, setUtcTime] = useState<string | null>(null)
+
+  useEffect(() => {
+    setUtcTime(formatUTC(new Date()))
+    const interval = setInterval(() => setUtcTime(formatUTC(new Date())), 1000)
+    return () => clearInterval(interval)
+  }, [])
 
   const handleSearchChange = (value: string) => {
     onSearch(value)
@@ -43,9 +55,13 @@ export default function TerminalHeader({ onSearch, searchTerm }: TerminalHeaderP
         ))}
       </div>
 
-      {/* Custom Map */}
-      <div className="ml-auto text-[#ff8c42] text-xs font-bold">
-        Custom Map
+      {/* Reloj UTC */}
+      <div className="ml-auto flex items-center gap-2 text-xs font-mono">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#00d4ff] animate-pulse" />
+        <span className="text-[#aaa]">UTC</span>
+        <span className="text-[#ff8c42] font-bold tabular-nums min-w-[62px] text-right">
+          {utcTime ?? '--:--:--'}
+        </span>
       </div>
     </div>
   )

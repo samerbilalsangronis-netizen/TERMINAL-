@@ -119,5 +119,115 @@
     "industrias_clave": ["Petróleo", "Gas", "Manufactura"],
     "embargo_status": "complete",
     "coordenadas": {"lat": 32.4279, "lon": 53.6880}
+  },
+  {
+    "id": "SG",
+    "nombre": "Singapur",
+    "codigo": "SG",
+    "region": "Asia",
+    "gdp": 525230000000,
+    "poblacion": 5975000,
+    "industrias_clave": ["Tecnología", "Financiero", "Manufactura", "Logística"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": 1.3521, "lon": 103.8198}
+  },
+  {
+    "id": "FR",
+    "nombre": "Francia",
+    "codigo": "FR",
+    "region": "Europa",
+    "gdp": 3030000000000,
+    "poblacion": 68170000,
+    "industrias_clave": ["Aeroespacial", "Lujo", "Energía", "Tecnología"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": 46.2276, "lon": 2.2137}
+  },
+  {
+    "id": "SE",
+    "nombre": "Suecia",
+    "codigo": "SE",
+    "region": "Europa",
+    "gdp": 593000000000,
+    "poblacion": 10540000,
+    "industrias_clave": ["Telecomunicaciones", "Manufactura", "Tecnología"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": 60.1282, "lon": 18.6435}
+  },
+  {
+    "id": "CH",
+    "nombre": "Suiza",
+    "codigo": "CH",
+    "region": "Europa",
+    "gdp": 905684000000,
+    "poblacion": 8900000,
+    "industrias_clave": ["Financiero", "Farmacéutica", "Manufactura de precisión"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": 46.8182, "lon": 8.2275}
+  },
+  {
+    "id": "IL",
+    "nombre": "Israel",
+    "codigo": "IL",
+    "region": "Asia",
+    "gdp": 525000000000,
+    "poblacion": 9800000,
+    "industrias_clave": ["Tecnología", "Ciberseguridad", "Semiconductores"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": 31.0461, "lon": 34.8516}
+  },
+  {
+    "id": "IN",
+    "nombre": "India",
+    "codigo": "IN",
+    "region": "Asia",
+    "gdp": 3730000000000,
+    "poblacion": 1441720000,
+    "industrias_clave": ["Tecnología", "Software", "Manufactura", "Farmacéutica"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": 20.5937, "lon": 78.9629}
+  },
+  {
+    "id": "BR",
+    "nombre": "Brasil",
+    "codigo": "BR",
+    "region": "Americas",
+    "gdp": 2170000000000,
+    "poblacion": 216422000,
+    "industrias_clave": ["Agricultura", "Minería", "Energía", "Manufactura"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": -14.2350, "lon": -51.9253}
+  },
+  {
+    "id": "MX",
+    "nombre": "México",
+    "codigo": "MX",
+    "region": "Americas",
+    "gdp": 1850000000000,
+    "poblacion": 128455000,
+    "industrias_clave": ["Manufactura", "Automotriz", "Electrónica", "Energía"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": 23.6345, "lon": -102.5528}
+  },
+  {
+    "id": "NZ",
+    "nombre": "Nueva Zelanda",
+    "codigo": "NZ",
+    "region": "Oceanía",
+    "gdp": 253000000000,
+    "poblacion": 5223000,
+    "industrias_clave": ["Agricultura", "Turismo", "Tecnología"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": -40.9006, "lon": 174.8860}
+  },
+  {
+    "id": "TH",
+    "nombre": "Tailandia",
+    "codigo": "TH",
+    "region": "Asia",
+    "gdp": 528000000000,
+    "poblacion": 71801000,
+    "industrias_clave": ["Manufactura", "Automotriz", "Electrónica", "Turismo"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": 15.8700, "lon": 100.9925}
   }
 ]
