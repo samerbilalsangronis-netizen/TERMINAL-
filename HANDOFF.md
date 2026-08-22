@@ -565,6 +565,29 @@ Alto:    Zona naranja + borde naranja
 - Hover: resalta zona, muestra popup
 - Selección: zona se centra y oscurece
 
+### 🐛 BUG CORREGIDO - Z-index sobrescrito por CSS
+
+**Síntoma:** Océano no negro puro + cuellos de botella debajo del mapa
+
+**Causa:** CSS con `.leaflet-pane { z-index: 100 !important; }` sobrescribía
+el z-index:9999 que JavaScript aplicaba al bottleneckPane vía inline styles.
+El !important en CSS externo gana sobre inline styles de menor especificidad.
+
+**Fix:** Cambiar selector genérico a específico:
+```css
+.leaflet-bottleneck-pane {
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+```
+
+**Verificado con Playwright:**
+```
+leaflet-bottleneck-pane: z-index 9999 ✓
+Todos los demás panes: 200-700 ✓
+Fondo del mapa: rgb(0,0,0) ✓
+```
+
 ---
 
 **Próximo paso:** FASE 6 - Simulación de Escenarios (interactividad ya resuelta ✅)
