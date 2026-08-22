@@ -67,6 +67,14 @@ export default function CompanyPanel({ companyId, onClose }: CompanyPanelProps) 
     loadData()
   }, [companyId])
 
+  // Dispatch selectCompany event to trigger map visualization
+  useEffect(() => {
+    if (companyId) {
+      console.log('🗺️ CompanyPanel: Dispatching selectCompany event for:', companyId)
+      window.dispatchEvent(new CustomEvent('selectCompany', { detail: companyId }))
+    }
+  }, [companyId])
+
   // Manejar selección de nodo en grafo
   useEffect(() => {
     if (selectedGraphNode) {
