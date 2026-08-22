@@ -116,14 +116,11 @@ export default function MapContainer({
                   opacity: 1,
                 })
                 // Mostrar tooltip con el nombre del país
-                if (!layer.getTooltip()) {
-                  layer.bindTooltip(countryName, {
-                    permanent: false,
-                    direction: 'top',
-                    className: 'country-tooltip'
-                  })
-                }
-                layer.openTooltip()
+                layer.bindTooltip(countryName, {
+                  permanent: false,
+                  direction: 'top',
+                  className: 'country-tooltip'
+                }).openTooltip()
               })
 
               layer.on('mouseout', () => {
