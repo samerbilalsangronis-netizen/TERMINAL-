@@ -12,6 +12,110 @@ interface MapContainerProps {
 export default function MapContainer({ onCountrySelect, selectedCountry }: MapContainerProps) {
   const mapRef = useRef<L.Map | null>(null)
   const [coords, setCoords] = useState({ lat: 0, lon: 0 })
+  const polylineRef = useRef<{ [key: string]: L.Polyline }>({})
+  const [selectedCompanyData, setSelectedCompanyData] = useState<{
+    empresa: any
+    dependencias: any[]
+  } | null>(null)
+
+  // Handle company selection and draw supply chain lines
+  useEffect(() => {
+    const handleSelectCompany = async (event: Event) => {
+      const customEvent = event as CustomEvent
+      const companyId = customEvent.detail
+
+      if (!mapRef.current) {
+        console.warn('Map not initialized yet')
+        return
+      }
+
+      console.log('🔗 MapContainer: Drawing supply chain for company:', companyId)
+
+      // Clear previous polylines
+      Object.values(polylineRef.current).forEach(line => line.remove())
+      polylineRef.current = {}
+
+      try {
+        const [empresasRes, dependenciasRes, paisesRes] = await Promise.all([
+          fetch('/data/empresas_500.json'),
+          fetch('/data/dependencias.json'),
+          fetch('/data/paises.json'),
+        ])
+
+        const empresas = await empresasRes.json()
+        const dependencias = await dependenciasRes.json()
+        const paises = await paisesRes.json()
+
+        // Get selected company
+        const empresa = empresas.find((e: any) => e.id === companyId)
+        if (!empresa) {
+          console.warn('Company not found:', companyId)
+          return
+        }
+
+        console.log('✅ Found company:', empresa.nombre)
+
+        // Get dependencies (suppliers)
+        const deps = dependencias.filter((d: any) => d.empresa_a === companyId)
+        console.log(`📊 Found ${deps.length} suppliers for ${empresa.nombre}`)
+
+        // Get suppliers companies and their locations
+        deps.forEach((dep: any) => {
+          const supplier = empresas.find((e: any) => e.id === dep.empresa_b)
+          if (supplier && supplier.ubicacion_hq) {
+            // Draw polyline from main company to supplier
+            const mainLat = empresa.ubicacion_hq.lat
+            const mainLon = empresa.ubicacion_hq.lon
+            const supplierLat = supplier.ubicacion_hq.lat
+            const supplierLon = supplier.ubicacion_hq.lon
+
+            // Create arc effect with intermediate point
+            const midLat = (mainLat + supplierLat) / 2
+            const midLon = (mainLon + supplierLon) / 2
+
+            // Calculate distance for arc height
+            const distance = Math.sqrt(
+              Math.pow(supplierLat - mainLat, 2) + Math.pow(supplierLon - mainLon, 2)
+            )
+            const arcHeight = distance * 0.3
+
+            // Create arc by adding intermediate point
+            const coordinates = [
+              [mainLat, mainLon],
+              [midLat + arcHeight, midLon],
+              [supplierLat, supplierLon],
+            ]
+
+            const polyline = L.polyline(coordinates, {
+              color: dep.es_critica ? '#ff3333' : '#ff8c42',
+              weight: dep.es_critica ? 3 : 2,
+              opacity: 0.7,
+              dashArray: dep.es_critica ? undefined : '5, 5',
+              smoothFactor: 1.0,
+            }).addTo(mapRef.current)
+
+            // Add popup on hover
+            polyline.bindPopup(
+              `<div style="background: #0a0a0a; color: #fff; padding: 8px; border: 1px solid #ff8c42; font-size: 11px;">
+                <strong>${empresa.nombre}</strong> → <strong>${supplier.nombre}</strong><br>
+                <span style="color: #aaa;">Suministro: ${dep.porcentaje_suministro.toFixed(0)}%</span><br>
+                ${dep.es_critica ? '<span style="color: #ff3333;">🔴 CRÍTICA</span>' : ''}
+              </div>`
+            )
+
+            polylineRef.current[dep.empresa_b] = polyline
+          }
+        })
+
+        setSelectedCompanyData({ empresa, dependencias: deps })
+      } catch (error) {
+        console.error('Error drawing supply chain:', error)
+      }
+    }
+
+    window.addEventListener('selectCompany', handleSelectCompany)
+    return () => window.removeEventListener('selectCompany', handleSelectCompany)
+  }, [])
 
   useEffect(() => {
     console.log('📍 MapContainer: onCountrySelect callback recibido:', typeof onCountrySelect)
@@ -143,6 +247,15 @@ export default function MapContainer({ onCountrySelect, selectedCountry }: MapCo
       }
     }
   }, [onCountrySelect, selectedCountry])
+
+  // Clear supply chain when country is selected
+  useEffect(() => {
+    if (selectedCountry) {
+      Object.values(polylineRef.current).forEach(line => line.remove())
+      polylineRef.current = {}
+      setSelectedCompanyData(null)
+    }
+  }, [selectedCountry])
 
   function addGridlines(map: L.Map) {
     const gridColor = '#1a2a3a'

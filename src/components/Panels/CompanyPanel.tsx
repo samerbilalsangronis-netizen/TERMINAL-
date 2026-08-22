@@ -255,13 +255,13 @@ export default function CompanyPanel({ companyId, onClose }: CompanyPanelProps) 
         </p>
       </div>
 
-      {/* Botón Análisis de Cadena */}
-      <button
-        onClick={() => setShowGraph(true)}
-        className="w-full bg-[#ff8c42] text-black px-4 py-2 rounded font-bold text-xs hover:bg-[#ffa060] transition-all"
-      >
-        📊 Ver Cadena de Suministro Completa
-      </button>
+      {/* Info sobre cadena de suministro en mapa */}
+      <div className="bg-[#1a3a3a] border border-[#00d4ff] rounded p-3 text-xs text-[#00d4ff]">
+        <div className="font-bold mb-1">📍 Cadena de Suministro en Mapa</div>
+        <div className="text-[#aaa] text-xs">
+          Las líneas de dependencia están visibles en el mapa. Líneas rojas = críticas
+        </div>
+      </div>
     </div>
   )
 }
