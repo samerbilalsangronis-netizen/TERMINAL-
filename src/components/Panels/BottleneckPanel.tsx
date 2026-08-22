@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 interface Bottleneck {
   id: string
@@ -28,38 +28,52 @@ export default function BottleneckPanel({ bottleneck, onClose }: BottleneckPanel
   const getCriticidadColor = (criticidad: string) => {
     switch (criticidad) {
       case 'CRÍTICA':
-        return 'text-red-500'
+        return '#ff3333'
       case 'ALTA':
-        return 'text-orange-500'
+        return '#ff9900'
       case 'MEDIA':
-        return 'text-yellow-500'
+        return '#ffaa00'
       default:
-        return 'text-cyan-400'
+        return '#00d4ff'
     }
   }
 
-  const getBgColor = (criticidad: string) => {
+  const getCriticidadBorder = (criticidad: string) => {
     switch (criticidad) {
       case 'CRÍTICA':
-        return 'bg-red-950 border-red-600'
+        return 'border-l-4 border-l-[#ff3333]'
       case 'ALTA':
-        return 'bg-orange-950 border-orange-600'
+        return 'border-l-4 border-l-[#ff9900]'
       case 'MEDIA':
-        return 'bg-yellow-950 border-yellow-600'
+        return 'border-l-4 border-l-[#ffaa00]'
       default:
-        return 'bg-cyan-950 border-cyan-600'
+        return 'border-l-4 border-l-[#00d4ff]'
     }
+  }
+
+  const toggleSection = (section: string) => {
+    setExpandedSection(expandedSection === section ? null : section)
   }
 
   return (
-    <div className="w-full h-full flex flex-col bg-[#0a0a0a] overflow-hidden">
+    <div className="w-full h-full flex flex-col bg-[#0a0a0a] overflow-hidden animate-slide-in">
       {/* Header */}
-      <div className={`p-4 border-b ${getBgColor(bottleneck.criticidad)}`}>
-        <div className="flex justify-between items-start mb-2">
-          <h2 className="text-lg font-bold text-white flex-1">{bottleneck.nombre}</h2>
+      <div className={`px-4 py-5 border-b border-[#2a2a2a] ${getCriticidadBorder(bottleneck.criticidad)}`}
+        style={{
+          backgroundImage: `linear-gradient(90deg, rgba(255,140,66,0.03) 0%, transparent 100%)`,
+          borderBottom: `1px solid ${getCriticidadColor(bottleneck.criticidad)}40`
+        }}>
+        <div className="flex justify-between items-start mb-3">
+          <div className="flex-1">
+            <div className="text-xs font-bold text-[#b0b0b0] uppercase tracking-widest mb-1 opacity-70">
+              CUELLO DE BOTELLA
+            </div>
+            <h2 className="text-sm font-bold text-white leading-tight">{bottleneck.nombre}</h2>
+          </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-white text-xl leading-none ml-2"
+            className="text-[#b0b0b0] hover:text-[#ff8c42] text-lg leading-none ml-3 transition-colors"
+            aria-label="Cerrar panel"
           >
             ✕
           </button>
@@ -67,54 +81,67 @@ export default function BottleneckPanel({ bottleneck, onClose }: BottleneckPanel
 
         {/* Badges */}
         <div className="flex gap-2 flex-wrap">
-          <span
-            className={`px-2 py-1 rounded text-xs font-mono font-bold ${getCriticidadColor(
-              bottleneck.criticidad
-            )} bg-black bg-opacity-50 border border-current`}
+          <div
+            className="px-2 py-1 text-xs font-mono font-bold rounded border text-white transition-all"
+            style={{
+              color: getCriticidadColor(bottleneck.criticidad),
+              borderColor: getCriticidadColor(bottleneck.criticidad),
+              boxShadow: `0 0 8px ${getCriticidadColor(bottleneck.criticidad)}40`
+            }}
           >
-            {bottleneck.criticidad}
-          </span>
-          <span className="px-2 py-1 rounded text-xs font-mono text-cyan-400 bg-black bg-opacity-50 border border-cyan-400">
-            {bottleneck.porcentaje_global}% GLOBAL
-          </span>
-          <span className="px-2 py-1 rounded text-xs font-mono text-gray-400 bg-black bg-opacity-50 border border-gray-600">
-            {bottleneck.tipo}
-          </span>
+            ◆ {bottleneck.criticidad}
+          </div>
+          <div className="px-2 py-1 text-xs font-mono font-bold rounded border border-[#00d4ff] text-[#00d4ff]"
+            style={{ boxShadow: '0 0 8px rgba(0,212,255,0.2)' }}>
+            ● {bottleneck.porcentaje_global}%
+          </div>
+          <div className="px-2 py-1 text-xs font-mono font-bold rounded border border-[#7a7a7a] text-[#b0b0b0]">
+            ▧ {bottleneck.tipo}
+          </div>
         </div>
       </div>
 
       {/* Contenido scrollable */}
-      <div className="flex-1 overflow-y-auto bg-[#0a0a0a]">
+      <div className="flex-1 overflow-y-auto bg-[#0a0a0a]" style={{
+        backgroundImage: 'repeating-linear-gradient(0deg, rgba(255,140,66,0.01) 0px, rgba(255,140,66,0.01) 1px, transparent 1px, transparent 8px)'
+      }}>
         {/* Descripción general */}
-        <div className="p-4 border-b border-gray-800">
-          <p className="text-sm text-gray-300 leading-relaxed">{bottleneck.descripcion}</p>
+        <div className="panel-section">
+          <div className="panel-title">Descripción</div>
+          <p className="panel-content text-[11px] leading-relaxed">{bottleneck.descripcion}</p>
         </div>
 
         {/* País */}
-        <div className="p-4 border-b border-gray-800">
-          <div className="text-xs text-gray-500 font-mono mb-1">LOCALIZACIÓN</div>
-          <div className="text-sm text-cyan-400 font-mono">{bottleneck.pais}</div>
+        <div className="panel-section">
+          <div className="panel-title">Localización</div>
+          <div className="text-xs font-mono text-[#00d4ff]" style={{ textShadow: '0 0 8px rgba(0,212,255,0.3)' }}>
+            {bottleneck.pais}
+          </div>
+          <div className="text-[10px] text-[#b0b0b0] font-mono mt-1 opacity-70">
+            {bottleneck.latitud.toFixed(4)}° N, {Math.abs(bottleneck.longitud).toFixed(4)}° W
+          </div>
         </div>
 
         {/* Sectores impactados */}
-        <div className="p-4 border-b border-gray-800">
+        <div className="panel-section">
           <button
-            onClick={() =>
-              setExpandedSection(expandedSection === 'sectores' ? null : 'sectores')
-            }
-            className="w-full flex justify-between items-center hover:bg-gray-900 p-2 rounded transition"
+            onClick={() => toggleSection('sectores')}
+            className="w-full flex justify-between items-center"
           >
-            <div className="text-xs text-gray-500 font-mono font-bold">SECTORES IMPACTADOS</div>
-            <span className="text-gray-500">
-              {expandedSection === 'sectores' ? '▼' : '▶'}
+            <div className="panel-title m-0">Sectores Impactados</div>
+            <span className="text-[#ff8c42] transition-transform" style={{
+              transform: expandedSection === 'sectores' ? 'rotate(180deg)' : 'rotate(0deg)',
+              transitionDuration: '200ms'
+            }}>
+              ▼
             </span>
           </button>
           {expandedSection === 'sectores' && (
-            <div className="mt-2 space-y-1">
+            <div className="mt-3 space-y-1 ml-1">
               {bottleneck.impacto_sectores.map((sector, idx) => (
                 <div
                   key={idx}
-                  className="text-xs text-orange-400 font-mono ml-2 py-1 border-l-2 border-orange-600 pl-2"
+                  className="text-xs text-[#ff9900] font-mono py-1 pl-2 border-l-2 border-[#ff9900] opacity-80 hover:opacity-100 transition-opacity"
                 >
                   ⚡ {sector}
                 </div>
@@ -124,26 +151,25 @@ export default function BottleneckPanel({ bottleneck, onClose }: BottleneckPanel
         </div>
 
         {/* Vulnerabilidades */}
-        <div className="p-4 border-b border-gray-800">
+        <div className="panel-section">
           <button
-            onClick={() =>
-              setExpandedSection(
-                expandedSection === 'vulnerabilidades' ? null : 'vulnerabilidades'
-              )
-            }
-            className="w-full flex justify-between items-center hover:bg-gray-900 p-2 rounded transition"
+            onClick={() => toggleSection('vulnerabilidades')}
+            className="w-full flex justify-between items-center"
           >
-            <div className="text-xs text-red-400 font-mono font-bold">🔴 VULNERABILIDADES</div>
-            <span className="text-gray-500">
-              {expandedSection === 'vulnerabilidades' ? '▼' : '▶'}
+            <div className="panel-title m-0">Vulnerabilidades</div>
+            <span className="text-[#ff3333] transition-transform" style={{
+              transform: expandedSection === 'vulnerabilidades' ? 'rotate(180deg)' : 'rotate(0deg)',
+              transitionDuration: '200ms'
+            }}>
+              ▼
             </span>
           </button>
           {expandedSection === 'vulnerabilidades' && (
-            <div className="mt-2 space-y-1">
+            <div className="mt-3 space-y-1 ml-1">
               {bottleneck.vulnerabilidades.map((vuln, idx) => (
                 <div
                   key={idx}
-                  className="text-xs text-red-400 font-mono ml-2 py-1 border-l-2 border-red-600 pl-2"
+                  className="text-xs text-[#ff3333] font-mono py-1 pl-2 border-l-2 border-[#ff3333] opacity-80 hover:opacity-100 transition-opacity"
                 >
                   ⚠️ {vuln}
                 </div>
@@ -153,24 +179,25 @@ export default function BottleneckPanel({ bottleneck, onClose }: BottleneckPanel
         </div>
 
         {/* Empresas afectadas */}
-        <div className="p-4 border-b border-gray-800">
+        <div className="panel-section">
           <button
-            onClick={() =>
-              setExpandedSection(expandedSection === 'empresas' ? null : 'empresas')
-            }
-            className="w-full flex justify-between items-center hover:bg-gray-900 p-2 rounded transition"
+            onClick={() => toggleSection('empresas')}
+            className="w-full flex justify-between items-center"
           >
-            <div className="text-xs text-blue-400 font-mono font-bold">📊 EMPRESAS AFECTADAS</div>
-            <span className="text-gray-500">
-              {expandedSection === 'empresas' ? '▼' : '▶'}
+            <div className="panel-title m-0">Empresas Afectadas</div>
+            <span className="text-[#00d4ff] transition-transform" style={{
+              transform: expandedSection === 'empresas' ? 'rotate(180deg)' : 'rotate(0deg)',
+              transitionDuration: '200ms'
+            }}>
+              ▼
             </span>
           </button>
           {expandedSection === 'empresas' && (
-            <div className="mt-2 space-y-1">
+            <div className="mt-3 space-y-1 ml-1">
               {bottleneck.empresas_afectadas.map((empresa, idx) => (
                 <div
                   key={idx}
-                  className="text-xs text-blue-400 font-mono ml-2 py-1 border-l-2 border-blue-600 pl-2"
+                  className="text-xs text-[#00d4ff] font-mono py-1 pl-2 border-l-2 border-[#00d4ff] opacity-80 hover:opacity-100 transition-opacity"
                 >
                   🏢 {empresa}
                 </div>
@@ -180,26 +207,22 @@ export default function BottleneckPanel({ bottleneck, onClose }: BottleneckPanel
         </div>
 
         {/* Consecuencias si falla */}
-        <div className="p-4 border-b border-gray-800">
-          <div className="text-xs text-red-400 font-mono font-bold mb-2">💣 CONSECUENCIAS SI FALLA</div>
-          <div className="text-xs text-gray-300 leading-relaxed bg-red-950 bg-opacity-20 p-3 rounded border border-red-900">
+        <div className="panel-section border-b-0">
+          <div className="panel-title">Consecuencias Si Falla</div>
+          <div className="text-xs text-[#b0b0b0] leading-relaxed p-3 rounded-sm border-l-4 border-l-[#ff3333] bg-[#ff3333]"
+            style={{
+              backgroundColor: 'rgba(255, 51, 51, 0.08)',
+              boxShadow: 'inset 0 0 8px rgba(255, 51, 51, 0.1)'
+            }}>
             {bottleneck.consecuencias_si_falla}
-          </div>
-        </div>
-
-        {/* Coordenadas */}
-        <div className="p-4 bg-gray-900 bg-opacity-30">
-          <div className="text-xs text-gray-500 font-mono mb-1">COORDENADAS</div>
-          <div className="text-xs text-cyan-400 font-mono">
-            {bottleneck.latitud.toFixed(4)}° N, {Math.abs(bottleneck.longitud).toFixed(4)}°{' '}
-            {bottleneck.longitud >= 0 ? 'E' : 'W'}
           </div>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="p-3 border-t border-gray-800 bg-gray-900 bg-opacity-20 text-xs text-gray-500 text-center font-mono">
-        ANÁLISIS GEOPOLÍTICO • FASE 5
+      <div className="px-4 py-3 border-t border-[#2a2a2a] bg-gradient-to-r from-[#1a1a1a] to-transparent text-[10px] text-[#7a7a7a] font-mono text-center tracking-widest"
+        style={{ borderTopColor: `${getCriticidadColor(bottleneck.criticidad)}20` }}>
+        ▌ ANÁLISIS GEOPOLÍTICO • FASE 5 ▌
       </div>
     </div>
   )
