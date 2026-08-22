@@ -1,23 +1,46 @@
 {
-  "name": "terminal-",
+  "name": "terminal-bloomberg",
   "version": "1.0.0",
-  "description": "",
+  "description": "Terminal Bloomberg - Análisis Geopolítico y Cadenas de Suministro Global",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/samerbilalsangronis-netizen/TERMINAL-.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["bloomberg", "geopolitical", "supply-chain", "analysis"],
+  "author": "Samer Bilal Sangron",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/samerbilalsangronis-netizen/TERMINAL-/issues"
   },
   "homepage": "https://github.com/samerbilalsangronis-netizen/TERMINAL-#readme",
   "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "next": "^14.0.0",
+    "typescript": "^5.3.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/node": "^20.0.0",
+    "leaflet": "^1.9.4",
+    "@types/leaflet": "^1.9.8",
+    "d3": "^7.8.5",
+    "@types/d3": "^7.4.0",
+    "zustand": "^4.4.0",
+    "tailwindcss": "^3.3.0",
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.0",
     "ui-ux-pro-max-cli": "^2.15.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.52.0",
+    "eslint-config-next": "^14.0.0"
   }
 }

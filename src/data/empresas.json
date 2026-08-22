@@ -1,0 +1,230 @@
+[
+  {
+    "id": "NVDA",
+    "nombre": "NVIDIA",
+    "ticker": "NVDA",
+    "pais_id": "US",
+    "sector": "Semiconductores",
+    "subsector": "Chips de IA y GPU",
+    "cap_mercado": 1200000000000,
+    "ubicacion_hq": {"lat": 37.4419, "lon": -122.1430},
+    "resumen_trimestral": {
+      "trimestre": "Q3 2024",
+      "ingresos": 18100000000,
+      "beneficio_neto": 9200000000,
+      "margenes": 50.8,
+      "yoy_crecimiento": 93
+    },
+    "estado_geopolitico": "normal",
+    "descripcion": "Fabricante líder de GPUs y semiconductores para IA"
+  },
+  {
+    "id": "TSMC",
+    "nombre": "Taiwan Semiconductor Manufacturing Company",
+    "ticker": "TSM",
+    "pais_id": "TW",
+    "sector": "Semiconductores",
+    "subsector": "Manufactura de chips",
+    "cap_mercado": 750000000000,
+    "ubicacion_hq": {"lat": 24.8136, "lon": 120.9695},
+    "resumen_trimestral": {
+      "trimestre": "Q3 2024",
+      "ingresos": 23300000000,
+      "beneficio_neto": 8200000000,
+      "margenes": 35.2,
+      "yoy_crecimiento": 78
+    },
+    "estado_geopolitico": "critico",
+    "descripcion": "Mayor fabricante de semiconductores mundial. Crítico para industria global"
+  },
+  {
+    "id": "ASML",
+    "nombre": "ASML Holding",
+    "ticker": "ASML",
+    "pais_id": "NL",
+    "sector": "Equipamiento",
+    "subsector": "Máquinas de litografía",
+    "cap_mercado": 320000000000,
+    "ubicacion_hq": {"lat": 52.1859, "lon": 5.4755},
+    "resumen_trimestral": {
+      "trimestre": "Q3 2024",
+      "ingresos": 8100000000,
+      "beneficio_neto": 2100000000,
+      "margenes": 25.9,
+      "yoy_crecimiento": 42
+    },
+    "estado_geopolitico": "critico",
+    "descripcion": "Único fabricante de máquinas de litografía de luz extrema. Crítico global"
+  },
+  {
+    "id": "AAPL",
+    "nombre": "Apple Inc.",
+    "ticker": "AAPL",
+    "pais_id": "US",
+    "sector": "Electrónica de consumo",
+    "subsector": "Computadoras y móviles",
+    "cap_mercado": 3200000000000,
+    "ubicacion_hq": {"lat": 37.3347, "lon": -122.0090},
+    "resumen_trimestral": {
+      "trimestre": "Q3 2024",
+      "ingresos": 93736000000,
+      "beneficio_neto": 25118000000,
+      "margenes": 26.8,
+      "yoy_crecimiento": 6
+    },
+    "estado_geopolitico": "normal",
+    "descripcion": "Fabricante de iPhones, iPads, Macs. Mayor cliente de TSMC"
+  },
+  {
+    "id": "MSFT",
+    "nombre": "Microsoft Corporation",
+    "ticker": "MSFT",
+    "pais_id": "US",
+    "sector": "Software y Nube",
+    "subsector": "Cloud Computing y IA",
+    "cap_mercado": 3500000000000,
+    "ubicacion_hq": {"lat": 47.6062, "lon": -122.3321},
+    "resumen_trimestral": {
+      "trimestre": "Q1 2024",
+      "ingresos": 56518000000,
+      "beneficio_neto": 21883000000,
+      "margenes": 38.7,
+      "yoy_crecimiento": 17
+    },
+    "estado_geopolitico": "normal",
+    "descripcion": "Líder en Cloud Computing (Azure) y Software empresarial"
+  },
+  {
+    "id": "GOOGL",
+    "nombre": "Alphabet Inc.",
+    "ticker": "GOOGL",
+    "pais_id": "US",
+    "sector": "Software y Nube",
+    "subsector": "Búsqueda y Publicidad",
+    "cap_mercado": 1800000000000,
+    "ubicacion_hq": {"lat": 37.4220, "lon": -122.0841},
+    "resumen_trimestral": {
+      "trimestre": "Q3 2024",
+      "ingresos": 88269000000,
+      "beneficio_neto": 26516000000,
+      "margenes": 30.0,
+      "yoy_crecimiento": 15
+    },
+    "estado_geopolitico": "normal",
+    "descripcion": "Líder en búsqueda, publicidad digital y Cloud"
+  },
+  {
+    "id": "META",
+    "nombre": "Meta Platforms",
+    "ticker": "META",
+    "pais_id": "US",
+    "sector": "Software y Nube",
+    "subsector": "Redes Sociales",
+    "cap_mercado": 1400000000000,
+    "ubicacion_hq": {"lat": 37.4848, "lon": -122.1477},
+    "resumen_trimestral": {
+      "trimestre": "Q3 2024",
+      "ingresos": 40598000000,
+      "beneficio_neto": 16169000000,
+      "margenes": 39.8,
+      "yoy_crecimiento": 35
+    },
+    "estado_geopolitico": "normal",
+    "descripcion": "Propietario de Facebook, Instagram. Mayor consumidor de chips de NVIDIA"
+  },
+  {
+    "id": "AMD",
+    "nombre": "Advanced Micro Devices",
+    "ticker": "AMD",
+    "pais_id": "US",
+    "sector": "Semiconductores",
+    "subsector": "Chips y procesadores",
+    "cap_mercado": 240000000000,
+    "ubicacion_hq": {"lat": 33.7490, "lon": -112.3734},
+    "resumen_trimestral": {
+      "trimestre": "Q3 2024",
+      "ingresos": 22700000000,
+      "beneficio_neto": 3100000000,
+      "margenes": 13.7,
+      "yoy_crecimiento": 18
+    },
+    "estado_geopolitico": "normal",
+    "descripcion": "Fabricante de CPUs, GPUs y procesadores"
+  },
+  {
+    "id": "INTC",
+    "nombre": "Intel Corporation",
+    "ticker": "INTC",
+    "pais_id": "US",
+    "sector": "Semiconductores",
+    "subsector": "Procesadores",
+    "cap_mercado": 180000000000,
+    "ubicacion_hq": {"lat": 37.4875, "lon": -122.2171},
+    "resumen_trimestral": {
+      "trimestre": "Q3 2024",
+      "ingresos": 24900000000,
+      "beneficio_neto": -3100000000,
+      "margenes": -12.4,
+      "yoy_crecimiento": -25
+    },
+    "estado_geopolitico": "riesgo",
+    "descripcion": "Líder histórico en CPUs. Enfrenta dificultades competitivas"
+  },
+  {
+    "id": "SAMSUNG",
+    "nombre": "Samsung Electronics",
+    "ticker": "005930",
+    "pais_id": "KR",
+    "sector": "Semiconductores y Electrónica",
+    "subsector": "Chips y displays",
+    "cap_mercado": 350000000000,
+    "ubicacion_hq": {"lat": 37.2780, "lon": 127.0095},
+    "resumen_trimestral": {
+      "trimestre": "Q3 2024",
+      "ingresos": 73500000000,
+      "beneficio_neto": 3200000000,
+      "margenes": 4.4,
+      "yoy_crecimiento": -35
+    },
+    "estado_geopolitico": "normal",
+    "descripcion": "Fabricante de semiconductores, displays y electrónica"
+  },
+  {
+    "id": "SONY",
+    "nombre": "Sony Corporation",
+    "ticker": "6758",
+    "pais_id": "JP",
+    "sector": "Electrónica de consumo",
+    "subsector": "Cámaras de imagen y entretenimiento",
+    "cap_mercado": 130000000000,
+    "ubicacion_hq": {"lat": 35.6655, "lon": 139.5551},
+    "resumen_trimestral": {
+      "trimestre": "Q2 2024",
+      "ingresos": 23200000000,
+      "beneficio_neto": 2100000000,
+      "margenes": 9.1,
+      "yoy_crecimiento": 12
+    },
+    "estado_geopolitico": "normal",
+    "descripcion": "Fabricante de cámaras de imagen y entretenimiento"
+  },
+  {
+    "id": "TOYOTA",
+    "nombre": "Toyota Motor Corporation",
+    "ticker": "7203",
+    "pais_id": "JP",
+    "sector": "Automotriz",
+    "subsector": "Vehículos",
+    "cap_mercado": 280000000000,
+    "ubicacion_hq": {"lat": 35.0116, "lon": 137.1756},
+    "resumen_trimestral": {
+      "trimestre": "Q2 2024",
+      "ingresos": 67400000000,
+      "beneficio_neto": 2900000000,
+      "margenes": 4.3,
+      "yoy_crecimiento": 22
+    },
+    "estado_geopolitico": "normal",
+    "descripcion": "Mayor fabricante de automóviles mundial"
+  }
+]
