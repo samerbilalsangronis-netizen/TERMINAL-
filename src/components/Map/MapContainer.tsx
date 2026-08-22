@@ -62,36 +62,36 @@ export default function MapContainer({ onCountrySelect, selectedCountry }: MapCo
         // Get suppliers companies and their locations
         deps.forEach((dep: any) => {
           const supplier = empresas.find((e: any) => e.id === dep.empresa_b)
-          if (supplier && supplier.ubicacion_hq) {
+          if (supplier && supplier.ubicacion_hq && empresa.ubicacion_hq) {
             // Draw polyline from main company to supplier
             const mainLat = empresa.ubicacion_hq.lat
             const mainLon = empresa.ubicacion_hq.lon
             const supplierLat = supplier.ubicacion_hq.lat
             const supplierLon = supplier.ubicacion_hq.lon
 
-            // Create arc effect with intermediate point
-            const midLat = (mainLat + supplierLat) / 2
-            const midLon = (mainLon + supplierLon) / 2
+            // Create smooth arc with multiple intermediate points
+            const steps = 20
+            const coordinates: [number, number][] = []
 
-            // Calculate distance for arc height
-            const distance = Math.sqrt(
-              Math.pow(supplierLat - mainLat, 2) + Math.pow(supplierLon - mainLon, 2)
-            )
-            const arcHeight = distance * 0.3
+            for (let i = 0; i <= steps; i++) {
+              const t = i / steps
+              // Interpolate position
+              const lat = mainLat + (supplierLat - mainLat) * t
+              const lon = mainLon + (supplierLon - mainLon) * t
 
-            // Create arc by adding intermediate point
-            const coordinates = [
-              [mainLat, mainLon],
-              [midLat + arcHeight, midLon],
-              [supplierLat, supplierLon],
-            ]
+              // Create parabolic arc (higher in the middle)
+              const arcFactor = 4 * t * (1 - t) // Peaks at t=0.5
+              const arcHeight = arcFactor * 3 // Adjust height multiplier for prominence
+
+              coordinates.push([lat + arcHeight, lon])
+            }
 
             const polyline = L.polyline(coordinates, {
               color: dep.es_critica ? '#ff3333' : '#ff8c42',
               weight: dep.es_critica ? 3 : 2,
               opacity: 0.7,
               dashArray: dep.es_critica ? undefined : '5, 5',
-              smoothFactor: 1.0,
+              smoothFactor: 0.5,
             }).addTo(mapRef.current)
 
             // Add popup on hover
