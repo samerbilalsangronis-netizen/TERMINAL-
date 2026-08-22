@@ -34,6 +34,17 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('')
   const [showDependencies, setShowDependencies] = useState(false)
 
+  // Listener para eventos de selección desde el grafo
+  useEffect(() => {
+    const handleSelectCompany = (event: Event) => {
+      const customEvent = event as CustomEvent
+      setSelectedCompany(customEvent.detail)
+    }
+
+    window.addEventListener('selectCompany', handleSelectCompany)
+    return () => window.removeEventListener('selectCompany', handleSelectCompany)
+  }, [])
+
   return (
     <div className="flex flex-col h-screen bg-[#0a0a0a]">
       {/* Header */}

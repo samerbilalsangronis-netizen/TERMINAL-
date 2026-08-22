@@ -1,10 +1,16 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import empresas from '@/data/empresas_500.json'
 import dependencias from '@/data/dependencias.json'
 import paises from '@/data/paises.json'
 import { Empresa, Dependencia } from '@/types'
+
+const DependencyGraph = dynamic(() => import('@/components/Graph/DependencyGraph'), {
+  ssr: false,
+  loading: () => <div className="w-full h-96 bg-[#0a0a0a] flex items-center justify-center text-[#aaa]">Cargando grafo...</div>
+})
 
 interface CompanyPanelProps {
   companyId: string
@@ -16,6 +22,8 @@ export default function CompanyPanel({ companyId, onClose }: CompanyPanelProps) 
   const [misDependencias, setMisDependencias] = useState<Dependencia[]>([])
   const [proveedores, setProveedores] = useState<Empresa[]>([])
   const [paisEmpresa, setPaisEmpresa] = useState<string>('')
+  const [showGraph, setShowGraph] = useState(false)
+  const [selectedGraphNode, setSelectedGraphNode] = useState<string | null>(null)
 
   useEffect(() => {
     // Obtener datos de la empresa
@@ -39,10 +47,56 @@ export default function CompanyPanel({ companyId, onClose }: CompanyPanelProps) 
     }
   }, [companyId])
 
+  // Manejar selección de nodo en grafo
+  useEffect(() => {
+    if (selectedGraphNode) {
+      // Cambiar empresa seleccionada
+      onClose()
+      // Nota: el cambio de empresa debe hacerse desde el padre (page.tsx)
+    }
+  }, [selectedGraphNode])
+
   if (!empresa) {
     return (
       <div className="p-5 text-[#aaa]">
         Cargando detalles de la empresa...
+      </div>
+    )
+  }
+
+  // Mostrar grafo si está activado
+  if (showGraph) {
+    return (
+      <div className="flex flex-col h-full">
+        <div className="p-5 border-b border-[#333] bg-[#0a0a0a]">
+          <div className="flex justify-between items-center">
+            <h2 className="text-lg font-bold text-white">Cadena de Suministro: {empresa.nombre}</h2>
+            <button
+              onClick={() => setShowGraph(false)}
+              className="text-[#ff8c42] hover:text-white text-xl"
+            >
+              ✕
+            </button>
+          </div>
+          <p className="text-xs text-[#aaa] mt-2">
+            {empresas.filter(e => {
+              const hasLink = dependencias.some(
+                d => (d.empresa_a === companyId && d.empresa_b === e.id) ||
+                     (d.empresa_a === e.id && d.empresa_b === companyId)
+              )
+              return hasLink
+            }).length} empresas conectadas
+          </p>
+        </div>
+        <DependencyGraph
+          companyId={companyId}
+          onNodeClick={(nodeId) => {
+            setSelectedGraphNode(nodeId)
+            setShowGraph(false)
+            // El padre (page.tsx) debe manejar el cambio de empresa
+            window.dispatchEvent(new CustomEvent('selectCompany', { detail: nodeId }))
+          }}
+        />
       </div>
     )
   }
@@ -182,7 +236,10 @@ export default function CompanyPanel({ companyId, onClose }: CompanyPanelProps) 
       </div>
 
       {/* Botón Análisis de Cadena */}
-      <button className="w-full bg-[#ff8c42] text-black px-4 py-2 rounded font-bold text-xs hover:bg-[#ffa060] transition-all">
+      <button
+        onClick={() => setShowGraph(true)}
+        className="w-full bg-[#ff8c42] text-black px-4 py-2 rounded font-bold text-xs hover:bg-[#ffa060] transition-all"
+      >
         📊 Ver Cadena de Suministro Completa
       </button>
     </div>
