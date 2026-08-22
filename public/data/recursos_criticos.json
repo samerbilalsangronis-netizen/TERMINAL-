@@ -1,0 +1,208 @@
+[
+  {
+    "id": "IMANES",
+    "nombre": "Imanes (Tierras Raras)",
+    "tipo": "Mineral Crítico",
+    "descripcion": "Imanes de neodimio y samario para motores, turbinas eólicas, discos duros",
+    "principales_productores": [
+      { "pais": "China", "porcentaje": 85 },
+      { "pais": "Myanmar", "porcentaje": 10 },
+      { "pais": "Resto", "porcentaje": 5 }
+    ],
+    "dependencia_global": 95,
+    "precio_actual": 85000,
+    "volatilidad": "alta"
+  },
+  {
+    "id": "LITIO",
+    "nombre": "Litio",
+    "tipo": "Mineral Crítico",
+    "descripcion": "Componente esencial para baterías de iones de litio. Crítico para EV y almacenamiento",
+    "principales_productores": [
+      { "pais": "Chile", "porcentaje": 30 },
+      { "pais": "China", "porcentaje": 25 },
+      { "pais": "Argentina", "porcentaje": 20 },
+      { "pais": "Australia", "porcentaje": 15 },
+      { "pais": "Resto", "porcentaje": 10 }
+    ],
+    "dependencia_global": 98,
+    "precio_actual": 18000,
+    "volatilidad": "alta"
+  },
+  {
+    "id": "COBALTO",
+    "nombre": "Cobalto",
+    "tipo": "Mineral Crítico",
+    "descripcion": "Catalizador en refinerías, pigmentos, baterías recargables",
+    "principales_productores": [
+      { "pais": "Congo", "porcentaje": 70 },
+      { "pais": "Zambia", "porcentaje": 10 },
+      { "pais": "Resto", "porcentaje": 20 }
+    ],
+    "dependencia_global": 92,
+    "precio_actual": 28000,
+    "volatilidad": "alta"
+  },
+  {
+    "id": "COBRE",
+    "nombre": "Cobre",
+    "tipo": "Mineral Crítico",
+    "descripcion": "Conductor eléctrico. Crítico para electricidad, construcción, electrónica",
+    "principales_productores": [
+      { "pais": "Chile", "porcentaje": 28 },
+      { "pais": "Perú", "porcentaje": 12 },
+      { "pais": "China", "porcentaje": 9 },
+      { "pais": "Resto", "porcentaje": 51 }
+    ],
+    "dependencia_global": 100,
+    "precio_actual": 9500,
+    "volatilidad": "media"
+  },
+  {
+    "id": "SEMICONDUCTORES_CHIPS",
+    "nombre": "Chips Semiconductores",
+    "tipo": "Componente Crítico",
+    "descripcion": "5nm, 7nm, 14nm para IA, computadoras, móviles. Fabricado por TSMC principalmente",
+    "principales_productores": [
+      { "pais": "Taiwán", "porcentaje": 92 },
+      { "pais": "Corea del Sur", "porcentaje": 5 },
+      { "pais": "Otros", "porcentaje": 3 }
+    ],
+    "dependencia_global": 99,
+    "precio_actual": 450000,
+    "volatilidad": "alta"
+  },
+  {
+    "id": "PETROLEO",
+    "nombre": "Petróleo Crudo",
+    "tipo": "Energía",
+    "descripcion": "Combustible fósil. Crítico para energía, transporte, químicos",
+    "principales_productores": [
+      { "pais": "Arabia Saudita", "porcentaje": 12 },
+      { "pais": "Rusia", "porcentaje": 11 },
+      { "pais": "EEUU", "porcentaje": 13 },
+      { "pais": "China", "porcentaje": 5 },
+      { "pais": "Irán", "porcentaje": 5 },
+      { "pais": "Resto", "porcentaje": 54 }
+    ],
+    "dependencia_global": 85,
+    "precio_actual": 92,
+    "volatilidad": "alta"
+  },
+  {
+    "id": "GAS_NATURAL",
+    "nombre": "Gas Natural",
+    "tipo": "Energía",
+    "descripcion": "Combustible fósil. Crítico para energía, calefacción, química",
+    "principales_productores": [
+      { "pais": "EEUU", "porcentaje": 23 },
+      { "pais": "Rusia", "porcentaje": 20 },
+      { "pais": "Qatar", "porcentaje": 12 },
+      { "pais": "Resto", "porcentaje": 45 }
+    ],
+    "dependencia_global": 80,
+    "precio_actual": 3.2,
+    "volatilidad": "alta"
+  },
+  {
+    "id": "SILICIO",
+    "nombre": "Silicio",
+    "tipo": "Mineral Crítico",
+    "descripcion": "Base de semiconductores, paneles solares, vidrio industrial",
+    "principales_productores": [
+      { "pais": "China", "porcentaje": 65 },
+      { "pais": "Rusia", "porcentaje": 15 },
+      { "pais": "Resto", "porcentaje": 20 }
+    ],
+    "dependencia_global": 95,
+    "precio_actual": 2.5,
+    "volatilidad": "media"
+  },
+  {
+    "id": "ALUMINIO",
+    "nombre": "Aluminio",
+    "tipo": "Mineral Crítico",
+    "descripcion": "Metal ligero. Crítico para aviación, construcción, automotriz, empaques",
+    "principales_productores": [
+      { "pais": "China", "porcentaje": 50 },
+      { "pais": "India", "porcentaje": 12 },
+      { "pais": "Rusia", "porcentaje": 10 },
+      { "pais": "Resto", "porcentaje": 28 }
+    ],
+    "dependencia_global": 90,
+    "precio_actual": 2500,
+    "volatilidad": "media"
+  },
+  {
+    "id": "ORO",
+    "nombre": "Oro",
+    "tipo": "Mineral",
+    "descripcion": "Conductor eléctrico en electrónica. Valor monetario",
+    "principales_productores": [
+      { "pais": "China", "porcentaje": 11 },
+      { "pais": "Australia", "porcentaje": 9 },
+      { "pais": "Rusia", "porcentaje": 6 },
+      { "pais": "Resto", "porcentaje": 74 }
+    ],
+    "dependencia_global": 70,
+    "precio_actual": 2050,
+    "volatilidad": "media"
+  },
+  {
+    "id": "PANTALLAS_OLED",
+    "nombre": "Pantallas OLED",
+    "tipo": "Componente Crítico",
+    "descripcion": "Pantallas para smartphones, TVs, wearables. Fabricadas por Samsung, LG",
+    "principales_productores": [
+      { "pais": "Corea del Sur", "porcentaje": 95 },
+      { "pais": "Otros", "porcentaje": 5 }
+    ],
+    "dependencia_global": 98,
+    "precio_actual": 120000,
+    "volatilidad": "media"
+  },
+  {
+    "id": "BATERIAS_LITIO",
+    "nombre": "Baterías de Litio",
+    "tipo": "Componente Crítico",
+    "descripcion": "Para EV, almacenamiento energético, dispositivos portátiles",
+    "principales_productores": [
+      { "pais": "China", "porcentaje": 75 },
+      { "pais": "Corea del Sur", "porcentaje": 15 },
+      { "pais": "Otros", "porcentaje": 10 }
+    ],
+    "dependencia_global": 99,
+    "precio_actual": 150000,
+    "volatilidad": "alta"
+  },
+  {
+    "id": "MEMORIA_DRAM",
+    "nombre": "Memoria DRAM",
+    "tipo": "Componente Crítico",
+    "descripcion": "Memoria RAM para computadoras, servidores, dispositivos",
+    "principales_productores": [
+      { "pais": "Corea del Sur", "porcentaje": 45 },
+      { "pais": "Japón", "porcentaje": 25 },
+      { "pais": "Taiwán", "porcentaje": 20 },
+      { "pais": "Otros", "porcentaje": 10 }
+    ],
+    "dependencia_global": 100,
+    "precio_actual": 3.5,
+    "volatilidad": "alta"
+  },
+  {
+    "id": "SSD_NAND",
+    "nombre": "Almacenamiento SSD (NAND Flash)",
+    "tipo": "Componente Crítico",
+    "descripcion": "Almacenamiento para computadoras, servidores, dispositivos móviles",
+    "principales_productores": [
+      { "pais": "China", "porcentaje": 35 },
+      { "pais": "Corea del Sur", "porcentaje": 35 },
+      { "pais": "Japón", "porcentaje": 20 },
+      { "pais": "Otros", "porcentaje": 10 }
+    ],
+    "dependencia_global": 100,
+    "precio_actual": 0.08,
+    "volatilidad": "media"
+  }
+]

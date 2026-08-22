@@ -1,0 +1,123 @@
+[
+  {
+    "id": "US",
+    "nombre": "Estados Unidos",
+    "codigo": "US",
+    "region": "Americas",
+    "gdp": 27360700000000,
+    "poblacion": 338290000,
+    "industrias_clave": ["Tecnología", "Semiconductores", "Financiero", "Energía"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": 37.0902, "lon": -95.7129}
+  },
+  {
+    "id": "CN",
+    "nombre": "China",
+    "codigo": "CN",
+    "region": "Asia",
+    "gdp": 17734120000000,
+    "poblacion": 1425887337,
+    "industrias_clave": ["Manufactura", "Tecnología", "Energía", "Minerales"],
+    "embargo_status": "partial",
+    "coordenadas": {"lat": 35.8617, "lon": 104.1954}
+  },
+  {
+    "id": "GB",
+    "nombre": "Reino Unido",
+    "codigo": "GB",
+    "region": "Europa",
+    "gdp": 3099100000000,
+    "poblacion": 67736802,
+    "industrias_clave": ["Financiero", "Tecnología", "Energía"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": 55.3781, "lon": -3.4360}
+  },
+  {
+    "id": "DE",
+    "nombre": "Alemania",
+    "codigo": "DE",
+    "region": "Europa",
+    "gdp": 4311700000000,
+    "poblacion": 84482200,
+    "industrias_clave": ["Manufactura", "Automotriz", "Tecnología", "Energía"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": 51.1657, "lon": 10.4515}
+  },
+  {
+    "id": "JP",
+    "nombre": "Japón",
+    "codigo": "JP",
+    "region": "Asia",
+    "gdp": 4230900000000,
+    "poblacion": 123294513,
+    "industrias_clave": ["Semiconductores", "Automotriz", "Electrónica", "Manufactura"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": 36.2048, "lon": 138.2529}
+  },
+  {
+    "id": "KR",
+    "nombre": "Corea del Sur",
+    "codigo": "KR",
+    "region": "Asia",
+    "gdp": 1642383000000,
+    "poblacion": 51780579,
+    "industrias_clave": ["Semiconductores", "Electrónica", "Automotriz"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": 35.9078, "lon": 127.7669}
+  },
+  {
+    "id": "TW",
+    "nombre": "Taiwán",
+    "codigo": "TW",
+    "region": "Asia",
+    "gdp": 768995000000,
+    "poblacion": 23899908,
+    "industrias_clave": ["Semiconductores", "Electrónica", "Manufactura"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": 23.6978, "lon": 120.9605}
+  },
+  {
+    "id": "NL",
+    "nombre": "Países Bajos",
+    "codigo": "NL",
+    "region": "Europa",
+    "gdp": 1386400000000,
+    "poblacion": 17530620,
+    "industrias_clave": ["Tecnología", "Manufactura de equipos", "Energía"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": 52.1326, "lon": 5.2913}
+  },
+  {
+    "id": "CA",
+    "nombre": "Canadá",
+    "codigo": "CA",
+    "region": "Americas",
+    "gdp": 2176451000000,
+    "poblacion": 39742830,
+    "industrias_clave": ["Energía", "Minerales", "Tecnología", "Manufactura"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": 56.1304, "lon": -106.3468}
+  },
+  {
+    "id": "AU",
+    "nombre": "Australia",
+    "codigo": "AU",
+    "region": "Oceanía",
+    "gdp": 1376437000000,
+    "poblacion": 26505810,
+    "industrias_clave": ["Minería", "Energía", "Agricultura"],
+    "embargo_status": "none",
+    "coordenadas": {"lat": -25.2744, "lon": 133.7751}
+  },
+  {
+    "id": "IR",
+    "nombre": "Irán",
+    "codigo": "IR",
+    "region": "Asia",
+    "gdp": 432686000000,
+    "poblacion": 90503784,
+    "industrias_clave": ["Petróleo", "Gas", "Manufactura"],
+    "embargo_status": "complete",
+    "coordenadas": {"lat": 32.4279, "lon": 53.6880}
+  }
+]

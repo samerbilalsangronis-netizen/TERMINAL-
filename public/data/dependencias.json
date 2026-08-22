@@ -1,0 +1,3062 @@
+[
+  {
+    "id": "HI1773-SE2647",
+    "empresa_a": "HI1773",
+    "empresa_b": "SE2647",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 71.41742052198168,
+    "es_critica": true,
+    "descripcion": "Horizon Industries depende de Superior Electronics para wearables"
+  },
+  {
+    "id": "VE6911-NL6291",
+    "empresa_a": "VE6911",
+    "empresa_b": "NL6291",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 80.85920647241451,
+    "es_critica": false,
+    "descripcion": "Vision Electronics depende de NextGen Labs para computadoras"
+  },
+  {
+    "id": "VE6911-VG5446",
+    "empresa_a": "VE6911",
+    "empresa_b": "VG5446",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 52.14182719587954,
+    "es_critica": false,
+    "descripcion": "Vision Electronics depende de Vertex Group para computadoras"
+  },
+  {
+    "id": "VE6880-FC4489",
+    "empresa_a": "VE6880",
+    "empresa_b": "FC4489",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 32.506843522313474,
+    "es_critica": false,
+    "descripcion": "Vertex Electronics depende de Frontier Components para smartphones"
+  },
+  {
+    "id": "PS7204-MD9742",
+    "empresa_a": "PS7204",
+    "empresa_b": "MD9742",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 60.51212403533545,
+    "es_critica": false,
+    "descripcion": "Precision Solutions depende de Momentum Digital para saas"
+  },
+  {
+    "id": "VI3306-SG4507",
+    "empresa_a": "VI3306",
+    "empresa_b": "SG4507",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 11.725529628489028,
+    "es_critica": false,
+    "descripcion": "Vision Industries depende de Stellar Group para wearables"
+  },
+  {
+    "id": "VG5446-PC7030",
+    "empresa_a": "VG5446",
+    "empresa_b": "PC7030",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 21.722897245867895,
+    "es_critica": false,
+    "descripcion": "Vertex Group depende de Pioneer Corp para moldeado a presión"
+  },
+  {
+    "id": "VG5446-NE9319",
+    "empresa_a": "VG5446",
+    "empresa_b": "NE9319",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 11.384291117445917,
+    "es_critica": true,
+    "descripcion": "Vertex Group depende de NextGen Electronics para moldeado a presión"
+  },
+  {
+    "id": "NS9896-AI6593",
+    "empresa_a": "NS9896",
+    "empresa_b": "AI6593",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 16.33286283943941,
+    "es_critica": true,
+    "descripcion": "NextGen Solutions depende de Apex Innovations para computadoras"
+  },
+  {
+    "id": "NS9896-VS9409",
+    "empresa_a": "NS9896",
+    "empresa_b": "VS9409",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 37.96173613180618,
+    "es_critica": true,
+    "descripcion": "NextGen Solutions depende de Vision Semiconductor para computadoras"
+  },
+  {
+    "id": "NS9896-ME5191",
+    "empresa_a": "NS9896",
+    "empresa_b": "ME5191",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 32.9768548961728,
+    "es_critica": false,
+    "descripcion": "NextGen Solutions depende de Master Electronics para computadoras"
+  },
+  {
+    "id": "PS5064-SE2647",
+    "empresa_a": "PS5064",
+    "empresa_b": "SE2647",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 69.11106965194166,
+    "es_critica": false,
+    "descripcion": "Prime Solutions depende de Superior Electronics para saas"
+  },
+  {
+    "id": "VT2410-MD2797",
+    "empresa_a": "VT2410",
+    "empresa_b": "MD2797",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 52.09930091549688,
+    "es_critica": false,
+    "descripcion": "Vision Technologies depende de Momentum Digital para baterías ev"
+  },
+  {
+    "id": "MG5729-EI2083",
+    "empresa_a": "MG5729",
+    "empresa_b": "EI2083",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 31.63875489175987,
+    "es_critica": false,
+    "descripcion": "Master Group depende de Epoch Industries para vehículos"
+  },
+  {
+    "id": "NG8571-QD1429",
+    "empresa_a": "NG8571",
+    "empresa_b": "QD1429",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 48.02656927098739,
+    "es_critica": true,
+    "descripcion": "NextGen Group depende de Quantum Digital para fabricación de pcb"
+  },
+  {
+    "id": "SI9101-EI9816",
+    "empresa_a": "SI9101",
+    "empresa_b": "EI9816",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 37.93642540478924,
+    "es_critica": false,
+    "descripcion": "Superior Innovations depende de Epoch Innovations para ensamble"
+  },
+  {
+    "id": "VD7810-QS7937",
+    "empresa_a": "VD7810",
+    "empresa_b": "QS7937",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 15.932710973585987,
+    "es_critica": true,
+    "descripcion": "Vanguard Devices depende de Quantum Systems para componentes electrónicos"
+  },
+  {
+    "id": "VS3397-AE2306",
+    "empresa_a": "VS3397",
+    "empresa_b": "AE2306",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 18.475883113303013,
+    "es_critica": false,
+    "descripcion": "Velocity Semiconductor depende de Advanced Electronics para moldeado a presión"
+  },
+  {
+    "id": "HS8833-VT3636",
+    "empresa_a": "HS8833",
+    "empresa_b": "VT3636",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 38.002301770873466,
+    "es_critica": false,
+    "descripcion": "Horizon Services depende de Velocity Technologies para moldeado a presión"
+  },
+  {
+    "id": "AD8081-NI1317",
+    "empresa_a": "AD8081",
+    "empresa_b": "NI1317",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 44.20409109586044,
+    "es_critica": true,
+    "descripcion": "Apex Digital depende de NextGen Innovations para microcontroladores"
+  },
+  {
+    "id": "AD8081-NE7680",
+    "empresa_a": "AD8081",
+    "empresa_b": "NE7680",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 75.00430368352141,
+    "es_critica": false,
+    "descripcion": "Apex Digital depende de NextGen Electronics para microcontroladores"
+  },
+  {
+    "id": "NS7052-GL9413",
+    "empresa_a": "NS7052",
+    "empresa_b": "GL9413",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 51.38189110532603,
+    "es_critica": false,
+    "descripcion": "Nexus Services depende de Global Labs para semiconductores automotrices"
+  },
+  {
+    "id": "NS7052-SG5296",
+    "empresa_a": "NS7052",
+    "empresa_b": "SG5296",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 89.62950538969609,
+    "es_critica": false,
+    "descripcion": "Nexus Services depende de Spectrum Group para semiconductores automotrices"
+  },
+  {
+    "id": "VS2951-AT1626",
+    "empresa_a": "VS2951",
+    "empresa_b": "AT1626",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 85.6105955813317,
+    "es_critica": false,
+    "descripcion": "Velocity Solutions depende de Advanced Technologies para ciberseguridad"
+  },
+  {
+    "id": "PS3415-AS5999",
+    "empresa_a": "PS3415",
+    "empresa_b": "AS5999",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 52.148828946847864,
+    "es_critica": false,
+    "descripcion": "Pinnacle Systems depende de Ascent Services para analytics"
+  },
+  {
+    "id": "PC6820-PS8241",
+    "empresa_a": "PC6820",
+    "empresa_b": "PS8241",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 20.726577310086018,
+    "es_critica": false,
+    "descripcion": "Precision Components depende de Pinnacle Semiconductor para almacenamiento"
+  },
+  {
+    "id": "TC5501-VL8015",
+    "empresa_a": "TC5501",
+    "empresa_b": "VL8015",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 63.5439377361949,
+    "es_critica": false,
+    "descripcion": "Titan Components depende de Velocity Labs para saas"
+  },
+  {
+    "id": "TC5501-ED1128",
+    "empresa_a": "TC5501",
+    "empresa_b": "ED1128",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 23.658283389020987,
+    "es_critica": false,
+    "descripcion": "Titan Components depende de Eclipse Digital para saas"
+  },
+  {
+    "id": "NL7599-EE7104",
+    "empresa_a": "NL7599",
+    "empresa_b": "EE7104",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 50.13902453203992,
+    "es_critica": true,
+    "descripcion": "Nexus Labs depende de Elite Electronics para ciberseguridad"
+  },
+  {
+    "id": "SS3116-VL8015",
+    "empresa_a": "SS3116",
+    "empresa_b": "VL8015",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 24.806278783962238,
+    "es_critica": true,
+    "descripcion": "Stellar Semiconductor depende de Velocity Labs para analytics"
+  },
+  {
+    "id": "PL9330-VI5410",
+    "empresa_a": "PL9330",
+    "empresa_b": "VI5410",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 73.01517607076218,
+    "es_critica": false,
+    "descripcion": "Pioneer Labs depende de Velocity Industries para tablets"
+  },
+  {
+    "id": "PL9330-SS6376",
+    "empresa_a": "PL9330",
+    "empresa_b": "SS6376",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 10.865679239078862,
+    "es_critica": false,
+    "descripcion": "Pioneer Labs depende de Spectrum Semiconductor para tablets"
+  },
+  {
+    "id": "VD6597-CE5544",
+    "empresa_a": "VD6597",
+    "empresa_b": "CE5544",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 44.40852290085817,
+    "es_critica": false,
+    "descripcion": "Vertex Digital depende de Catalyst Electronics para analytics"
+  },
+  {
+    "id": "PD5415-MD5255",
+    "empresa_a": "PD5415",
+    "empresa_b": "MD5255",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 46.04215400230871,
+    "es_critica": true,
+    "descripcion": "Precision Digital depende de Master Digital para accesorios"
+  },
+  {
+    "id": "PD5415-AT1735",
+    "empresa_a": "PD5415",
+    "empresa_b": "AT1735",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 52.47937427550163,
+    "es_critica": false,
+    "descripcion": "Precision Digital depende de Ascent Technologies para accesorios"
+  },
+  {
+    "id": "EL9559-PC9171",
+    "empresa_a": "EL9559",
+    "empresa_b": "PC9171",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 10.230422736145698,
+    "es_critica": true,
+    "descripcion": "Elite Labs depende de Pioneer Corp para semiconductores automotrices"
+  },
+  {
+    "id": "EL9559-PI4307",
+    "empresa_a": "EL9559",
+    "empresa_b": "PI4307",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 9.892026105353999,
+    "es_critica": false,
+    "descripcion": "Elite Labs depende de Prime Industries para semiconductores automotrices"
+  },
+  {
+    "id": "VE5417-VE4111",
+    "empresa_a": "VE5417",
+    "empresa_b": "VE4111",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 69.76496332371495,
+    "es_critica": false,
+    "descripcion": "Vanguard Electronics depende de Vanguard Electronics para smartphones"
+  },
+  {
+    "id": "GS3202-AL5774",
+    "empresa_a": "GS3202",
+    "empresa_b": "AL5774",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 70.05954267405036,
+    "es_critica": true,
+    "descripcion": "Global Systems depende de Ascent Labs para smartphones"
+  },
+  {
+    "id": "GS3202-EE9457",
+    "empresa_a": "GS3202",
+    "empresa_b": "EE9457",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 20.540503221992413,
+    "es_critica": false,
+    "descripcion": "Global Systems depende de Eclipse Electronics para smartphones"
+  },
+  {
+    "id": "GS4026-NG6790",
+    "empresa_a": "GS4026",
+    "empresa_b": "NG6790",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 88.22615001657735,
+    "es_critica": true,
+    "descripcion": "Global Semiconductor depende de Nexus Group para moldeado a presión"
+  },
+  {
+    "id": "GS4026-PS2841",
+    "empresa_a": "GS4026",
+    "empresa_b": "PS2841",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 11.517516328579049,
+    "es_critica": false,
+    "descripcion": "Global Semiconductor depende de Prime Services para moldeado a presión"
+  },
+  {
+    "id": "EC1788-ZS8492",
+    "empresa_a": "EC1788",
+    "empresa_b": "ZS8492",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 48.66191587043545,
+    "es_critica": false,
+    "descripcion": "Epoch Corp depende de Zenith Systems para smartphones"
+  },
+  {
+    "id": "EC1788-EI9009",
+    "empresa_a": "EC1788",
+    "empresa_b": "EI9009",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 14.594947512801786,
+    "es_critica": false,
+    "descripcion": "Epoch Corp depende de Epoch Innovations para smartphones"
+  },
+  {
+    "id": "NT1012-VL8015",
+    "empresa_a": "NT1012",
+    "empresa_b": "VL8015",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 25.869034670857825,
+    "es_critica": true,
+    "descripcion": "NextGen Technologies depende de Velocity Labs para vehículos"
+  },
+  {
+    "id": "VI5677-VE4111",
+    "empresa_a": "VI5677",
+    "empresa_b": "VE4111",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 52.43584205849894,
+    "es_critica": false,
+    "descripcion": "Velocity Industries depende de Vanguard Electronics para tablets"
+  },
+  {
+    "id": "VI5677-GI5490",
+    "empresa_a": "VI5677",
+    "empresa_b": "GI5490",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 57.69602555049143,
+    "es_critica": false,
+    "descripcion": "Velocity Industries depende de Global Industries para tablets"
+  },
+  {
+    "id": "VI5677-PG5595",
+    "empresa_a": "VI5677",
+    "empresa_b": "PG5595",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 37.90889324417814,
+    "es_critica": false,
+    "descripcion": "Velocity Industries depende de Pioneer Group para tablets"
+  },
+  {
+    "id": "SS4457-QI7460",
+    "empresa_a": "SS4457",
+    "empresa_b": "QI7460",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 19.22379673571151,
+    "es_critica": false,
+    "descripcion": "Stellar Services depende de Quantum Innovations para procesadores"
+  },
+  {
+    "id": "SS4457-TG2638",
+    "empresa_a": "SS4457",
+    "empresa_b": "TG2638",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 81.03677711567597,
+    "es_critica": false,
+    "descripcion": "Stellar Services depende de Titan Group para procesadores"
+  },
+  {
+    "id": "FC9700-SE2647",
+    "empresa_a": "FC9700",
+    "empresa_b": "SE2647",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 30.96192488698217,
+    "es_critica": false,
+    "descripcion": "Frontier Components depende de Superior Electronics para accesorios"
+  },
+  {
+    "id": "NM4902-VE4111",
+    "empresa_a": "NM4902",
+    "empresa_b": "VE4111",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 20.769529278510547,
+    "es_critica": true,
+    "descripcion": "Nexus Manufacturing depende de Vanguard Electronics para erp"
+  },
+  {
+    "id": "ZT2903-QI5908",
+    "empresa_a": "ZT2903",
+    "empresa_b": "QI5908",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 81.12909321940761,
+    "es_critica": true,
+    "descripcion": "Zenith Technologies depende de Quantum Industries para tablets"
+  },
+  {
+    "id": "ZT2903-NG8571",
+    "empresa_a": "ZT2903",
+    "empresa_b": "NG8571",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 80.86484150275062,
+    "es_critica": true,
+    "descripcion": "Zenith Technologies depende de NextGen Group para tablets"
+  },
+  {
+    "id": "SS7730-AI6593",
+    "empresa_a": "SS7730",
+    "empresa_b": "AI6593",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 51.26456285924946,
+    "es_critica": true,
+    "descripcion": "Superior Services depende de Apex Innovations para baterías ev"
+  },
+  {
+    "id": "NS7155-AE9582",
+    "empresa_a": "NS7155",
+    "empresa_b": "AE9582",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 76.02739872404558,
+    "es_critica": true,
+    "descripcion": "Nexus Semiconductor depende de Ascent Electronics para erp"
+  },
+  {
+    "id": "VC1184-EI2083",
+    "empresa_a": "VC1184",
+    "empresa_b": "EI2083",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 78.08379497458637,
+    "es_critica": true,
+    "descripcion": "Vertex Components depende de Epoch Industries para sistemas de conducción autónoma"
+  },
+  {
+    "id": "MD5255-SC1269",
+    "empresa_a": "MD5255",
+    "empresa_b": "SC1269",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 41.585703742186574,
+    "es_critica": false,
+    "descripcion": "Master Digital depende de Stellar Corp para microcontroladores"
+  },
+  {
+    "id": "MD5255-AD5444",
+    "empresa_a": "MD5255",
+    "empresa_b": "AD5444",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 63.462845002611836,
+    "es_critica": false,
+    "descripcion": "Master Digital depende de Ascent Digital para microcontroladores"
+  },
+  {
+    "id": "DS3506-GI9901",
+    "empresa_a": "DS3506",
+    "empresa_b": "GI9901",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 61.54320319279084,
+    "es_critica": false,
+    "descripcion": "Dynasty Semiconductor depende de Global Innovations para ciberseguridad"
+  },
+  {
+    "id": "VS5374-NL6291",
+    "empresa_a": "VS5374",
+    "empresa_b": "NL6291",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 72.34420405689701,
+    "es_critica": false,
+    "descripcion": "Vanguard Services depende de NextGen Labs para tablets"
+  },
+  {
+    "id": "VS5374-ED3028",
+    "empresa_a": "VS5374",
+    "empresa_b": "ED3028",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 46.507562535033436,
+    "es_critica": false,
+    "descripcion": "Vanguard Services depende de Eclipse Digital para tablets"
+  },
+  {
+    "id": "ES8556-QD1429",
+    "empresa_a": "ES8556",
+    "empresa_b": "QD1429",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 25.128387882631472,
+    "es_critica": false,
+    "descripcion": "Epoch Semiconductor depende de Quantum Digital para ensamble"
+  },
+  {
+    "id": "ES8556-EM2921",
+    "empresa_a": "ES8556",
+    "empresa_b": "EM2921",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 26.069639365062894,
+    "es_critica": false,
+    "descripcion": "Epoch Semiconductor depende de Epoch Manufacturing para ensamble"
+  },
+  {
+    "id": "TS3473-GL1423",
+    "empresa_a": "TS3473",
+    "empresa_b": "GL1423",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 79.38589102088763,
+    "es_critica": false,
+    "descripcion": "Titan Solutions depende de Global Labs para erp"
+  },
+  {
+    "id": "SE2647-CS9635",
+    "empresa_a": "SE2647",
+    "empresa_b": "CS9635",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 44.33922630037905,
+    "es_critica": true,
+    "descripcion": "Superior Electronics depende de Catalyst Services para microcontroladores"
+  },
+  {
+    "id": "SL6548-HL2323",
+    "empresa_a": "SL6548",
+    "empresa_b": "HL2323",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 81.11448421954319,
+    "es_critica": false,
+    "descripcion": "Summit Labs depende de Horizon Labs para componentes electrónicos"
+  },
+  {
+    "id": "GI9901-ND5432",
+    "empresa_a": "GI9901",
+    "empresa_b": "ND5432",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 57.31578114661889,
+    "es_critica": false,
+    "descripcion": "Global Innovations depende de NextGen Devices para chips de ia"
+  },
+  {
+    "id": "ES2410-QI5908",
+    "empresa_a": "ES2410",
+    "empresa_b": "QI5908",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 37.6847411744305,
+    "es_critica": false,
+    "descripcion": "Epoch Systems depende de Quantum Industries para wearables"
+  },
+  {
+    "id": "ES2410-SI9101",
+    "empresa_a": "ES2410",
+    "empresa_b": "SI9101",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 47.05045533229452,
+    "es_critica": false,
+    "descripcion": "Epoch Systems depende de Superior Innovations para wearables"
+  },
+  {
+    "id": "MI5301-PM8193",
+    "empresa_a": "MI5301",
+    "empresa_b": "PM8193",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 65.49597167511918,
+    "es_critica": true,
+    "descripcion": "Master Innovations depende de Pinnacle Manufacturing para smartphones"
+  },
+  {
+    "id": "MI5301-DI2193",
+    "empresa_a": "MI5301",
+    "empresa_b": "DI2193",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 76.94217173917464,
+    "es_critica": false,
+    "descripcion": "Master Innovations depende de Dynasty Innovations para smartphones"
+  },
+  {
+    "id": "GI5490-NI1317",
+    "empresa_a": "GI5490",
+    "empresa_b": "NI1317",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 81.53227520974923,
+    "es_critica": false,
+    "descripcion": "Global Industries depende de NextGen Innovations para moldeado a presión"
+  },
+  {
+    "id": "NS8816-QI5908",
+    "empresa_a": "NS8816",
+    "empresa_b": "QI5908",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 49.30145088690752,
+    "es_critica": false,
+    "descripcion": "Nexus Systems depende de Quantum Industries para ciberseguridad"
+  },
+  {
+    "id": "ES4706-SE2647",
+    "empresa_a": "ES4706",
+    "empresa_b": "SE2647",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 39.71364497523412,
+    "es_critica": true,
+    "descripcion": "Epoch Semiconductor depende de Superior Electronics para ciberseguridad"
+  },
+  {
+    "id": "DC1371-MM3725",
+    "empresa_a": "DC1371",
+    "empresa_b": "MM3725",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 73.72958074939902,
+    "es_critica": false,
+    "descripcion": "Dynasty Components depende de Momentum Manufacturing para semiconductores automotrices"
+  },
+  {
+    "id": "VD9619-ZS8492",
+    "empresa_a": "VD9619",
+    "empresa_b": "ZS8492",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 19.536363270148865,
+    "es_critica": true,
+    "descripcion": "Vanguard Digital depende de Zenith Systems para semiconductores automotrices"
+  },
+  {
+    "id": "FS1567-GI9901",
+    "empresa_a": "FS1567",
+    "empresa_b": "GI9901",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 35.31652933807065,
+    "es_critica": true,
+    "descripcion": "Frontier Solutions depende de Global Innovations para ciberseguridad"
+  },
+  {
+    "id": "AC3041-EG1531",
+    "empresa_a": "AC3041",
+    "empresa_b": "EG1531",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 18.083294434498775,
+    "es_critica": true,
+    "descripcion": "Ascent Corp depende de Eclipse Group para componentes electrónicos"
+  },
+  {
+    "id": "AC3041-VM5752",
+    "empresa_a": "AC3041",
+    "empresa_b": "VM5752",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 41.049037707567976,
+    "es_critica": false,
+    "descripcion": "Ascent Corp depende de Vanguard Manufacturing para componentes electrónicos"
+  },
+  {
+    "id": "VT2797-AS9182",
+    "empresa_a": "VT2797",
+    "empresa_b": "AS9182",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 31.507576655403952,
+    "es_critica": false,
+    "descripcion": "Velocity Technologies depende de Ascent Systems para cloud computing"
+  },
+  {
+    "id": "MS1931-VL8015",
+    "empresa_a": "MS1931",
+    "empresa_b": "VL8015",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 57.98138333870444,
+    "es_critica": false,
+    "descripcion": "Momentum Solutions depende de Velocity Labs para smartphones"
+  },
+  {
+    "id": "MS1931-GS4026",
+    "empresa_a": "MS1931",
+    "empresa_b": "GS4026",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 80.29542773640193,
+    "es_critica": false,
+    "descripcion": "Momentum Solutions depende de Global Semiconductor para smartphones"
+  },
+  {
+    "id": "MS1931-PM6829",
+    "empresa_a": "MS1931",
+    "empresa_b": "PM6829",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 15.941861187433119,
+    "es_critica": true,
+    "descripcion": "Momentum Solutions depende de Prime Manufacturing para smartphones"
+  },
+  {
+    "id": "MI3668-PI7479",
+    "empresa_a": "MI3668",
+    "empresa_b": "PI7479",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 33.460069829528734,
+    "es_critica": false,
+    "descripcion": "Momentum Innovations depende de Prime Industries para memoria dram"
+  },
+  {
+    "id": "AD5687-VD6839",
+    "empresa_a": "AD5687",
+    "empresa_b": "VD6839",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 69.03167226270035,
+    "es_critica": false,
+    "descripcion": "Advanced Devices depende de Vision Devices para wearables"
+  },
+  {
+    "id": "AD5687-ES7632",
+    "empresa_a": "AD5687",
+    "empresa_b": "ES7632",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 44.98766617682184,
+    "es_critica": true,
+    "descripcion": "Advanced Devices depende de Epoch Semiconductor para wearables"
+  },
+  {
+    "id": "VD4743-QS3258",
+    "empresa_a": "VD4743",
+    "empresa_b": "QS3258",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 80.91018200999478,
+    "es_critica": true,
+    "descripcion": "Vertex Digital depende de Quantum Semiconductor para ensamble"
+  },
+  {
+    "id": "AD5340-DL9264",
+    "empresa_a": "AD5340",
+    "empresa_b": "DL9264",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 80.4892491202958,
+    "es_critica": false,
+    "descripcion": "Ascent Devices depende de Dynasty Labs para cloud computing"
+  },
+  {
+    "id": "ZM5146-VD7354",
+    "empresa_a": "ZM5146",
+    "empresa_b": "VD7354",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 62.740834968556655,
+    "es_critica": false,
+    "descripcion": "Zenith Manufacturing depende de Vision Devices para componentes electrónicos"
+  },
+  {
+    "id": "ZM5146-SS4000",
+    "empresa_a": "ZM5146",
+    "empresa_b": "SS4000",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 54.849538237362005,
+    "es_critica": true,
+    "descripcion": "Zenith Manufacturing depende de Spectrum Solutions para componentes electrónicos"
+  },
+  {
+    "id": "PE1948-ZD7798",
+    "empresa_a": "PE1948",
+    "empresa_b": "ZD7798",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 54.3699855562432,
+    "es_critica": true,
+    "descripcion": "Precision Electronics depende de Zenith Digital para sistemas de conducción autónoma"
+  },
+  {
+    "id": "EC2982-AD2281",
+    "empresa_a": "EC2982",
+    "empresa_b": "AD2281",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 24.202268788586895,
+    "es_critica": false,
+    "descripcion": "Elite Corp depende de Advanced Digital para memoria dram"
+  },
+  {
+    "id": "SG9741-ND5432",
+    "empresa_a": "SG9741",
+    "empresa_b": "ND5432",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 67.9087146715531,
+    "es_critica": true,
+    "descripcion": "Stellar Group depende de NextGen Devices para microcontroladores"
+  },
+  {
+    "id": "HI7857-ZI5108",
+    "empresa_a": "HI7857",
+    "empresa_b": "ZI5108",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 89.45409422279617,
+    "es_critica": true,
+    "descripcion": "Horizon Industries depende de Zenith Industries para analytics"
+  },
+  {
+    "id": "AS3732-VL8015",
+    "empresa_a": "AS3732",
+    "empresa_b": "VL8015",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 9.950564128349496,
+    "es_critica": false,
+    "descripcion": "Advanced Semiconductor depende de Velocity Labs para saas"
+  },
+  {
+    "id": "AS3732-AL5311",
+    "empresa_a": "AS3732",
+    "empresa_b": "AL5311",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 60.96738857713676,
+    "es_critica": true,
+    "descripcion": "Advanced Semiconductor depende de Advanced Labs para saas"
+  },
+  {
+    "id": "NS8530-VM5752",
+    "empresa_a": "NS8530",
+    "empresa_b": "VM5752",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 21.219381711694357,
+    "es_critica": false,
+    "descripcion": "NextGen Systems depende de Vanguard Manufacturing para chips de ia"
+  },
+  {
+    "id": "EI2083-VM5752",
+    "empresa_a": "EI2083",
+    "empresa_b": "VM5752",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 45.46280055052413,
+    "es_critica": false,
+    "descripcion": "Epoch Industries depende de Vanguard Manufacturing para gpus"
+  },
+  {
+    "id": "SS1831-ED1128",
+    "empresa_a": "SS1831",
+    "empresa_b": "ED1128",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 57.62235813622561,
+    "es_critica": false,
+    "descripcion": "Superior Services depende de Eclipse Digital para cloud computing"
+  },
+  {
+    "id": "MD2797-TS9668",
+    "empresa_a": "MD2797",
+    "empresa_b": "TS9668",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 8.649462849869106,
+    "es_critica": false,
+    "descripcion": "Momentum Digital depende de Titan Solutions para ensamble"
+  },
+  {
+    "id": "MD2797-NI4682",
+    "empresa_a": "MD2797",
+    "empresa_b": "NI4682",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 11.438216232704484,
+    "es_critica": false,
+    "descripcion": "Momentum Digital depende de NextGen Industries para ensamble"
+  },
+  {
+    "id": "PD4224-MS1999",
+    "empresa_a": "PD4224",
+    "empresa_b": "MS1999",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 78.4663518296416,
+    "es_critica": false,
+    "descripcion": "Pioneer Devices depende de Momentum Systems para semiconductores automotrices"
+  },
+  {
+    "id": "PD4224-CI7647",
+    "empresa_a": "PD4224",
+    "empresa_b": "CI7647",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 68.15829822464295,
+    "es_critica": false,
+    "descripcion": "Pioneer Devices depende de Catalyst Industries para semiconductores automotrices"
+  },
+  {
+    "id": "PM8193-EC2721",
+    "empresa_a": "PM8193",
+    "empresa_b": "EC2721",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 28.514857009910443,
+    "es_critica": false,
+    "descripcion": "Pinnacle Manufacturing depende de Elite Corp para memoria dram"
+  },
+  {
+    "id": "SS7690-GI9901",
+    "empresa_a": "SS7690",
+    "empresa_b": "GI9901",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 37.01136044985714,
+    "es_critica": false,
+    "descripcion": "Stellar Services depende de Global Innovations para baterías ev"
+  },
+  {
+    "id": "SS7690-VE9847",
+    "empresa_a": "SS7690",
+    "empresa_b": "VE9847",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 82.8562424133377,
+    "es_critica": true,
+    "descripcion": "Stellar Services depende de Vertex Electronics para baterías ev"
+  },
+  {
+    "id": "SS7690-DT6636",
+    "empresa_a": "SS7690",
+    "empresa_b": "DT6636",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 23.647068425901693,
+    "es_critica": false,
+    "descripcion": "Stellar Services depende de Dynasty Technologies para baterías ev"
+  },
+  {
+    "id": "VS4008-MD5255",
+    "empresa_a": "VS4008",
+    "empresa_b": "MD5255",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 69.50287546026523,
+    "es_critica": false,
+    "descripcion": "Velocity Semiconductor depende de Master Digital para accesorios"
+  },
+  {
+    "id": "VS4008-SL2267",
+    "empresa_a": "VS4008",
+    "empresa_b": "SL2267",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 39.41650325830367,
+    "es_critica": false,
+    "descripcion": "Velocity Semiconductor depende de Stellar Labs para accesorios"
+  },
+  {
+    "id": "SC6713-VT3636",
+    "empresa_a": "SC6713",
+    "empresa_b": "VT3636",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 54.62662294695084,
+    "es_critica": false,
+    "descripcion": "Superior Components depende de Velocity Technologies para fabricación de pcb"
+  },
+  {
+    "id": "SC6713-SE3117",
+    "empresa_a": "SC6713",
+    "empresa_b": "SE3117",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 35.83814828092497,
+    "es_critica": true,
+    "descripcion": "Superior Components depende de Superior Electronics para fabricación de pcb"
+  },
+  {
+    "id": "ES6601-PC6820",
+    "empresa_a": "ES6601",
+    "empresa_b": "PC6820",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 72.35149176246543,
+    "es_critica": true,
+    "descripcion": "Elite Solutions depende de Precision Components para wearables"
+  },
+  {
+    "id": "ES6601-ZM5146",
+    "empresa_a": "ES6601",
+    "empresa_b": "ZM5146",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 57.39767427378833,
+    "es_critica": false,
+    "descripcion": "Elite Solutions depende de Zenith Manufacturing para wearables"
+  },
+  {
+    "id": "ES6601-VI3614",
+    "empresa_a": "ES6601",
+    "empresa_b": "VI3614",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 18.17114851889644,
+    "es_critica": true,
+    "descripcion": "Elite Solutions depende de Velocity Innovations para wearables"
+  },
+  {
+    "id": "TS2408-PT2253",
+    "empresa_a": "TS2408",
+    "empresa_b": "PT2253",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 66.32340085738804,
+    "es_critica": true,
+    "descripcion": "Titan Systems depende de Precision Technologies para semiconductores automotrices"
+  },
+  {
+    "id": "AS7315-VG5873",
+    "empresa_a": "AS7315",
+    "empresa_b": "VG5873",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 58.62059622265634,
+    "es_critica": false,
+    "descripcion": "Ascent Systems depende de Vertex Group para fabricación de pcb"
+  },
+  {
+    "id": "SI3759-NL6291",
+    "empresa_a": "SI3759",
+    "empresa_b": "NL6291",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 77.86339396109028,
+    "es_critica": false,
+    "descripcion": "Superior Industries depende de NextGen Labs para analytics"
+  },
+  {
+    "id": "SI3759-VS5814",
+    "empresa_a": "SI3759",
+    "empresa_b": "VS5814",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 64.04649954347487,
+    "es_critica": true,
+    "descripcion": "Superior Industries depende de Vision Services para analytics"
+  },
+  {
+    "id": "MI9340-CG9651",
+    "empresa_a": "MI9340",
+    "empresa_b": "CG9651",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 84.09360352164347,
+    "es_critica": false,
+    "descripcion": "Master Industries depende de Catalyst Group para componentes electrónicos"
+  },
+  {
+    "id": "MI9340-NE9273",
+    "empresa_a": "MI9340",
+    "empresa_b": "NE9273",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 89.0139922873357,
+    "es_critica": false,
+    "descripcion": "Master Industries depende de NextGen Electronics para componentes electrónicos"
+  },
+  {
+    "id": "FL8951-NG6790",
+    "empresa_a": "FL8951",
+    "empresa_b": "NG6790",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 54.57235511420476,
+    "es_critica": false,
+    "descripcion": "Frontier Labs depende de Nexus Group para fabricación de pcb"
+  },
+  {
+    "id": "FS1003-MM3725",
+    "empresa_a": "FS1003",
+    "empresa_b": "MM3725",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 79.00470334447678,
+    "es_critica": false,
+    "descripcion": "Frontier Solutions depende de Momentum Manufacturing para vehículos"
+  },
+  {
+    "id": "FS1003-AC3041",
+    "empresa_a": "FS1003",
+    "empresa_b": "AC3041",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 14.974344427356591,
+    "es_critica": false,
+    "descripcion": "Frontier Solutions depende de Ascent Corp para vehículos"
+  },
+  {
+    "id": "FS1003-ES7147",
+    "empresa_a": "FS1003",
+    "empresa_b": "ES7147",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 86.18453355451294,
+    "es_critica": false,
+    "descripcion": "Frontier Solutions depende de Elite Services para vehículos"
+  },
+  {
+    "id": "QI5908-VS3560",
+    "empresa_a": "QI5908",
+    "empresa_b": "VS3560",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 75.73758196251549,
+    "es_critica": false,
+    "descripcion": "Quantum Industries depende de Velocity Solutions para almacenamiento"
+  },
+  {
+    "id": "VM1850-VT3636",
+    "empresa_a": "VM1850",
+    "empresa_b": "VT3636",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 39.051314748157104,
+    "es_critica": true,
+    "descripcion": "Vanguard Manufacturing depende de Velocity Technologies para componentes electrónicos"
+  },
+  {
+    "id": "PG1663-SG5296",
+    "empresa_a": "PG1663",
+    "empresa_b": "SG5296",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 43.63371686942282,
+    "es_critica": false,
+    "descripcion": "Prime Group depende de Spectrum Group para semiconductores automotrices"
+  },
+  {
+    "id": "PG1663-VC8510",
+    "empresa_a": "PG1663",
+    "empresa_b": "VC8510",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 7.254445988904034,
+    "es_critica": true,
+    "descripcion": "Prime Group depende de Vertex Corp para semiconductores automotrices"
+  },
+  {
+    "id": "NC3735-MM1907",
+    "empresa_a": "NC3735",
+    "empresa_b": "MM1907",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 63.073081816690845,
+    "es_critica": false,
+    "descripcion": "NextGen Corp depende de Master Manufacturing para tablets"
+  },
+  {
+    "id": "NC3735-VI1113",
+    "empresa_a": "NC3735",
+    "empresa_b": "VI1113",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 67.67975033483971,
+    "es_critica": true,
+    "descripcion": "NextGen Corp depende de Vanguard Innovations para tablets"
+  },
+  {
+    "id": "NC3735-ME2012",
+    "empresa_a": "NC3735",
+    "empresa_b": "ME2012",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 85.94284542150562,
+    "es_critica": false,
+    "descripcion": "NextGen Corp depende de Master Electronics para tablets"
+  },
+  {
+    "id": "ZD7798-PD6429",
+    "empresa_a": "ZD7798",
+    "empresa_b": "PD6429",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 18.015553100485498,
+    "es_critica": true,
+    "descripcion": "Zenith Digital depende de Prime Devices para moldeado a presión"
+  },
+  {
+    "id": "DL9264-MS6309",
+    "empresa_a": "DL9264",
+    "empresa_b": "MS6309",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 63.31826299757131,
+    "es_critica": false,
+    "descripcion": "Dynasty Labs depende de Master Systems para procesadores"
+  },
+  {
+    "id": "CS1030-EI9816",
+    "empresa_a": "CS1030",
+    "empresa_b": "EI9816",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 52.92307410489125,
+    "es_critica": false,
+    "descripcion": "Catalyst Solutions depende de Epoch Innovations para moldeado a presión"
+  },
+  {
+    "id": "CS1030-ZL6389",
+    "empresa_a": "CS1030",
+    "empresa_b": "ZL6389",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 76.0856879311824,
+    "es_critica": false,
+    "descripcion": "Catalyst Solutions depende de Zenith Labs para moldeado a presión"
+  },
+  {
+    "id": "FM3656-PC6820",
+    "empresa_a": "FM3656",
+    "empresa_b": "PC6820",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 58.64997535166307,
+    "es_critica": true,
+    "descripcion": "Frontier Manufacturing depende de Precision Components para cloud computing"
+  },
+  {
+    "id": "ML1446-MS1999",
+    "empresa_a": "ML1446",
+    "empresa_b": "MS1999",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 40.205418109834305,
+    "es_critica": false,
+    "descripcion": "Master Labs depende de Momentum Systems para vehículos"
+  },
+  {
+    "id": "SI6936-EL9682",
+    "empresa_a": "SI6936",
+    "empresa_b": "EL9682",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 59.80726138768521,
+    "es_critica": false,
+    "descripcion": "Summit Innovations depende de Epoch Labs para tablets"
+  },
+  {
+    "id": "AI6593-NE7680",
+    "empresa_a": "AI6593",
+    "empresa_b": "NE7680",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 48.731398984135986,
+    "es_critica": true,
+    "descripcion": "Apex Innovations depende de NextGen Electronics para chips de ia"
+  },
+  {
+    "id": "PT4448-VL8015",
+    "empresa_a": "PT4448",
+    "empresa_b": "VL8015",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 15.57216169100409,
+    "es_critica": false,
+    "descripcion": "Precision Technologies depende de Velocity Labs para accesorios"
+  },
+  {
+    "id": "PT4448-VG5446",
+    "empresa_a": "PT4448",
+    "empresa_b": "VG5446",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 15.723540240524878,
+    "es_critica": false,
+    "descripcion": "Precision Technologies depende de Vertex Group para accesorios"
+  },
+  {
+    "id": "TS1189-VM1850",
+    "empresa_a": "TS1189",
+    "empresa_b": "VM1850",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 64.61088794422905,
+    "es_critica": false,
+    "descripcion": "Titan Systems depende de Vanguard Manufacturing para smartphones"
+  },
+  {
+    "id": "GI719-TS9668",
+    "empresa_a": "GI719",
+    "empresa_b": "TS9668",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 6.945469572918079,
+    "es_critica": false,
+    "descripcion": "Global Innovations depende de Titan Solutions para moldeado a presión"
+  },
+  {
+    "id": "ES4393-SM9751",
+    "empresa_a": "ES4393",
+    "empresa_b": "SM9751",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 40.90846457783581,
+    "es_critica": false,
+    "descripcion": "Eclipse Solutions depende de Superior Manufacturing para ia y ml"
+  },
+  {
+    "id": "AC2781-SI3122",
+    "empresa_a": "AC2781",
+    "empresa_b": "SI3122",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 28.670157993908845,
+    "es_critica": false,
+    "descripcion": "Advanced Corp depende de Stellar Industries para microcontroladores"
+  },
+  {
+    "id": "VM2822-MD5255",
+    "empresa_a": "VM2822",
+    "empresa_b": "MD5255",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 44.64943116746874,
+    "es_critica": true,
+    "descripcion": "Vision Manufacturing depende de Master Digital para cloud computing"
+  },
+  {
+    "id": "VD7750-QI5908",
+    "empresa_a": "VD7750",
+    "empresa_b": "QI5908",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 47.7382603767058,
+    "es_critica": false,
+    "descripcion": "Vertex Devices depende de Quantum Industries para baterías ev"
+  },
+  {
+    "id": "VD7750-FC4489",
+    "empresa_a": "VD7750",
+    "empresa_b": "FC4489",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 74.35720549946653,
+    "es_critica": true,
+    "descripcion": "Vertex Devices depende de Frontier Components para baterías ev"
+  },
+  {
+    "id": "MD2357-PC9171",
+    "empresa_a": "MD2357",
+    "empresa_b": "PC9171",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 61.48244197069534,
+    "es_critica": true,
+    "descripcion": "Momentum Digital depende de Pioneer Corp para vehículos"
+  },
+  {
+    "id": "MD2357-MI9340",
+    "empresa_a": "MD2357",
+    "empresa_b": "MI9340",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 36.795671120973935,
+    "es_critica": false,
+    "descripcion": "Momentum Digital depende de Master Industries para vehículos"
+  },
+  {
+    "id": "EE8954-NL6291",
+    "empresa_a": "EE8954",
+    "empresa_b": "NL6291",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 85.1022290319768,
+    "es_critica": true,
+    "descripcion": "Elite Electronics depende de NextGen Labs para tablets"
+  },
+  {
+    "id": "EE8954-AS8608",
+    "empresa_a": "EE8954",
+    "empresa_b": "AS8608",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 77.72205361637535,
+    "es_critica": true,
+    "descripcion": "Elite Electronics depende de Ascent Services para tablets"
+  },
+  {
+    "id": "VE4111-VS8522",
+    "empresa_a": "VE4111",
+    "empresa_b": "VS8522",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 78.73196672364966,
+    "es_critica": false,
+    "descripcion": "Vanguard Electronics depende de Vision Solutions para almacenamiento"
+  },
+  {
+    "id": "AE8570-NC2067",
+    "empresa_a": "AE8570",
+    "empresa_b": "NC2067",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 72.06019646075349,
+    "es_critica": true,
+    "descripcion": "Ascent Electronics depende de NextGen Corp para ensamble"
+  },
+  {
+    "id": "PI4810-PI92",
+    "empresa_a": "PI4810",
+    "empresa_b": "PI92",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 30.480806531192,
+    "es_critica": true,
+    "descripcion": "Prime Innovations depende de Precision Innovations para ensamble"
+  },
+  {
+    "id": "MT7877-SS4457",
+    "empresa_a": "MT7877",
+    "empresa_b": "SS4457",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 48.15773836036979,
+    "es_critica": false,
+    "descripcion": "Master Technologies depende de Stellar Services para baterías ev"
+  },
+  {
+    "id": "PI5996-EL9682",
+    "empresa_a": "PI5996",
+    "empresa_b": "EL9682",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 11.212362183439767,
+    "es_critica": true,
+    "descripcion": "Prime Innovations depende de Epoch Labs para accesorios"
+  },
+  {
+    "id": "GL9413-NE9273",
+    "empresa_a": "GL9413",
+    "empresa_b": "NE9273",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 80.29693923628145,
+    "es_critica": false,
+    "descripcion": "Global Labs depende de NextGen Electronics para chips de ia"
+  },
+  {
+    "id": "GL9413-AL5311",
+    "empresa_a": "GL9413",
+    "empresa_b": "AL5311",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 85.08973468871706,
+    "es_critica": false,
+    "descripcion": "Global Labs depende de Advanced Labs para chips de ia"
+  },
+  {
+    "id": "NS1711-ZS6709",
+    "empresa_a": "NS1711",
+    "empresa_b": "ZS6709",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 88.38008741717648,
+    "es_critica": false,
+    "descripcion": "Nexus Systems depende de Zenith Semiconductor para componentes electrónicos"
+  },
+  {
+    "id": "MD5649-MM3725",
+    "empresa_a": "MD5649",
+    "empresa_b": "MM3725",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 8.191294444240215,
+    "es_critica": true,
+    "descripcion": "Momentum Devices depende de Momentum Manufacturing para computadoras"
+  },
+  {
+    "id": "MD5649-EI9009",
+    "empresa_a": "MD5649",
+    "empresa_b": "EI9009",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 42.5803849119761,
+    "es_critica": true,
+    "descripcion": "Momentum Devices depende de Epoch Innovations para computadoras"
+  },
+  {
+    "id": "AS9386-EE9457",
+    "empresa_a": "AS9386",
+    "empresa_b": "EE9457",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 28.865962938471657,
+    "es_critica": false,
+    "descripcion": "Ascent Solutions depende de Eclipse Electronics para vehículos"
+  },
+  {
+    "id": "QS1950-MM3725",
+    "empresa_a": "QS1950",
+    "empresa_b": "MM3725",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 71.19129699480953,
+    "es_critica": false,
+    "descripcion": "Quantum Solutions depende de Momentum Manufacturing para ia y ml"
+  },
+  {
+    "id": "PS9903-GI9901",
+    "empresa_a": "PS9903",
+    "empresa_b": "GI9901",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 38.28770494051072,
+    "es_critica": false,
+    "descripcion": "Prime Systems depende de Global Innovations para baterías ev"
+  },
+  {
+    "id": "PS9903-TE4462",
+    "empresa_a": "PS9903",
+    "empresa_b": "TE4462",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 46.079226948773545,
+    "es_critica": false,
+    "descripcion": "Prime Systems depende de Titan Electronics para baterías ev"
+  },
+  {
+    "id": "PS9903-VC8510",
+    "empresa_a": "PS9903",
+    "empresa_b": "VC8510",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 72.52376057479337,
+    "es_critica": false,
+    "descripcion": "Prime Systems depende de Vertex Corp para baterías ev"
+  },
+  {
+    "id": "TC5450-AT1735",
+    "empresa_a": "TC5450",
+    "empresa_b": "AT1735",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 56.8208756442603,
+    "es_critica": false,
+    "descripcion": "Titan Components depende de Ascent Technologies para computadoras"
+  },
+  {
+    "id": "AS6652-AL5774",
+    "empresa_a": "AS6652",
+    "empresa_b": "AL5774",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 22.92575929120322,
+    "es_critica": false,
+    "descripcion": "Ascent Services depende de Ascent Labs para cloud computing"
+  },
+  {
+    "id": "AS6652-NS2879",
+    "empresa_a": "AS6652",
+    "empresa_b": "NS2879",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 36.70941505601485,
+    "es_critica": false,
+    "descripcion": "Ascent Services depende de NextGen Services para cloud computing"
+  },
+  {
+    "id": "ED2195-CE5544",
+    "empresa_a": "ED2195",
+    "empresa_b": "CE5544",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 40.78329217749634,
+    "es_critica": false,
+    "descripcion": "Epoch Digital depende de Catalyst Electronics para ciberseguridad"
+  },
+  {
+    "id": "DI9470-AE2306",
+    "empresa_a": "DI9470",
+    "empresa_b": "AE2306",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 88.36875520760464,
+    "es_critica": true,
+    "descripcion": "Dynasty Innovations depende de Advanced Electronics para fabricación de pcb"
+  },
+  {
+    "id": "PD4320-GL1423",
+    "empresa_a": "PD4320",
+    "empresa_b": "GL1423",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 38.58878815138403,
+    "es_critica": false,
+    "descripcion": "Pinnacle Digital depende de Global Labs para smartphones"
+  },
+  {
+    "id": "PD4320-VS3397",
+    "empresa_a": "PD4320",
+    "empresa_b": "VS3397",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 23.60041165939913,
+    "es_critica": false,
+    "descripcion": "Pinnacle Digital depende de Velocity Semiconductor para smartphones"
+  },
+  {
+    "id": "MM1907-EM2921",
+    "empresa_a": "MM1907",
+    "empresa_b": "EM2921",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 47.497802047484484,
+    "es_critica": true,
+    "descripcion": "Master Manufacturing depende de Epoch Manufacturing para chips de ia"
+  },
+  {
+    "id": "ES8367-MM3725",
+    "empresa_a": "ES8367",
+    "empresa_b": "MM3725",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 30.393034982648516,
+    "es_critica": true,
+    "descripcion": "Eclipse Solutions depende de Momentum Manufacturing para computadoras"
+  },
+  {
+    "id": "ES8367-MI5947",
+    "empresa_a": "ES8367",
+    "empresa_b": "MI5947",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 52.142505891491645,
+    "es_critica": true,
+    "descripcion": "Eclipse Solutions depende de Master Industries para computadoras"
+  },
+  {
+    "id": "ES8367-ZT8659",
+    "empresa_a": "ES8367",
+    "empresa_b": "ZT8659",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 40.239851689372806,
+    "es_critica": false,
+    "descripcion": "Eclipse Solutions depende de Zenith Technologies para computadoras"
+  },
+  {
+    "id": "PT5660-ZD7104",
+    "empresa_a": "PT5660",
+    "empresa_b": "ZD7104",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 43.78599149459867,
+    "es_critica": false,
+    "descripcion": "Prime Technologies depende de Zenith Digital para ia y ml"
+  },
+  {
+    "id": "SM8922-DI1303",
+    "empresa_a": "SM8922",
+    "empresa_b": "DI1303",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 8.376393891447321,
+    "es_critica": false,
+    "descripcion": "Spectrum Manufacturing depende de Dynasty Industries para baterías ev"
+  },
+  {
+    "id": "SM8922-SS1414",
+    "empresa_a": "SM8922",
+    "empresa_b": "SS1414",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 82.38830246651587,
+    "es_critica": true,
+    "descripcion": "Spectrum Manufacturing depende de Spectrum Solutions para baterías ev"
+  },
+  {
+    "id": "DI1303-NE9273",
+    "empresa_a": "DI1303",
+    "empresa_b": "NE9273",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 71.74806009602146,
+    "es_critica": false,
+    "descripcion": "Dynasty Industries depende de NextGen Electronics para almacenamiento"
+  },
+  {
+    "id": "PI4307-QL3925",
+    "empresa_a": "PI4307",
+    "empresa_b": "QL3925",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 6.276979635064057,
+    "es_critica": false,
+    "descripcion": "Prime Industries depende de Quantum Labs para ensamble"
+  },
+  {
+    "id": "PI4307-EG2180",
+    "empresa_a": "PI4307",
+    "empresa_b": "EG2180",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 26.336542728767565,
+    "es_critica": true,
+    "descripcion": "Prime Industries depende de Epoch Group para ensamble"
+  },
+  {
+    "id": "EL9523-AT1735",
+    "empresa_a": "EL9523",
+    "empresa_b": "AT1735",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 55.23042456800587,
+    "es_critica": false,
+    "descripcion": "Epoch Labs depende de Ascent Technologies para semiconductores automotrices"
+  },
+  {
+    "id": "ST6374-EG2180",
+    "empresa_a": "ST6374",
+    "empresa_b": "EG2180",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 15.401204378324493,
+    "es_critica": true,
+    "descripcion": "Superior Technologies depende de Epoch Group para gpus"
+  },
+  {
+    "id": "VS5875-QS6954",
+    "empresa_a": "VS5875",
+    "empresa_b": "QS6954",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 76.8616058920025,
+    "es_critica": false,
+    "descripcion": "Velocity Services depende de Quantum Services para sistemas de conducción autónoma"
+  },
+  {
+    "id": "VS5875-ES7632",
+    "empresa_a": "VS5875",
+    "empresa_b": "ES7632",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 85.63788160232201,
+    "es_critica": true,
+    "descripcion": "Velocity Services depende de Epoch Semiconductor para sistemas de conducción autónoma"
+  },
+  {
+    "id": "VS5875-GE5327",
+    "empresa_a": "VS5875",
+    "empresa_b": "GE5327",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 80.22513074845494,
+    "es_critica": false,
+    "descripcion": "Velocity Services depende de Global Electronics para sistemas de conducción autónoma"
+  },
+  {
+    "id": "MS3644-GL9413",
+    "empresa_a": "MS3644",
+    "empresa_b": "GL9413",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 74.9059147376749,
+    "es_critica": false,
+    "descripcion": "Master Solutions depende de Global Labs para baterías ev"
+  },
+  {
+    "id": "MS3644-ZE1330",
+    "empresa_a": "MS3644",
+    "empresa_b": "ZE1330",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 5.650348241801484,
+    "es_critica": true,
+    "descripcion": "Master Solutions depende de Zenith Electronics para baterías ev"
+  },
+  {
+    "id": "SL6685-SI9101",
+    "empresa_a": "SL6685",
+    "empresa_b": "SI9101",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 75.65732898518004,
+    "es_critica": false,
+    "descripcion": "Spectrum Labs depende de Superior Innovations para semiconductores automotrices"
+  },
+  {
+    "id": "VL3901-AI4301",
+    "empresa_a": "VL3901",
+    "empresa_b": "AI4301",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 51.4894402790416,
+    "es_critica": false,
+    "descripcion": "Vertex Labs depende de Advanced Industries para procesadores"
+  },
+  {
+    "id": "MI9378-NE9273",
+    "empresa_a": "MI9378",
+    "empresa_b": "NE9273",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 21.812085598297536,
+    "es_critica": true,
+    "descripcion": "Master Innovations depende de NextGen Electronics para almacenamiento"
+  },
+  {
+    "id": "MI9378-PD7050",
+    "empresa_a": "MI9378",
+    "empresa_b": "PD7050",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 7.924531241374807,
+    "es_critica": true,
+    "descripcion": "Master Innovations depende de Pinnacle Devices para almacenamiento"
+  },
+  {
+    "id": "SC4477-NS8530",
+    "empresa_a": "SC4477",
+    "empresa_b": "NS8530",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 36.14023157482167,
+    "es_critica": false,
+    "descripcion": "Spectrum Corp depende de NextGen Systems para smartphones"
+  },
+  {
+    "id": "SC4477-ZE2328",
+    "empresa_a": "SC4477",
+    "empresa_b": "ZE2328",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 72.18888326248198,
+    "es_critica": false,
+    "descripcion": "Spectrum Corp depende de Zenith Electronics para smartphones"
+  },
+  {
+    "id": "AI8566-ME9106",
+    "empresa_a": "AI8566",
+    "empresa_b": "ME9106",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 48.699793822809205,
+    "es_critica": false,
+    "descripcion": "Apex Industries depende de Momentum Electronics para moldeado a presión"
+  },
+  {
+    "id": "AI8566-VM5752",
+    "empresa_a": "AI8566",
+    "empresa_b": "VM5752",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 18.951431121261106,
+    "es_critica": false,
+    "descripcion": "Apex Industries depende de Vanguard Manufacturing para moldeado a presión"
+  },
+  {
+    "id": "CE5544-TD3591",
+    "empresa_a": "CE5544",
+    "empresa_b": "TD3591",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 57.838047592857926,
+    "es_critica": false,
+    "descripcion": "Catalyst Electronics depende de Titan Digital para procesadores"
+  },
+  {
+    "id": "SG7014-MM3725",
+    "empresa_a": "SG7014",
+    "empresa_b": "MM3725",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 59.981331851842214,
+    "es_critica": true,
+    "descripcion": "Superior Group depende de Momentum Manufacturing para ia y ml"
+  },
+  {
+    "id": "EI8924-SG2733",
+    "empresa_a": "EI8924",
+    "empresa_b": "SG2733",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 81.72585391502108,
+    "es_critica": true,
+    "descripcion": "Elite Industries depende de Summit Group para fabricación de pcb"
+  },
+  {
+    "id": "EI8924-ND5432",
+    "empresa_a": "EI8924",
+    "empresa_b": "ND5432",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 82.2753541889834,
+    "es_critica": false,
+    "descripcion": "Elite Industries depende de NextGen Devices para fabricación de pcb"
+  },
+  {
+    "id": "AT8347-QS2332",
+    "empresa_a": "AT8347",
+    "empresa_b": "QS2332",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 31.431858599037575,
+    "es_critica": true,
+    "descripcion": "Apex Technologies depende de Quantum Solutions para vehículos"
+  },
+  {
+    "id": "AM7227-PI9122",
+    "empresa_a": "AM7227",
+    "empresa_b": "PI9122",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 24.038916516465846,
+    "es_critica": false,
+    "descripcion": "Advanced Manufacturing depende de Prime Industries para gpus"
+  },
+  {
+    "id": "MS6022-QS2332",
+    "empresa_a": "MS6022",
+    "empresa_b": "QS2332",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 75.8629921371917,
+    "es_critica": false,
+    "descripcion": "Master Solutions depende de Quantum Solutions para ia y ml"
+  },
+  {
+    "id": "MS6022-EC7472",
+    "empresa_a": "MS6022",
+    "empresa_b": "EC7472",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 89.8524332636435,
+    "es_critica": false,
+    "descripcion": "Master Solutions depende de Elite Corp para ia y ml"
+  },
+  {
+    "id": "MI5947-FI8896",
+    "empresa_a": "MI5947",
+    "empresa_b": "FI8896",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 35.72332156390956,
+    "es_critica": false,
+    "descripcion": "Master Industries depende de Frontier Industries para fabricación de pcb"
+  },
+  {
+    "id": "MI5947-TD3591",
+    "empresa_a": "MI5947",
+    "empresa_b": "TD3591",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 63.1901630297854,
+    "es_critica": false,
+    "descripcion": "Master Industries depende de Titan Digital para fabricación de pcb"
+  },
+  {
+    "id": "SS7074-EC2982",
+    "empresa_a": "SS7074",
+    "empresa_b": "EC2982",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 76.72401811526034,
+    "es_critica": true,
+    "descripcion": "Stellar Semiconductor depende de Elite Corp para analytics"
+  },
+  {
+    "id": "SS7074-SI1724",
+    "empresa_a": "SS7074",
+    "empresa_b": "SI1724",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 43.723384905912376,
+    "es_critica": false,
+    "descripcion": "Stellar Semiconductor depende de Stellar Industries para analytics"
+  },
+  {
+    "id": "PI8474-AS2540",
+    "empresa_a": "PI8474",
+    "empresa_b": "AS2540",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 57.24102691527716,
+    "es_critica": false,
+    "descripcion": "Pinnacle Innovations depende de Ascent Services para saas"
+  },
+  {
+    "id": "ES8518-ST6374",
+    "empresa_a": "ES8518",
+    "empresa_b": "ST6374",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 87.17571570247284,
+    "es_critica": false,
+    "descripcion": "Elite Services depende de Superior Technologies para sistemas de conducción autónoma"
+  },
+  {
+    "id": "ES8518-EC6361",
+    "empresa_a": "ES8518",
+    "empresa_b": "EC6361",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 81.86756411083975,
+    "es_critica": false,
+    "descripcion": "Elite Services depende de Eclipse Corp para sistemas de conducción autónoma"
+  },
+  {
+    "id": "HG1058-NE9273",
+    "empresa_a": "HG1058",
+    "empresa_b": "NE9273",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 15.292980429502009,
+    "es_critica": false,
+    "descripcion": "Horizon Group depende de NextGen Electronics para chips de ia"
+  },
+  {
+    "id": "HG1058-AS2540",
+    "empresa_a": "HG1058",
+    "empresa_b": "AS2540",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 48.17442178631312,
+    "es_critica": false,
+    "descripcion": "Horizon Group depende de Ascent Services para chips de ia"
+  },
+  {
+    "id": "EL9682-SC9746",
+    "empresa_a": "EL9682",
+    "empresa_b": "SC9746",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 60.410083865446495,
+    "es_critica": false,
+    "descripcion": "Epoch Labs depende de Spectrum Components para chips de ia"
+  },
+  {
+    "id": "VI1365-GL9413",
+    "empresa_a": "VI1365",
+    "empresa_b": "GL9413",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 9.672895237051147,
+    "es_critica": false,
+    "descripcion": "Velocity Industries depende de Global Labs para vehículos"
+  },
+  {
+    "id": "VI1365-EE9457",
+    "empresa_a": "VI1365",
+    "empresa_b": "EE9457",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 86.85388220478617,
+    "es_critica": true,
+    "descripcion": "Velocity Industries depende de Eclipse Electronics para vehículos"
+  },
+  {
+    "id": "PI1712-PC1651",
+    "empresa_a": "PI1712",
+    "empresa_b": "PC1651",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 8.668191728219682,
+    "es_critica": false,
+    "descripcion": "Prime Industries depende de Precision Corp para saas"
+  },
+  {
+    "id": "ZI5108-EC2721",
+    "empresa_a": "ZI5108",
+    "empresa_b": "EC2721",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 29.40830350461336,
+    "es_critica": true,
+    "descripcion": "Zenith Industries depende de Elite Corp para chips de ia"
+  },
+  {
+    "id": "ZI5108-ZD7104",
+    "empresa_a": "ZI5108",
+    "empresa_b": "ZD7104",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 5.788271462449423,
+    "es_critica": false,
+    "descripcion": "Zenith Industries depende de Zenith Digital para chips de ia"
+  },
+  {
+    "id": "AS6746-QI5908",
+    "empresa_a": "AS6746",
+    "empresa_b": "QI5908",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 55.566616527577466,
+    "es_critica": true,
+    "descripcion": "Apex Systems depende de Quantum Industries para saas"
+  },
+  {
+    "id": "AS6746-PC4720",
+    "empresa_a": "AS6746",
+    "empresa_b": "PC4720",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 64.29724704030774,
+    "es_critica": true,
+    "descripcion": "Apex Systems depende de Pioneer Components para saas"
+  },
+  {
+    "id": "SG4507-SC5348",
+    "empresa_a": "SG4507",
+    "empresa_b": "SC5348",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 77.50346597802712,
+    "es_critica": false,
+    "descripcion": "Stellar Group depende de Superior Corp para memoria dram"
+  },
+  {
+    "id": "SG4507-SM9751",
+    "empresa_a": "SG4507",
+    "empresa_b": "SM9751",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 72.7836937410661,
+    "es_critica": true,
+    "descripcion": "Stellar Group depende de Superior Manufacturing para memoria dram"
+  },
+  {
+    "id": "CS2827-SC5348",
+    "empresa_a": "CS2827",
+    "empresa_b": "SC5348",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 62.90636773984172,
+    "es_critica": false,
+    "descripcion": "Catalyst Services depende de Superior Corp para memoria dram"
+  },
+  {
+    "id": "GL1423-SC1269",
+    "empresa_a": "GL1423",
+    "empresa_b": "SC1269",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 22.57389471141635,
+    "es_critica": false,
+    "descripcion": "Global Labs depende de Stellar Corp para memoria dram"
+  },
+  {
+    "id": "NS3632-PC2322",
+    "empresa_a": "NS3632",
+    "empresa_b": "PC2322",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 21.965012147441108,
+    "es_critica": false,
+    "descripcion": "Nexus Services depende de Pioneer Corp para analytics"
+  },
+  {
+    "id": "NS3632-AS5999",
+    "empresa_a": "NS3632",
+    "empresa_b": "AS5999",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 43.862087549372525,
+    "es_critica": false,
+    "descripcion": "Nexus Services depende de Ascent Services para analytics"
+  },
+  {
+    "id": "PI4683-DL9264",
+    "empresa_a": "PI4683",
+    "empresa_b": "DL9264",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 17.03502477465814,
+    "es_critica": true,
+    "descripcion": "Pioneer Innovations depende de Dynasty Labs para wearables"
+  },
+  {
+    "id": "PI4683-VM1850",
+    "empresa_a": "PI4683",
+    "empresa_b": "VM1850",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 57.36681174636779,
+    "es_critica": true,
+    "descripcion": "Pioneer Innovations depende de Vanguard Manufacturing para wearables"
+  },
+  {
+    "id": "AD6420-PC9171",
+    "empresa_a": "AD6420",
+    "empresa_b": "PC9171",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 26.396592740449673,
+    "es_critica": false,
+    "descripcion": "Ascent Devices depende de Pioneer Corp para sistemas de conducción autónoma"
+  },
+  {
+    "id": "AD6420-AS7315",
+    "empresa_a": "AD6420",
+    "empresa_b": "AS7315",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 18.715661675993736,
+    "es_critica": true,
+    "descripcion": "Ascent Devices depende de Ascent Systems para sistemas de conducción autónoma"
+  },
+  {
+    "id": "ZE1330-PC7030",
+    "empresa_a": "ZE1330",
+    "empresa_b": "PC7030",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 41.66670901573229,
+    "es_critica": false,
+    "descripcion": "Zenith Electronics depende de Pioneer Corp para ensamble"
+  },
+  {
+    "id": "VS7063-PC9171",
+    "empresa_a": "VS7063",
+    "empresa_b": "PC9171",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 5.008072472212143,
+    "es_critica": true,
+    "descripcion": "Velocity Semiconductor depende de Pioneer Corp para semiconductores automotrices"
+  },
+  {
+    "id": "VL8015-EG2180",
+    "empresa_a": "VL8015",
+    "empresa_b": "EG2180",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 21.136149178205226,
+    "es_critica": false,
+    "descripcion": "Velocity Labs depende de Epoch Group para chips de ia"
+  },
+  {
+    "id": "AS8028-HG1058",
+    "empresa_a": "AS8028",
+    "empresa_b": "HG1058",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 13.22962952456609,
+    "es_critica": false,
+    "descripcion": "Advanced Services depende de Horizon Group para smartphones"
+  },
+  {
+    "id": "AS8028-MD2797",
+    "empresa_a": "AS8028",
+    "empresa_b": "MD2797",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 28.70367720668199,
+    "es_critica": false,
+    "descripcion": "Advanced Services depende de Momentum Digital para smartphones"
+  },
+  {
+    "id": "QM957-AC2781",
+    "empresa_a": "QM957",
+    "empresa_b": "AC2781",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 23.62641096419359,
+    "es_critica": false,
+    "descripcion": "Quantum Manufacturing depende de Advanced Corp para cloud computing"
+  },
+  {
+    "id": "SS7440-MD5255",
+    "empresa_a": "SS7440",
+    "empresa_b": "MD5255",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 86.48490485857086,
+    "es_critica": false,
+    "descripcion": "Spectrum Services depende de Master Digital para saas"
+  },
+  {
+    "id": "SS7440-ED1128",
+    "empresa_a": "SS7440",
+    "empresa_b": "ED1128",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 40.993604225357274,
+    "es_critica": false,
+    "descripcion": "Spectrum Services depende de Eclipse Digital para saas"
+  },
+  {
+    "id": "TS8724-AI6593",
+    "empresa_a": "TS8724",
+    "empresa_b": "AI6593",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 89.77400519960018,
+    "es_critica": false,
+    "descripcion": "Titan Solutions depende de Apex Innovations para semiconductores automotrices"
+  },
+  {
+    "id": "TS8724-SI9101",
+    "empresa_a": "TS8724",
+    "empresa_b": "SI9101",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 78.14634478727166,
+    "es_critica": false,
+    "descripcion": "Titan Solutions depende de Superior Innovations para semiconductores automotrices"
+  },
+  {
+    "id": "MC8665-QI5908",
+    "empresa_a": "MC8665",
+    "empresa_b": "QI5908",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 28.091475977204,
+    "es_critica": false,
+    "descripcion": "Master Corp depende de Quantum Industries para semiconductores automotrices"
+  },
+  {
+    "id": "NG5626-ZS8492",
+    "empresa_a": "NG5626",
+    "empresa_b": "ZS8492",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 31.983779782606618,
+    "es_critica": true,
+    "descripcion": "Nexus Group depende de Zenith Systems para ciberseguridad"
+  },
+  {
+    "id": "NG5626-PD7050",
+    "empresa_a": "NG5626",
+    "empresa_b": "PD7050",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 19.39446409259783,
+    "es_critica": false,
+    "descripcion": "Nexus Group depende de Pinnacle Devices para ciberseguridad"
+  },
+  {
+    "id": "ES4812-EC2982",
+    "empresa_a": "ES4812",
+    "empresa_b": "EC2982",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 14.583761226089964,
+    "es_critica": false,
+    "descripcion": "Epoch Solutions depende de Elite Corp para ciberseguridad"
+  },
+  {
+    "id": "HD1602-AC2781",
+    "empresa_a": "HD1602",
+    "empresa_b": "AC2781",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 40.28599733285514,
+    "es_critica": false,
+    "descripcion": "Horizon Digital depende de Advanced Corp para ciberseguridad"
+  },
+  {
+    "id": "HD1602-AD5444",
+    "empresa_a": "HD1602",
+    "empresa_b": "AD5444",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 31.403671062733245,
+    "es_critica": true,
+    "descripcion": "Horizon Digital depende de Ascent Digital para ciberseguridad"
+  },
+  {
+    "id": "SC1357-PD2516",
+    "empresa_a": "SC1357",
+    "empresa_b": "PD2516",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 86.87209900126543,
+    "es_critica": false,
+    "descripcion": "Superior Corp depende de Precision Digital para semiconductores automotrices"
+  },
+  {
+    "id": "SC1357-VI1113",
+    "empresa_a": "SC1357",
+    "empresa_b": "VI1113",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 29.21431927254492,
+    "es_critica": true,
+    "descripcion": "Superior Corp depende de Vanguard Innovations para semiconductores automotrices"
+  },
+  {
+    "id": "SC1357-SG9198",
+    "empresa_a": "SC1357",
+    "empresa_b": "SG9198",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 61.44743516123816,
+    "es_critica": false,
+    "descripcion": "Superior Corp depende de Spectrum Group para semiconductores automotrices"
+  },
+  {
+    "id": "MG3156-DS2017",
+    "empresa_a": "MG3156",
+    "empresa_b": "DS2017",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 81.09525635150064,
+    "es_critica": false,
+    "descripcion": "Momentum Group depende de Dynasty Services para cloud computing"
+  },
+  {
+    "id": "CG7186-SC1269",
+    "empresa_a": "CG7186",
+    "empresa_b": "SC1269",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 45.33003250684862,
+    "es_critica": false,
+    "descripcion": "Catalyst Group depende de Stellar Corp para gpus"
+  },
+  {
+    "id": "NS9325-VC4227",
+    "empresa_a": "NS9325",
+    "empresa_b": "VC4227",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 74.11019923692388,
+    "es_critica": false,
+    "descripcion": "Nexus Solutions depende de Vertex Components para semiconductores automotrices"
+  },
+  {
+    "id": "GS7204-ED6006",
+    "empresa_a": "GS7204",
+    "empresa_b": "ED6006",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 46.06875813968155,
+    "es_critica": true,
+    "descripcion": "Global Services depende de Epoch Devices para accesorios"
+  },
+  {
+    "id": "GS7204-ZM5146",
+    "empresa_a": "GS7204",
+    "empresa_b": "ZM5146",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 85.78740374722048,
+    "es_critica": false,
+    "descripcion": "Global Services depende de Zenith Manufacturing para accesorios"
+  },
+  {
+    "id": "GS7204-ME2012",
+    "empresa_a": "GS7204",
+    "empresa_b": "ME2012",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 25.99990793503846,
+    "es_critica": false,
+    "descripcion": "Global Services depende de Master Electronics para accesorios"
+  },
+  {
+    "id": "VS9308-SE2647",
+    "empresa_a": "VS9308",
+    "empresa_b": "SE2647",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 30.32886511958968,
+    "es_critica": false,
+    "descripcion": "Velocity Semiconductor depende de Superior Electronics para cloud computing"
+  },
+  {
+    "id": "VS9308-AS7835",
+    "empresa_a": "VS9308",
+    "empresa_b": "AS7835",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 9.185420927558845,
+    "es_critica": false,
+    "descripcion": "Velocity Semiconductor depende de Apex Semiconductor para cloud computing"
+  },
+  {
+    "id": "SG6552-AD8081",
+    "empresa_a": "SG6552",
+    "empresa_b": "AD8081",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 12.942389788466606,
+    "es_critica": true,
+    "descripcion": "Summit Group depende de Apex Digital para tablets"
+  },
+  {
+    "id": "SG6552-GS4026",
+    "empresa_a": "SG6552",
+    "empresa_b": "GS4026",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 85.27519554767517,
+    "es_critica": false,
+    "descripcion": "Summit Group depende de Global Semiconductor para tablets"
+  },
+  {
+    "id": "ES9512-CS2827",
+    "empresa_a": "ES9512",
+    "empresa_b": "CS2827",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 33.96547805269546,
+    "es_critica": true,
+    "descripcion": "Epoch Semiconductor depende de Catalyst Services para vehículos"
+  },
+  {
+    "id": "ES9512-AC3041",
+    "empresa_a": "ES9512",
+    "empresa_b": "AC3041",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 60.2861919214654,
+    "es_critica": false,
+    "descripcion": "Epoch Semiconductor depende de Ascent Corp para vehículos"
+  },
+  {
+    "id": "CI7647-EG2180",
+    "empresa_a": "CI7647",
+    "empresa_b": "EG2180",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 36.82363536817878,
+    "es_critica": true,
+    "descripcion": "Catalyst Industries depende de Epoch Group para fabricación de pcb"
+  },
+  {
+    "id": "TE4462-MS6309",
+    "empresa_a": "TE4462",
+    "empresa_b": "MS6309",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 64.90831306349703,
+    "es_critica": false,
+    "descripcion": "Titan Electronics depende de Master Systems para moldeado a presión"
+  },
+  {
+    "id": "EI7385-VL3901",
+    "empresa_a": "EI7385",
+    "empresa_b": "VL3901",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 34.57128891206284,
+    "es_critica": false,
+    "descripcion": "Eclipse Innovations depende de Vertex Labs para semiconductores automotrices"
+  },
+  {
+    "id": "EI7385-SC6713",
+    "empresa_a": "EI7385",
+    "empresa_b": "SC6713",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 66.59692686750431,
+    "es_critica": true,
+    "descripcion": "Eclipse Innovations depende de Superior Components para semiconductores automotrices"
+  },
+  {
+    "id": "VS8325-AM7781",
+    "empresa_a": "VS8325",
+    "empresa_b": "AM7781",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 27.868287791227722,
+    "es_critica": false,
+    "descripcion": "Vertex Semiconductor depende de Apex Manufacturing para analytics"
+  },
+  {
+    "id": "QI3464-DL9264",
+    "empresa_a": "QI3464",
+    "empresa_b": "DL9264",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 20.0218738403778,
+    "es_critica": true,
+    "descripcion": "Quantum Industries depende de Dynasty Labs para vehículos"
+  },
+  {
+    "id": "MM3725-MC3327",
+    "empresa_a": "MM3725",
+    "empresa_b": "MC3327",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 81.02481974349139,
+    "es_critica": false,
+    "descripcion": "Momentum Manufacturing depende de Master Components para almacenamiento"
+  },
+  {
+    "id": "MS6330-PC9171",
+    "empresa_a": "MS6330",
+    "empresa_b": "PC9171",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 8.32190987881333,
+    "es_critica": false,
+    "descripcion": "Momentum Systems depende de Pioneer Corp para semiconductores automotrices"
+  },
+  {
+    "id": "MS6330-AT1735",
+    "empresa_a": "MS6330",
+    "empresa_b": "AT1735",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 54.24664378255762,
+    "es_critica": true,
+    "descripcion": "Momentum Systems depende de Ascent Technologies para semiconductores automotrices"
+  },
+  {
+    "id": "GI4037-VE4111",
+    "empresa_a": "GI4037",
+    "empresa_b": "VE4111",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 7.984128002654978,
+    "es_critica": true,
+    "descripcion": "Global Industries depende de Vanguard Electronics para vehículos"
+  },
+  {
+    "id": "GI4037-MS7193",
+    "empresa_a": "GI4037",
+    "empresa_b": "MS7193",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 74.05675420553013,
+    "es_critica": true,
+    "descripcion": "Global Industries depende de Momentum Services para vehículos"
+  },
+  {
+    "id": "NS6440-VI5410",
+    "empresa_a": "NS6440",
+    "empresa_b": "VI5410",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 52.29226472933965,
+    "es_critica": true,
+    "descripcion": "NextGen Systems depende de Velocity Industries para tablets"
+  },
+  {
+    "id": "NS6440-NS1711",
+    "empresa_a": "NS6440",
+    "empresa_b": "NS1711",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 86.26914052978881,
+    "es_critica": false,
+    "descripcion": "NextGen Systems depende de Nexus Systems para tablets"
+  },
+  {
+    "id": "PD2516-TD3591",
+    "empresa_a": "PD2516",
+    "empresa_b": "TD3591",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 51.35012359293432,
+    "es_critica": false,
+    "descripcion": "Precision Digital depende de Titan Digital para procesadores"
+  },
+  {
+    "id": "PD2516-EE7104",
+    "empresa_a": "PD2516",
+    "empresa_b": "EE7104",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 77.42307148716061,
+    "es_critica": false,
+    "descripcion": "Precision Digital depende de Elite Electronics para procesadores"
+  },
+  {
+    "id": "NG8449-VC7721",
+    "empresa_a": "NG8449",
+    "empresa_b": "VC7721",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 41.49015523128342,
+    "es_critica": false,
+    "descripcion": "NextGen Group depende de Vision Corp para saas"
+  },
+  {
+    "id": "SS8025-EC3655",
+    "empresa_a": "SS8025",
+    "empresa_b": "EC3655",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 45.49540299493993,
+    "es_critica": false,
+    "descripcion": "Stellar Solutions depende de Elite Corp para fabricación de pcb"
+  },
+  {
+    "id": "AD3513-VC4227",
+    "empresa_a": "AD3513",
+    "empresa_b": "VC4227",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 38.138594181332515,
+    "es_critica": false,
+    "descripcion": "Ascent Devices depende de Vertex Components para ciberseguridad"
+  },
+  {
+    "id": "PC9171-NI4682",
+    "empresa_a": "PC9171",
+    "empresa_b": "NI4682",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 82.34213129269149,
+    "es_critica": false,
+    "descripcion": "Pioneer Corp depende de NextGen Industries para chips de ia"
+  },
+  {
+    "id": "TS8663-NM7698",
+    "empresa_a": "TS8663",
+    "empresa_b": "NM7698",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 18.97006396440611,
+    "es_critica": false,
+    "descripcion": "Titan Solutions depende de NextGen Manufacturing para ensamble"
+  },
+  {
+    "id": "TS8663-PS2841",
+    "empresa_a": "TS8663",
+    "empresa_b": "PS2841",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 27.07168231350609,
+    "es_critica": false,
+    "descripcion": "Titan Solutions depende de Prime Services para ensamble"
+  },
+  {
+    "id": "PT2253-PI1997",
+    "empresa_a": "PT2253",
+    "empresa_b": "PI1997",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 9.807431594082791,
+    "es_critica": false,
+    "descripcion": "Precision Technologies depende de Pinnacle Industries para memoria dram"
+  },
+  {
+    "id": "VG1323-ZC1849",
+    "empresa_a": "VG1323",
+    "empresa_b": "ZC1849",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 22.483051678939034,
+    "es_critica": false,
+    "descripcion": "Velocity Group depende de Zenith Components para ia y ml"
+  },
+  {
+    "id": "PI7476-SS4457",
+    "empresa_a": "PI7476",
+    "empresa_b": "SS4457",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 49.24806673859934,
+    "es_critica": true,
+    "descripcion": "Precision Industries depende de Stellar Services para ciberseguridad"
+  },
+  {
+    "id": "SS9746-VS5814",
+    "empresa_a": "SS9746",
+    "empresa_b": "VS5814",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 43.47618810725804,
+    "es_critica": false,
+    "descripcion": "Stellar Solutions depende de Vision Services para ciberseguridad"
+  },
+  {
+    "id": "FC4489-EI4999",
+    "empresa_a": "FC4489",
+    "empresa_b": "EI4999",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 83.92187310801637,
+    "es_critica": false,
+    "descripcion": "Frontier Components depende de Eclipse Industries para componentes electrónicos"
+  },
+  {
+    "id": "VD6839-SE3117",
+    "empresa_a": "VD6839",
+    "empresa_b": "SE3117",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 71.40738271188671,
+    "es_critica": false,
+    "descripcion": "Vision Devices depende de Superior Electronics para procesadores"
+  },
+  {
+    "id": "VD6839-TG2638",
+    "empresa_a": "VD6839",
+    "empresa_b": "TG2638",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 60.43322644956735,
+    "es_critica": false,
+    "descripcion": "Vision Devices depende de Titan Group para procesadores"
+  },
+  {
+    "id": "DI2193-NE9273",
+    "empresa_a": "DI2193",
+    "empresa_b": "NE9273",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 85.35280404062053,
+    "es_critica": false,
+    "descripcion": "Dynasty Innovations depende de NextGen Electronics para moldeado a presión"
+  },
+  {
+    "id": "QC4111-MM3725",
+    "empresa_a": "QC4111",
+    "empresa_b": "MM3725",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 56.623862929406904,
+    "es_critica": true,
+    "descripcion": "Quantum Components depende de Momentum Manufacturing para accesorios"
+  },
+  {
+    "id": "VS6921-PC9171",
+    "empresa_a": "VS6921",
+    "empresa_b": "PC9171",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 20.08309903258735,
+    "es_critica": false,
+    "descripcion": "Vision Services depende de Pioneer Corp para analytics"
+  },
+  {
+    "id": "VS6921-PD7050",
+    "empresa_a": "VS6921",
+    "empresa_b": "PD7050",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 19.946694437244346,
+    "es_critica": false,
+    "descripcion": "Vision Services depende de Pinnacle Devices para analytics"
+  },
+  {
+    "id": "HD4932-QI5908",
+    "empresa_a": "HD4932",
+    "empresa_b": "QI5908",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 17.555443219039077,
+    "es_critica": false,
+    "descripcion": "Horizon Digital depende de Quantum Industries para vehículos"
+  },
+  {
+    "id": "HD4932-TS8663",
+    "empresa_a": "HD4932",
+    "empresa_b": "TS8663",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 46.84230510424146,
+    "es_critica": false,
+    "descripcion": "Horizon Digital depende de Titan Solutions para vehículos"
+  },
+  {
+    "id": "HD4932-GM8608",
+    "empresa_a": "HD4932",
+    "empresa_b": "GM8608",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 16.69226026553577,
+    "es_critica": false,
+    "descripcion": "Horizon Digital depende de Global Manufacturing para vehículos"
+  },
+  {
+    "id": "VL9014-PC2322",
+    "empresa_a": "VL9014",
+    "empresa_b": "PC2322",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 73.9596467324553,
+    "es_critica": false,
+    "descripcion": "Vision Labs depende de Pioneer Corp para accesorios"
+  },
+  {
+    "id": "VI1113-VM5752",
+    "empresa_a": "VI1113",
+    "empresa_b": "VM5752",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 36.923137074546716,
+    "es_critica": false,
+    "descripcion": "Vanguard Innovations depende de Vanguard Manufacturing para componentes electrónicos"
+  },
+  {
+    "id": "NS8552-CS1030",
+    "empresa_a": "NS8552",
+    "empresa_b": "CS1030",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 46.68333796580277,
+    "es_critica": false,
+    "descripcion": "NextGen Semiconductor depende de Catalyst Solutions para vehículos"
+  },
+  {
+    "id": "NS8552-MD6471",
+    "empresa_a": "NS8552",
+    "empresa_b": "MD6471",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 61.4972776416589,
+    "es_critica": false,
+    "descripcion": "NextGen Semiconductor depende de Momentum Devices para vehículos"
+  },
+  {
+    "id": "EM7468-VE4111",
+    "empresa_a": "EM7468",
+    "empresa_b": "VE4111",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 84.93162855104164,
+    "es_critica": false,
+    "descripcion": "Epoch Manufacturing depende de Vanguard Electronics para wearables"
+  },
+  {
+    "id": "VE2120-VL3901",
+    "empresa_a": "VE2120",
+    "empresa_b": "VL3901",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 81.13046545947253,
+    "es_critica": false,
+    "descripcion": "Velocity Electronics depende de Vertex Labs para sistemas de conducción autónoma"
+  },
+  {
+    "id": "VE2120-GI5490",
+    "empresa_a": "VE2120",
+    "empresa_b": "GI5490",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 16.20316347140297,
+    "es_critica": false,
+    "descripcion": "Velocity Electronics depende de Global Industries para sistemas de conducción autónoma"
+  },
+  {
+    "id": "VD9819-NI4682",
+    "empresa_a": "VD9819",
+    "empresa_b": "NI4682",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 71.78263089182495,
+    "es_critica": false,
+    "descripcion": "Vanguard Digital depende de NextGen Industries para memoria dram"
+  },
+  {
+    "id": "DM4750-SS4457",
+    "empresa_a": "DM4750",
+    "empresa_b": "SS4457",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 88.81553383149705,
+    "es_critica": false,
+    "descripcion": "Dynasty Manufacturing depende de Stellar Services para semiconductores automotrices"
+  },
+  {
+    "id": "ZI6059-MI9378",
+    "empresa_a": "ZI6059",
+    "empresa_b": "MI9378",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 25.45827520805112,
+    "es_critica": true,
+    "descripcion": "Zenith Industries depende de Master Innovations para accesorios"
+  },
+  {
+    "id": "GC8912-MD5255",
+    "empresa_a": "GC8912",
+    "empresa_b": "MD5255",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 43.290915192115435,
+    "es_critica": false,
+    "descripcion": "Global Components depende de Master Digital para sistemas de conducción autónoma"
+  },
+  {
+    "id": "SC6598-NL6291",
+    "empresa_a": "SC6598",
+    "empresa_b": "NL6291",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 60.87921524829754,
+    "es_critica": false,
+    "descripcion": "Summit Corp depende de NextGen Labs para computadoras"
+  },
+  {
+    "id": "SC6598-TE4462",
+    "empresa_a": "SC6598",
+    "empresa_b": "TE4462",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 21.532574001396103,
+    "es_critica": false,
+    "descripcion": "Summit Corp depende de Titan Electronics para computadoras"
+  },
+  {
+    "id": "SC6598-PL9961",
+    "empresa_a": "SC6598",
+    "empresa_b": "PL9961",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 46.90854339759815,
+    "es_critica": false,
+    "descripcion": "Summit Corp depende de Pinnacle Labs para computadoras"
+  },
+  {
+    "id": "VS4534-QS2332",
+    "empresa_a": "VS4534",
+    "empresa_b": "QS2332",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 8.081125380711871,
+    "es_critica": false,
+    "descripcion": "Vanguard Semiconductor depende de Quantum Solutions para saas"
+  },
+  {
+    "id": "EE9457-PL1180",
+    "empresa_a": "EE9457",
+    "empresa_b": "PL1180",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 56.80042641074632,
+    "es_critica": false,
+    "descripcion": "Eclipse Electronics depende de Precision Labs para moldeado a presión"
+  },
+  {
+    "id": "ES7632-PI92",
+    "empresa_a": "ES7632",
+    "empresa_b": "PI92",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 55.28492050263395,
+    "es_critica": false,
+    "descripcion": "Epoch Semiconductor depende de Precision Innovations para fabricación de pcb"
+  },
+  {
+    "id": "ES7632-NE9273",
+    "empresa_a": "ES7632",
+    "empresa_b": "NE9273",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 39.79008352342519,
+    "es_critica": false,
+    "descripcion": "Epoch Semiconductor depende de NextGen Electronics para fabricación de pcb"
+  },
+  {
+    "id": "ED3028-VS8517",
+    "empresa_a": "ED3028",
+    "empresa_b": "VS8517",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 56.53778360350993,
+    "es_critica": true,
+    "descripcion": "Eclipse Digital depende de Vision Systems para moldeado a presión"
+  },
+  {
+    "id": "ED3028-EC1809",
+    "empresa_a": "ED3028",
+    "empresa_b": "EC1809",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 78.34764944363594,
+    "es_critica": true,
+    "descripcion": "Eclipse Digital depende de Epoch Components para moldeado a presión"
+  },
+  {
+    "id": "SM9815-CE5544",
+    "empresa_a": "SM9815",
+    "empresa_b": "CE5544",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 60.344238628255525,
+    "es_critica": false,
+    "descripcion": "Summit Manufacturing depende de Catalyst Electronics para baterías ev"
+  },
+  {
+    "id": "SM9815-NG8571",
+    "empresa_a": "SM9815",
+    "empresa_b": "NG8571",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 53.114762753288296,
+    "es_critica": false,
+    "descripcion": "Summit Manufacturing depende de NextGen Group para baterías ev"
+  },
+  {
+    "id": "SM9815-SS1414",
+    "empresa_a": "SM9815",
+    "empresa_b": "SS1414",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 80.39985507232653,
+    "es_critica": true,
+    "descripcion": "Summit Manufacturing depende de Spectrum Solutions para baterías ev"
+  },
+  {
+    "id": "VI5410-SS4000",
+    "empresa_a": "VI5410",
+    "empresa_b": "SS4000",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 20.16913995869688,
+    "es_critica": true,
+    "descripcion": "Velocity Industries depende de Spectrum Solutions para microcontroladores"
+  },
+  {
+    "id": "NI4084-MD5255",
+    "empresa_a": "NI4084",
+    "empresa_b": "MD5255",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 67.40645235371724,
+    "es_critica": false,
+    "descripcion": "NextGen Innovations depende de Master Digital para baterías ev"
+  },
+  {
+    "id": "NI4084-FC4489",
+    "empresa_a": "NI4084",
+    "empresa_b": "FC4489",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 7.8891244782012055,
+    "es_critica": false,
+    "descripcion": "NextGen Innovations depende de Frontier Components para baterías ev"
+  },
+  {
+    "id": "EI9009-CG9651",
+    "empresa_a": "EI9009",
+    "empresa_b": "CG9651",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 84.90252466601527,
+    "es_critica": false,
+    "descripcion": "Epoch Innovations depende de Catalyst Group para moldeado a presión"
+  },
+  {
+    "id": "PG6651-SL6548",
+    "empresa_a": "PG6651",
+    "empresa_b": "SL6548",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 49.39497327977887,
+    "es_critica": true,
+    "descripcion": "Pinnacle Group depende de Summit Labs para sistemas de conducción autónoma"
+  },
+  {
+    "id": "PG6651-EC6361",
+    "empresa_a": "PG6651",
+    "empresa_b": "EC6361",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 26.427443352530386,
+    "es_critica": false,
+    "descripcion": "Pinnacle Group depende de Eclipse Corp para sistemas de conducción autónoma"
+  },
+  {
+    "id": "QS2332-NI4682",
+    "empresa_a": "QS2332",
+    "empresa_b": "NI4682",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 64.74175248882302,
+    "es_critica": false,
+    "descripcion": "Quantum Solutions depende de NextGen Industries para chips de ia"
+  },
+  {
+    "id": "VD4853-SE2647",
+    "empresa_a": "VD4853",
+    "empresa_b": "SE2647",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 47.8378935814699,
+    "es_critica": false,
+    "descripcion": "Velocity Devices depende de Superior Electronics para cloud computing"
+  },
+  {
+    "id": "MS1999-EC2721",
+    "empresa_a": "MS1999",
+    "empresa_b": "EC2721",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 68.09301144594679,
+    "es_critica": false,
+    "descripcion": "Momentum Systems depende de Elite Corp para microcontroladores"
+  },
+  {
+    "id": "AL5774-DG8500",
+    "empresa_a": "AL5774",
+    "empresa_b": "DG8500",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 34.168239631957626,
+    "es_critica": true,
+    "descripcion": "Ascent Labs depende de Dynasty Group para procesadores"
+  },
+  {
+    "id": "PD7924-CE5544",
+    "empresa_a": "PD7924",
+    "empresa_b": "CE5544",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 73.50315237799944,
+    "es_critica": true,
+    "descripcion": "Precision Digital depende de Catalyst Electronics para baterías ev"
+  },
+  {
+    "id": "PD7924-GS4026",
+    "empresa_a": "PD7924",
+    "empresa_b": "GS4026",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 22.77229713357452,
+    "es_critica": false,
+    "descripcion": "Precision Digital depende de Global Semiconductor para baterías ev"
+  },
+  {
+    "id": "PD7924-SD9000",
+    "empresa_a": "PD7924",
+    "empresa_b": "SD9000",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 87.95969088081158,
+    "es_critica": true,
+    "descripcion": "Precision Digital depende de Stellar Devices para baterías ev"
+  },
+  {
+    "id": "TD2117-SE2647",
+    "empresa_a": "TD2117",
+    "empresa_b": "SE2647",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 57.9359337824539,
+    "es_critica": false,
+    "descripcion": "Titan Devices depende de Superior Electronics para erp"
+  },
+  {
+    "id": "SM7478-EC2982",
+    "empresa_a": "SM7478",
+    "empresa_b": "EC2982",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 31.055109230767588,
+    "es_critica": false,
+    "descripcion": "Stellar Manufacturing depende de Elite Corp para saas"
+  },
+  {
+    "id": "SM7478-PC4720",
+    "empresa_a": "SM7478",
+    "empresa_b": "PC4720",
+    "tipo": "proveedor",
+    "porcentaje_suministro": 26.187641215302268,
+    "es_critica": false,
+    "descripcion": "Stellar Manufacturing depende de Pioneer Components para saas"
+  }
+]
