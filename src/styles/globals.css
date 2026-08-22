@@ -319,8 +319,16 @@ body {
    ═════════════════════════════════════════════════════════════════════════ */
 
 .leaflet-container {
-  background: var(--color-ground) !important;
+  background: #000000 !important;
   font-family: var(--font-mono) !important;
+}
+
+.leaflet-pane {
+  z-index: 100 !important;
+}
+
+.leaflet-overlay-pane {
+  z-index: 200 !important;
 }
 
 .leaflet-control-zoom {
