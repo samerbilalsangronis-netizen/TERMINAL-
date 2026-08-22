@@ -25,7 +25,13 @@ export default function CountryPanel({ countryId, onCompanySelect }: CountryPane
         const paises = await paisesRes.json()
         const empresas = await empresasRes.json()
 
-        const paisData = paises.find((p: any) => p.codigo === countryId)
+        // Buscar por ID primero (coincide con ISO_A2 del mapa)
+        let paisData = paises.find((p: any) => p.id === countryId || p.codigo === countryId)
+
+        if (!paisData) {
+          console.warn(`País no encontrado para: ${countryId}`)
+        }
+
         setPais(paisData || null)
 
         if (paisData) {
