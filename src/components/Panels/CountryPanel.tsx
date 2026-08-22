@@ -1,8 +1,6 @@
-// @ts-nocheck
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Pais, Empresa } from '@/types'
 
 interface CountryPanelProps {
   countryId: string
@@ -10,37 +8,54 @@ interface CountryPanelProps {
 }
 
 export default function CountryPanel({ countryId, onCompanySelect }: CountryPanelProps) {
-  const [pais, setPais] = useState<Pais | null>(null)
-  const [empresasPais, setEmpresasPais] = useState<Empresa[]>([])
+  const [pais, setPais] = useState<any>(null)
+  const [empresasPais, setEmpresasPais] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string>('')
 
   useEffect(() => {
     const loadData = async () => {
+      setLoading(true)
+      setError('')
       try {
+        console.log(`📍 CountryPanel: Loading data for country: ${countryId}`)
+
         const [paisesRes, empresasRes] = await Promise.all([
           fetch('/data/paises.json'),
           fetch('/data/empresas_500.json'),
         ])
 
+        if (!paisesRes.ok || !empresasRes.ok) {
+          throw new Error(`Fetch failed: paises=${paisesRes.ok}, empresas=${empresasRes.ok}`)
+        }
+
         const paises = await paisesRes.json()
         const empresas = await empresasRes.json()
 
-        // Buscar por ID primero (coincide con ISO_A2 del mapa)
+        console.log(`📍 CountryPanel: Loaded ${paises.length} countries, ${empresas.length} companies`)
+
         let paisData = paises.find((p: any) => p.id === countryId || p.codigo === countryId)
 
         if (!paisData) {
-          console.warn(`País no encontrado para: ${countryId}`)
+          console.warn(`⚠️ País no encontrado para: ${countryId}`)
+          console.log('Available country codes:', paises.map((p: any) => p.codigo).join(', '))
+          setError(`País ${countryId} no encontrado`)
+          setPais(null)
+          setEmpresasPais([])
+          setLoading(false)
+          return
         }
 
-        setPais(paisData || null)
+        console.log(`✅ Found country: ${paisData.nombre}`)
+        setPais(paisData)
 
-        if (paisData) {
-          const empresasDelPais = empresas.filter((e: any) => e.pais_id === paisData.id).slice(0, 10)
-          setEmpresasPais(empresasDelPais)
-        }
-      } catch (error) {
-        console.error('Error loading data:', error)
-      } finally {
+        const empresasDelPais = empresas.filter((e: any) => e.pais_id === paisData.id).slice(0, 10)
+        console.log(`✅ Found ${empresasDelPais.length} companies for ${paisData.nombre}`)
+        setEmpresasPais(empresasDelPais)
+        setLoading(false)
+      } catch (err: any) {
+        console.error('❌ Error loading data:', err)
+        setError(`Error: ${err.message}`)
         setLoading(false)
       }
     }
@@ -48,16 +63,33 @@ export default function CountryPanel({ countryId, onCompanySelect }: CountryPane
     loadData()
   }, [countryId])
 
+  if (error) {
+    return (
+      <div className="p-5 text-[#ff3333]">
+        <div className="text-sm font-bold mb-2">Error</div>
+        <div className="text-xs">{error}</div>
+      </div>
+    )
+  }
+
+  if (loading) {
+    return (
+      <div className="p-5 text-[#aaa]">
+        Cargando información de {countryId}...
+      </div>
+    )
+  }
+
   if (!pais) {
     return (
       <div className="p-5 text-[#aaa]">
-        Cargando información del país...
+        No se pudo cargar información del país {countryId}
       </div>
     )
   }
 
   return (
-    <div className="p-5 space-y-6 text-sm">
+    <div className="p-5 space-y-6 text-sm overflow-y-auto max-h-full">
       {/* Encabezado */}
       <div>
         <h2 className="text-xl font-bold text-white mb-2">{pais.nombre}</h2>
@@ -72,23 +104,27 @@ export default function CountryPanel({ countryId, onCompanySelect }: CountryPane
       <div>
         <div className="panel-title">Industrias Clave</div>
         <div className="flex flex-wrap gap-2">
-          {pais.industrias_clave.map((ind, idx) => (
-            <span
-              key={idx}
-              className="text-xs bg-[#1a1a1a] text-[#ff8c42] px-2 py-1 rounded border border-[#ff8c42]"
-            >
-              {ind}
-            </span>
-          ))}
+          {pais.industrias_clave && pais.industrias_clave.length > 0 ? (
+            pais.industrias_clave.map((ind: string, idx: number) => (
+              <span
+                key={idx}
+                className="text-xs bg-[#1a1a1a] text-[#ff8c42] px-2 py-1 rounded border border-[#ff8c42]"
+              >
+                {ind}
+              </span>
+            ))
+          ) : (
+            <p className="text-xs text-[#aaa]">Sin información</p>
+          )}
         </div>
       </div>
 
       {/* Empresas */}
       <div>
-        <div className="panel-title">Empresas Clave</div>
+        <div className="panel-title">Empresas Clave ({empresasPais.length})</div>
         <div className="space-y-2">
           {empresasPais.length > 0 ? (
-            empresasPais.map(empresa => (
+            empresasPais.map((empresa: any) => (
               <div
                 key={empresa.id}
                 className="bg-[#1a1a1a] p-3 rounded border border-[#333] hover:border-[#ff8c42] cursor-pointer transition-all"
@@ -96,7 +132,7 @@ export default function CountryPanel({ countryId, onCompanySelect }: CountryPane
               >
                 <div className="font-bold text-white">{empresa.nombre}</div>
                 <div className="text-xs text-[#aaa] mt-1">
-                  <p>{empresa.subsector}</p>
+                  <p>{empresa.subsector || empresa.sector}</p>
                   <p className="text-[#ff8c42] mt-1">Cap: ${(empresa.cap_mercado / 1e9).toFixed(0)}B</p>
                 </div>
               </div>
