@@ -81,8 +81,11 @@ export default function VesselLayer({ map, apiKey, enabled, onStatusChange }: Ve
       onStatusChange?.('connecting', vesselsRef.current.size)
       const ws = new WebSocket('wss://stream.aisstream.io/v0/stream')
       wsRef.current = ws
+      let openedAt = 0
 
       ws.onopen = () => {
+        openedAt = Date.now()
+        console.info('[VesselLayer] WebSocket abierto, enviando suscripción...')
         ws.send(JSON.stringify({
           APIKey: apiKey,
           BoundingBoxes: CHOKEPOINTS.map((c) => c.box),
@@ -94,7 +97,14 @@ export default function VesselLayer({ map, apiKey, enabled, onStatusChange }: Ve
       ws.onmessage = (event) => {
         try {
           const data = JSON.parse(event.data)
-          if (data.MessageType !== 'PositionReport') return
+          if (data.MessageType !== 'PositionReport') {
+            // AISStream puede mandar un objeto de error (p. ej. key inválida)
+            // antes de cerrar la conexión: lo dejamos visible en consola.
+            if (data.error || data.Error) {
+              console.error('[VesselLayer] AISStream error:', data.error || data.Error)
+            }
+            return
+          }
 
           const mmsi: number = data.MetaData?.MMSI
           const lat: number = data.MetaData?.Latitude
@@ -136,10 +146,19 @@ export default function VesselLayer({ map, apiKey, enabled, onStatusChange }: Ve
       }
 
       ws.onerror = () => {
+        console.error('[VesselLayer] Error de WebSocket (el navegador no da más detalle; revisa la pestaña Network → WS)')
         onStatusChange?.('error', vesselsRef.current.size)
       }
 
-      ws.onclose = () => {
+      ws.onclose = (event) => {
+        const secondsOpen = openedAt ? ((Date.now() - openedAt) / 1000).toFixed(1) : 'n/a'
+        console.warn(
+          `[VesselLayer] WebSocket cerrado. code=${event.code} reason=${JSON.stringify(event.reason) || '(vacío)'} segundosAbierto=${secondsOpen}`
+        )
+        if (openedAt && Date.now() - openedAt < 5000) {
+          console.warn('[VesselLayer] Se cerró a los pocos segundos de abrir y suscribirse: la causa más probable es una API key inválida, expirada o mal copiada (revisa espacios/saltos de línea). Otras causas posibles: límite de 3 conexiones simultáneas de AISStream alcanzado, o suscripción mal formada.')
+        }
+        onStatusChange?.('error', vesselsRef.current.size)
         if (closedIntentionally.current) return
         reconnectTimer.current = setTimeout(connect, RECONNECT_DELAY_MS)
       }
