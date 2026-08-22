@@ -41,16 +41,10 @@ export default function MapContainer({
   const [coords, setCoords] = useState({ lat: 0, lon: 0 })
   const [bottlenecks, setBottlenecks] = useState<Bottleneck[]>([])
 
-  // Listener para eventos de selección de país - versión simplificada
+  // Store callback en ref
+  const callbackRef = useRef<typeof onCountrySelect>(onCountrySelect)
   useEffect(() => {
-    function handleSelectCountry(event: CustomEvent) {
-      if (event.detail) {
-        onCountrySelect(event.detail)
-      }
-    }
-
-    window.addEventListener('selectCountry', handleSelectCountry as EventListener)
-    return () => window.removeEventListener('selectCountry', handleSelectCountry as EventListener)
+    callbackRef.current = onCountrySelect
   }, [onCountrySelect])
 
   // Cargar cuellos de botella
@@ -101,7 +95,9 @@ export default function MapContainer({
             const countryCode = feature.properties.ISO_A2 || ''
 
             layer.on('click', () => {
-              window.dispatchEvent(new CustomEvent('selectCountry', { detail: countryCode }))
+              if (callbackRef.current) {
+                callbackRef.current(countryCode)
+              }
               layer.setStyle({
                 color: '#ff8c42',
                 weight: 2.5,
