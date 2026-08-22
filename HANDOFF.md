@@ -530,6 +530,31 @@ Corrida de test con Playwright confirmó:
 - Build: ✅ Compila sin errores
 - Runtime: ✅ Todos los eventos funcionan (confirmado por Playwright logs)
 
+### 🎨 MEJORA VISUAL - Zonas Geográficas
+
+**Cambio:** De puntos rojos pequeños a círculos que resaltan la zona geográfica
+
+**Implementación:**
+- Reemplazar marcadores Leaflet con L.circle()
+- Radio proporcional a: criticidad + impacto global (%)
+- Relleno semitransparente (8-15% opacidad) para ver países debajo
+- Bordes punteados (estado normal) → sólidos (seleccionado)
+- Colores mantienen criticidad: 🔴 Crítico, 🟠 Alto, 🟡 Medio
+
+**Visualmente:**
+```
+Taiwán:  zona roja amplia (chip 5nm - 92% global)
+Holanda: zona naranja (litografía - 100% global)
+Ormuz:   zona roja (petróleo - 35% global)
+China:   dos zonas (tierras raras 85%, aluminio 65%)
+etc.
+```
+
+**Interactividad mantenida:**
+- Click: abre panel de detalles
+- Hover: resalta zona, muestra popup
+- Selección: zona se centra y oscurece
+
 ---
 
 **Próximo paso:** FASE 6 - Simulación de Escenarios (interactividad ya resuelta ✅)
