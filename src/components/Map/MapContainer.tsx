@@ -209,17 +209,17 @@ export default function MapContainer({
             Continentes
           </div>
           <div className="border-t border-[#333] mt-2 pt-2">
-            <div className="text-[#ff8c42] font-bold mb-1">Cuellos de Botella</div>
+            <div className="text-[#ff8c42] font-bold mb-1">Zonas Críticas</div>
             <div className="flex gap-2 items-center">
-              <div className="w-3 h-3 bg-[#ff3333] rounded-full" />
+              <div className="w-4 h-4 border-2 border-[#ff3333] bg-[rgba(255,51,51,0.1)]" />
               Crítico
             </div>
             <div className="flex gap-2 items-center">
-              <div className="w-3 h-3 bg-[#ff6600] rounded-full" />
+              <div className="w-4 h-4 border-2 border-[#ff6600] bg-[rgba(255,102,0,0.1)]" />
               Alto
             </div>
             <div className="flex gap-2 items-center">
-              <div className="w-3 h-3 bg-[#ffaa00] rounded-full" />
+              <div className="w-4 h-4 border-2 border-[#ffaa00] bg-[rgba(255,170,0,0.1)]" />
               Medio
             </div>
           </div>

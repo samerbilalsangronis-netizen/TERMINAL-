@@ -56,40 +56,33 @@ export default function BottleneckLayer({
     // Crear un FeatureGroup para los cuellos de botella
     const bottleneckGroup = L.featureGroup()
 
-    // Añadir marcadores para cada cuello de botella
+    // Añadir círculos para cada cuello de botella
     bottlenecks.forEach((bottleneck, idx) => {
-      console.log(`[BottleneckLayer] Marcador ${idx + 1}:`, bottleneck.nombre, `(${bottleneck.latitud}, ${bottleneck.longitud})`)
-      // Crear icono personalizado
-      const iconSize = bottleneck.criticidad === 'CRÍTICA' ? 20 : 14
-      const opacity = selectedBottleneck === bottleneck.id ? 1 : 0.7
+      console.log(`[BottleneckLayer] Zona ${idx + 1}:`, bottleneck.nombre, `(${bottleneck.latitud}, ${bottleneck.longitud})`)
 
-      const svgIcon = L.divIcon({
-        html: `
-          <div style="
-            width: ${iconSize}px;
-            height: ${iconSize}px;
-            background-color: ${bottleneck.color};
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            opacity: ${opacity};
-            cursor: pointer;
-            box-shadow: 0 0 ${bottleneck.criticidad === 'CRÍTICA' ? '12' : '6'}px ${bottleneck.color};
-            transition: all 0.2s ease;
-            transform: ${selectedBottleneck === bottleneck.id ? 'scale(1.3)' : 'scale(1)'};
-            pointer-events: auto;
-          "></div>
-        `,
-        className: 'bottleneck-marker',
-        iconSize: [iconSize, iconSize],
-        popupAnchor: [0, -iconSize / 2],
-        pane: 'bottleneckPane'
-      })
+      // Tamaño del círculo basado en criticidad y porcentaje global
+      const baseRadius = bottleneck.criticidad === 'CRÍTICA' ? 400 : bottleneck.criticidad === 'ALTA' ? 300 : 200
+      const scaledRadius = baseRadius + (bottleneck.porcentaje_global * 2)
 
-      // Crear marcador
-      const marker = L.marker([bottleneck.latitud, bottleneck.longitud], {
-        icon: svgIcon,
-        pane: 'bottleneckPane'
-      })
+      // Opacidad y estilo según selección
+      const isSelected = selectedBottleneck === bottleneck.id
+      const opacity = isSelected ? 0.6 : 0.25
+      const weight = isSelected ? 3 : 1.5
+      const dashArray = isSelected ? '0' : '5, 5'
+
+      const circle = L.circle(
+        [bottleneck.latitud, bottleneck.longitud],
+        {
+          radius: scaledRadius * 1000, // convertir a metros
+          color: bottleneck.color,
+          weight: weight,
+          opacity: opacity,
+          dashArray: dashArray,
+          fillColor: bottleneck.color,
+          fillOpacity: isSelected ? 0.15 : 0.08,
+          pane: 'bottleneckPane'
+        }
+      )
 
       // Popup con información
       const popupContent = `
@@ -97,52 +90,67 @@ export default function BottleneckLayer({
           font-family: 'Courier New', monospace;
           color: #00d4ff;
           background: #0a0a0a;
-          border: 1px solid ${bottleneck.color};
-          padding: 8px;
+          border: 2px solid ${bottleneck.color};
+          padding: 12px;
           border-radius: 4px;
-          max-width: 300px;
+          max-width: 320px;
           font-size: 11px;
         ">
-          <div style="color: ${bottleneck.color}; font-weight: bold; margin-bottom: 4px;">
-            ${bottleneck.nombre}
+          <div style="color: ${bottleneck.color}; font-weight: bold; font-size: 12px; margin-bottom: 8px;">
+            ⚠ ${bottleneck.nombre}
           </div>
-          <div style="color: #ff8c42; margin-bottom: 2px;">
+          <div style="color: #ff8c42; margin-bottom: 4px;">
             Criticidad: ${bottleneck.criticidad}
           </div>
-          <div style="color: #00d4ff; margin-bottom: 2px;">
-            ${bottleneck.porcentaje_global}% global
+          <div style="color: #00d4ff; margin-bottom: 4px;">
+            Impacto global: ${bottleneck.porcentaje_global}%
           </div>
-          <div style="color: #888; font-size: 10px; margin-top: 4px;">
-            ${bottleneck.tipo}
+          <div style="color: #888; font-size: 10px; margin-bottom: 6px;">
+            Tipo: ${bottleneck.tipo}
+          </div>
+          <div style="color: #b0b0b0; font-size: 10px;">
+            ${bottleneck.descripcion.substring(0, 100)}...
           </div>
         </div>
       `
 
-      marker.bindPopup(popupContent, {
-        maxWidth: 320,
+      circle.bindPopup(popupContent, {
+        maxWidth: 340,
         className: 'bottleneck-popup'
       })
 
       // Click handler
-      marker.on('click', () => {
+      circle.on('click', () => {
         onBottleneckSelect(bottleneck)
       })
 
       // Hover effects
-      marker.on('mouseover', () => {
-        marker.openPopup()
+      circle.on('mouseover', () => {
+        circle.setStyle({
+          weight: 3,
+          opacity: 0.8,
+          fillOpacity: 0.25
+        })
+        circle.openPopup()
       })
 
-      marker.on('mouseout', () => {
-        if (selectedBottleneck !== bottleneck.id) {
-          marker.closePopup()
+      circle.on('mouseout', () => {
+        const newOpacity = isSelected ? 0.6 : 0.25
+        const newFillOpacity = isSelected ? 0.15 : 0.08
+        circle.setStyle({
+          weight: isSelected ? 3 : 1.5,
+          opacity: newOpacity,
+          fillOpacity: newFillOpacity
+        })
+        if (!isSelected) {
+          circle.closePopup()
         }
       })
 
-      bottleneckGroup.addLayer(marker)
+      bottleneckGroup.addLayer(circle)
 
       // Marcar como perteneciente a esta capa
-      ;(marker as any).isBottleneck = true
+      ;(circle as any).isBottleneck = true
     })
 
     // Añadir grupo al mapa
@@ -168,7 +176,7 @@ function drawBottleneckConnections(map: L.Map, bottlenecks: Bottleneck[]) {
   if (!connectionPane) {
     connectionPane = map.createPane('bottleneckPane')
     if (connectionPane) {
-      connectionPane.style.zIndex = '150'
+      connectionPane.style.zIndex = '250'
     }
   }
 
@@ -200,7 +208,7 @@ function drawBottleneckConnections(map: L.Map, bottlenecks: Bottleneck[]) {
         {
           color: '#ff8c42',
           weight: 1,
-          opacity: 0.3,
+          opacity: 0.2,
           dashArray: '5, 5',
           lineCap: 'round',
           lineJoin: 'round',
@@ -213,11 +221,11 @@ function drawBottleneckConnections(map: L.Map, bottlenecks: Bottleneck[]) {
 
       // Hover para resaltar conexiones
       polyline.on('mouseover', () => {
-        polyline.setStyle({ opacity: 0.8, weight: 2 })
+        polyline.setStyle({ opacity: 0.6, weight: 2 })
       })
 
       polyline.on('mouseout', () => {
-        polyline.setStyle({ opacity: 0.3, weight: 1 })
+        polyline.setStyle({ opacity: 0.2, weight: 1 })
       })
     }
   })
