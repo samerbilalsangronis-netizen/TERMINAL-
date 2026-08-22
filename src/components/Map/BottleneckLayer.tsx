@@ -41,7 +41,8 @@ export default function BottleneckLayer({
     if (!bottleneckPane) {
       bottleneckPane = map.createPane('bottleneckPane')
       if (bottleneckPane) {
-        bottleneckPane.style.zIndex = '150'
+        bottleneckPane.style.zIndex = '250'
+        bottleneckPane.style.pointerEvents = 'auto'
       }
     }
 

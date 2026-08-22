@@ -134,11 +134,6 @@ export default function MapContainer({
             })
           }
         }).addTo(map)
-
-        const geoJsonPane = map.createPane('geoJsonPane')
-        if (geoJsonPane) {
-          geoJsonPane.style.zIndex = '200'
-        }
       })
       .catch(err => {
         console.error('[MapContainer] Error en GeoJSON fetch:', err.message, err)
