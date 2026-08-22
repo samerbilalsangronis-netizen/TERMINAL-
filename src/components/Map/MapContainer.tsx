@@ -12,9 +12,10 @@ interface MapContainerProps {
 export default function MapContainer({ onCountrySelect, selectedCountry }: MapContainerProps) {
   const mapRef = useRef<L.Map | null>(null)
   const [coords, setCoords] = useState({ lat: 0, lon: 0 })
-  const handleCountrySelect = onCountrySelect
 
   useEffect(() => {
+    console.log('📍 MapContainer: onCountrySelect callback recibido:', typeof onCountrySelect)
+
     if (!mapRef.current) {
       // Inicializar mapa
       const map = L.map('map', {
@@ -58,8 +59,13 @@ export default function MapContainer({ onCountrySelect, selectedCountry }: MapCo
 
               // @ts-ignore
               layer.on('click', () => {
-                // @ts-ignore
-                handleCountrySelect(countryCode)
+                console.log('🎯 Click en país:', countryCode, countryName)
+                if (onCountrySelect) {
+                  onCountrySelect(countryCode)
+                  console.log('✅ onCountrySelect llamado para:', countryCode)
+                } else {
+                  console.error('❌ onCountrySelect no es una función')
+                }
                 // Resaltar
                 (layer as any).setStyle({
                   color: '#ff8c42',
