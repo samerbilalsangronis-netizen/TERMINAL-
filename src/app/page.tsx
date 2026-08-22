@@ -18,6 +18,11 @@ const SearchPanel = dynamic(() => import('@/components/Panels/SearchPanel'), {
   ssr: false,
 })
 
+const AdvancedSearchPanel = dynamic(() => import('@/components/Panels/AdvancedSearchPanel'), {
+  ssr: false,
+  loading: () => <div className="w-96 bg-[#0a0a0a] border-l border-[#333]">Buscando...</div>
+})
+
 const CompanyPanel = dynamic(() => import('@/components/Panels/CompanyPanel'), {
   ssr: false,
   loading: () => <div className="w-96 bg-[#0a0a0a] border-l border-[#333]">Cargando empresa...</div>
@@ -63,8 +68,8 @@ export default function Home() {
             />
           </div>
         ) : searchTerm ? (
-          <div className="w-80 border-l border-[#333] overflow-y-auto bg-[#0a0a0a]">
-            <SearchPanel
+          <div className="w-96 border-l border-[#333] overflow-y-auto bg-[#0a0a0a]">
+            <AdvancedSearchPanel
               searchTerm={searchTerm}
               onCompanySelect={setSelectedCompany}
             />
