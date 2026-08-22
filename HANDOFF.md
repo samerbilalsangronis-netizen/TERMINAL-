@@ -530,27 +530,37 @@ Corrida de test con Playwright confirmó:
 - Build: ✅ Compila sin errores
 - Runtime: ✅ Todos los eventos funcionan (confirmado por Playwright logs)
 
-### 🎨 MEJORA VISUAL - Zonas Geográficas
+### 🎨 MEJORA VISUAL - Zonas Geográficas + Esquema de Colores
 
-**Cambio:** De puntos rojos pequeños a círculos que resaltan la zona geográfica
-
-**Implementación:**
-- Reemplazar marcadores Leaflet con L.circle()
+**CAMBIO 1: Visualización de Cuellos de Botella**
+- De: Puntos rojos pequeños con baja opacidad (0.08)
+- A: Círculos Leaflet que representan zonas geográficas
+- Opacidad aumentada: 0.20/0.35 (mucho más visibles)
 - Radio proporcional a: criticidad + impacto global (%)
-- Relleno semitransparente (8-15% opacidad) para ver países debajo
-- Bordes punteados (estado normal) → sólidos (seleccionado)
-- Colores mantienen criticidad: 🔴 Crítico, 🟠 Alto, 🟡 Medio
+- Relleno semitransparente para ver países debajo
+- Bordes punteados (normal) → sólidos (seleccionado)
+
+**CAMBIO 2: Esquema de Colores Invertido**
+- Océano: Negro puro (#0a0a0a)
+- Países: Gris medio (#4a4a4a)
+- Bordes países: Naranja (#ff8c42)
+- Gridlines: Gris claro (#333333)
+- Tile layer: CartoDB dark_all (más oscuro)
 
 **Visualmente:**
 ```
-Taiwán:  zona roja amplia (chip 5nm - 92% global)
-Holanda: zona naranja (litografía - 100% global)
-Ormuz:   zona roja (petróleo - 35% global)
-China:   dos zonas (tierras raras 85%, aluminio 65%)
-etc.
+Fondo:  Negro puro (océano)
+Tierra: Gris (países)
+Crítico: Zona roja semitransparente + borde rojo
+Alto:    Zona naranja + borde naranja
 ```
 
-**Interactividad mantenida:**
+**Ejemplos de zonas:**
+- Taiwán: zona roja amplia (92% chips 5nm)
+- Holanda: zona naranja (100% litografía)
+- Ormuz: zona roja (35% petróleo global)
+
+**Interactividad completa:**
 - Click: abre panel de detalles
 - Hover: resalta zona, muestra popup
 - Selección: zona se centra y oscurece
