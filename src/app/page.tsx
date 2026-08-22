@@ -18,6 +18,11 @@ const SearchPanel = dynamic(() => import('@/components/Panels/SearchPanel'), {
   ssr: false,
 })
 
+const CompanyPanel = dynamic(() => import('@/components/Panels/CompanyPanel'), {
+  ssr: false,
+  loading: () => <div className="w-96 bg-[#0a0a0a] border-l border-[#333]">Cargando empresa...</div>
+})
+
 export default function Home() {
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null)
   const [selectedCompany, setSelectedCompany] = useState<string | null>(null)
@@ -43,24 +48,28 @@ export default function Home() {
         </div>
 
         {/* Panel Lateral */}
-        {selectedCountry && (
+        {selectedCompany ? (
+          <div className="w-96 border-l border-[#333] overflow-y-auto bg-[#0a0a0a]">
+            <CompanyPanel
+              companyId={selectedCompany}
+              onClose={() => setSelectedCompany(null)}
+            />
+          </div>
+        ) : selectedCountry ? (
           <div className="w-80 border-l border-[#333] overflow-y-auto bg-[#0a0a0a]">
             <CountryPanel
               countryId={selectedCountry}
               onCompanySelect={setSelectedCompany}
             />
           </div>
-        )}
-
-        {/* Panel de Búsqueda */}
-        {searchTerm && (
+        ) : searchTerm ? (
           <div className="w-80 border-l border-[#333] overflow-y-auto bg-[#0a0a0a]">
             <SearchPanel
               searchTerm={searchTerm}
               onCompanySelect={setSelectedCompany}
             />
           </div>
-        )}
+        ) : null}
       </div>
 
       {/* Estado Global (para debug) */}

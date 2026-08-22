@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import paises from '@/data/paises.json'
+import empresas from '@/data/empresas_500.json'
 
 interface MapContainerProps {
   onCountrySelect: (countryId: string) => void

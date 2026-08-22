@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import empresas from '@/data/empresas.json'
+import empresas from '@/data/empresas_500.json'
 import { Empresa } from '@/types'
 
 interface SearchPanelProps {

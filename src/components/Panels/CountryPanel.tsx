@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import paises from '@/data/paises.json'
-import empresas from '@/data/empresas.json'
+import empresas from '@/data/empresas_500.json'
 import { Pais, Empresa } from '@/types'
 
 interface CountryPanelProps {
