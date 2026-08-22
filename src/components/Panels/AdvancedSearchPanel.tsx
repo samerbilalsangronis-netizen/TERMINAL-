@@ -1,9 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import empresas from '@/data/empresas_500.json'
-import recursos from '@/data/recursos_criticos.json'
-import recursosEmpresa from '@/data/recursos_empresa.json'
 import { Empresa } from '@/types'
 
 interface AdvancedSearchPanelProps {
@@ -22,9 +19,40 @@ export default function AdvancedSearchPanel({ searchTerm, onCompanySelect }: Adv
   const [resultados, setResultados] = useState<ResultadoRecurso[]>([])
   const [recursoEncontrado, setRecursoEncontrado] = useState<any>(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [dataLoaded, setDataLoaded] = useState(false)
+  const [empresas, setEmpresas] = useState<Empresa[]>([])
+  const [recursos, setRecursos] = useState<any[]>([])
+  const [recursosEmpresa, setRecursosEmpresa] = useState<any[]>([])
+
+  // Load data on mount
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const [empresasRes, recursosRes, recursosEmpresaRes] = await Promise.all([
+          fetch('/data/empresas_500.json'),
+          fetch('/data/recursos_criticos.json'),
+          fetch('/data/recursos_empresa.json'),
+        ])
+
+        const empresasData = await empresasRes.json()
+        const recursosData = await recursosRes.json()
+        const recursosEmpresaData = await recursosEmpresaRes.json()
+
+        setEmpresas(empresasData)
+        setRecursos(recursosData)
+        setRecursosEmpresa(recursosEmpresaData)
+        setDataLoaded(true)
+      } catch (error) {
+        console.error('Error loading data:', error)
+        setDataLoaded(true)
+      }
+    }
+
+    loadData()
+  }, [])
 
   useEffect(() => {
-    if (!searchTerm || searchTerm.length < 2) {
+    if (!searchTerm || searchTerm.length < 2 || !dataLoaded) {
       setResultados([])
       setRecursoEncontrado(null)
       return
@@ -35,7 +63,7 @@ export default function AdvancedSearchPanel({ searchTerm, onCompanySelect }: Adv
     const termLower = searchTerm.toLowerCase()
 
     // Buscar recurso crítico
-    const recursoMatch = recursos.find(r =>
+    const recursoMatch = recursos.find((r: any) =>
       r.nombre.toLowerCase().includes(termLower) ||
       r.id.toLowerCase().includes(termLower) ||
       r.descripcion.toLowerCase().includes(termLower)
@@ -46,14 +74,14 @@ export default function AdvancedSearchPanel({ searchTerm, onCompanySelect }: Adv
 
       // Obtener todas las relaciones para este recurso
       const relacionesRecurso = recursosEmpresa.filter(
-        r => r.recurso_id === recursoMatch.id
+        (r: any) => r.recurso_id === recursoMatch.id
       )
 
       // Mapear a empresas y agrupar por tipo
       const resultadosAgrupados = relacionesRecurso
-        .map(rel => ({
+        .map((rel: any) => ({
           tipo: rel.tipo as 'fabrica' | 'importa' | 'exporta' | 'depende',
-          empresa: empresas.find(e => e.id === rel.empresa_id),
+          empresa: empresas.find((e: any) => e.id === rel.empresa_id),
           recurso: recursoMatch,
           relacion: rel,
         }))
@@ -62,14 +90,14 @@ export default function AdvancedSearchPanel({ searchTerm, onCompanySelect }: Adv
       setResultados(resultadosAgrupados)
     } else {
       // Búsqueda por empresa o sector
-      const resultadoEmpresas = empresas.filter(e =>
+      const resultadoEmpresas = empresas.filter((e: any) =>
         e.nombre.toLowerCase().includes(termLower) ||
         e.ticker.toLowerCase().includes(termLower) ||
         e.sector.toLowerCase().includes(termLower) ||
         e.subsector.toLowerCase().includes(termLower)
       )
 
-      const resultadosMap = resultadoEmpresas.map(emp => ({
+      const resultadosMap = resultadoEmpresas.map((emp: any) => ({
         tipo: 'depende' as const,
         empresa: emp,
         recurso: { nombre: 'Búsqueda General', id: 'GENERAL' },
@@ -81,7 +109,7 @@ export default function AdvancedSearchPanel({ searchTerm, onCompanySelect }: Adv
     }
 
     setIsLoading(false)
-  }, [searchTerm])
+  }, [searchTerm, dataLoaded, empresas, recursos, recursosEmpresa])
 
   const fabricantes = resultados.filter(r => r.tipo === 'fabrica')
   const importadores = resultados.filter(r => r.tipo === 'importa')

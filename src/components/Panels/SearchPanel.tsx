@@ -2,7 +2,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import empresas from '@/data/empresas_500.json'
 import { Empresa } from '@/types'
 
 interface SearchPanelProps {
@@ -12,16 +11,34 @@ interface SearchPanelProps {
 
 export default function SearchPanel({ searchTerm, onCompanySelect }: SearchPanelProps) {
   const [resultados, setResultados] = useState<Empresa[]>([])
+  const [empresas, setEmpresas] = useState<Empresa[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    if (!searchTerm) {
+    const loadEmpresas = async () => {
+      try {
+        const res = await fetch('/data/empresas_500.json')
+        const data = await res.json()
+        setEmpresas(data)
+      } catch (error) {
+        console.error('Error loading empresas:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadEmpresas()
+  }, [])
+
+  useEffect(() => {
+    if (!searchTerm || loading) {
       setResultados([])
       return
     }
 
     const termLower = searchTerm.toLowerCase()
     const filtered = empresas.filter(
-      empresa =>
+      (empresa: any) =>
         empresa.nombre.toLowerCase().includes(termLower) ||
         empresa.ticker.toLowerCase().includes(termLower) ||
         empresa.sector.toLowerCase().includes(termLower) ||
@@ -29,7 +46,7 @@ export default function SearchPanel({ searchTerm, onCompanySelect }: SearchPanel
     )
 
     setResultados(filtered)
-  }, [searchTerm])
+  }, [searchTerm, empresas, loading])
 
   return (
     <div className="p-5 space-y-4 text-sm">
