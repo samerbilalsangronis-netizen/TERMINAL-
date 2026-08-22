@@ -6,9 +6,17 @@
     "region": "Americas",
     "gdp": 27360700000000,
     "poblacion": 338290000,
-    "industrias_clave": ["Tecnología", "Semiconductores", "Financiero", "Energía"],
+    "industrias_clave": [
+      "Tecnología",
+      "Semiconductores",
+      "Financiero",
+      "Energía"
+    ],
     "embargo_status": "none",
-    "coordenadas": {"lat": 37.0902, "lon": -95.7129}
+    "coordenadas": {
+      "lat": 37.0902,
+      "lon": -95.7129
+    }
   },
   {
     "id": "CN",
@@ -17,9 +25,17 @@
     "region": "Asia",
     "gdp": 17734120000000,
     "poblacion": 1425887337,
-    "industrias_clave": ["Manufactura", "Tecnología", "Energía", "Minerales"],
+    "industrias_clave": [
+      "Manufactura",
+      "Tecnología",
+      "Energía",
+      "Minerales"
+    ],
     "embargo_status": "partial",
-    "coordenadas": {"lat": 35.8617, "lon": 104.1954}
+    "coordenadas": {
+      "lat": 35.8617,
+      "lon": 104.1954
+    }
   },
   {
     "id": "GB",
@@ -28,9 +44,16 @@
     "region": "Europa",
     "gdp": 3099100000000,
     "poblacion": 67736802,
-    "industrias_clave": ["Financiero", "Tecnología", "Energía"],
+    "industrias_clave": [
+      "Financiero",
+      "Tecnología",
+      "Energía"
+    ],
     "embargo_status": "none",
-    "coordenadas": {"lat": 55.3781, "lon": -3.4360}
+    "coordenadas": {
+      "lat": 55.3781,
+      "lon": -3.436
+    }
   },
   {
     "id": "DE",
@@ -39,9 +62,17 @@
     "region": "Europa",
     "gdp": 4311700000000,
     "poblacion": 84482200,
-    "industrias_clave": ["Manufactura", "Automotriz", "Tecnología", "Energía"],
+    "industrias_clave": [
+      "Manufactura",
+      "Automotriz",
+      "Tecnología",
+      "Energía"
+    ],
     "embargo_status": "none",
-    "coordenadas": {"lat": 51.1657, "lon": 10.4515}
+    "coordenadas": {
+      "lat": 51.1657,
+      "lon": 10.4515
+    }
   },
   {
     "id": "JP",
@@ -50,9 +81,17 @@
     "region": "Asia",
     "gdp": 4230900000000,
     "poblacion": 123294513,
-    "industrias_clave": ["Semiconductores", "Automotriz", "Electrónica", "Manufactura"],
+    "industrias_clave": [
+      "Semiconductores",
+      "Automotriz",
+      "Electrónica",
+      "Manufactura"
+    ],
     "embargo_status": "none",
-    "coordenadas": {"lat": 36.2048, "lon": 138.2529}
+    "coordenadas": {
+      "lat": 36.2048,
+      "lon": 138.2529
+    }
   },
   {
     "id": "KR",
@@ -61,9 +100,16 @@
     "region": "Asia",
     "gdp": 1642383000000,
     "poblacion": 51780579,
-    "industrias_clave": ["Semiconductores", "Electrónica", "Automotriz"],
+    "industrias_clave": [
+      "Semiconductores",
+      "Electrónica",
+      "Automotriz"
+    ],
     "embargo_status": "none",
-    "coordenadas": {"lat": 35.9078, "lon": 127.7669}
+    "coordenadas": {
+      "lat": 35.9078,
+      "lon": 127.7669
+    }
   },
   {
     "id": "TW",
@@ -72,9 +118,16 @@
     "region": "Asia",
     "gdp": 768995000000,
     "poblacion": 23899908,
-    "industrias_clave": ["Semiconductores", "Electrónica", "Manufactura"],
+    "industrias_clave": [
+      "Semiconductores",
+      "Electrónica",
+      "Manufactura"
+    ],
     "embargo_status": "none",
-    "coordenadas": {"lat": 23.6978, "lon": 120.9605}
+    "coordenadas": {
+      "lat": 23.6978,
+      "lon": 120.9605
+    }
   },
   {
     "id": "NL",
@@ -83,9 +136,16 @@
     "region": "Europa",
     "gdp": 1386400000000,
     "poblacion": 17530620,
-    "industrias_clave": ["Tecnología", "Manufactura de equipos", "Energía"],
+    "industrias_clave": [
+      "Tecnología",
+      "Manufactura de equipos",
+      "Energía"
+    ],
     "embargo_status": "none",
-    "coordenadas": {"lat": 52.1326, "lon": 5.2913}
+    "coordenadas": {
+      "lat": 52.1326,
+      "lon": 5.2913
+    }
   },
   {
     "id": "CA",
@@ -94,9 +154,17 @@
     "region": "Americas",
     "gdp": 2176451000000,
     "poblacion": 39742830,
-    "industrias_clave": ["Energía", "Minerales", "Tecnología", "Manufactura"],
+    "industrias_clave": [
+      "Energía",
+      "Minerales",
+      "Tecnología",
+      "Manufactura"
+    ],
     "embargo_status": "none",
-    "coordenadas": {"lat": 56.1304, "lon": -106.3468}
+    "coordenadas": {
+      "lat": 56.1304,
+      "lon": -106.3468
+    }
   },
   {
     "id": "AU",
@@ -105,9 +173,16 @@
     "region": "Oceanía",
     "gdp": 1376437000000,
     "poblacion": 26505810,
-    "industrias_clave": ["Minería", "Energía", "Agricultura"],
+    "industrias_clave": [
+      "Minería",
+      "Energía",
+      "Agricultura"
+    ],
     "embargo_status": "none",
-    "coordenadas": {"lat": -25.2744, "lon": 133.7751}
+    "coordenadas": {
+      "lat": -25.2744,
+      "lon": 133.7751
+    }
   },
   {
     "id": "IR",
@@ -116,8 +191,195 @@
     "region": "Asia",
     "gdp": 432686000000,
     "poblacion": 90503784,
-    "industrias_clave": ["Petróleo", "Gas", "Manufactura"],
+    "industrias_clave": [
+      "Petróleo",
+      "Gas",
+      "Manufactura"
+    ],
     "embargo_status": "complete",
-    "coordenadas": {"lat": 32.4279, "lon": 53.6880}
+    "coordenadas": {
+      "lat": 32.4279,
+      "lon": 53.688
+    }
+  },
+  {
+    "id": "FR",
+    "nombre": "Francia",
+    "codigo": "FR",
+    "region": "Europa",
+    "gdp": 2780000000000,
+    "poblacion": 67970000,
+    "industrias_clave": [
+      "Lujo",
+      "Automotriz",
+      "Energía"
+    ],
+    "embargo_status": "none",
+    "coordenadas": {
+      "lat": 46.2276,
+      "lon": 2.2137
+    }
+  },
+  {
+    "id": "IT",
+    "nombre": "Italia",
+    "codigo": "IT",
+    "region": "Europa",
+    "gdp": 2010000000000,
+    "poblacion": 58940000,
+    "industrias_clave": [
+      "Moda",
+      "Automotriz",
+      "Manufactura"
+    ],
+    "embargo_status": "none",
+    "coordenadas": {
+      "lat": 41.8719,
+      "lon": 12.5674
+    }
+  },
+  {
+    "id": "ES",
+    "nombre": "España",
+    "codigo": "ES",
+    "region": "Europa",
+    "gdp": 1390000000000,
+    "poblacion": 47615000,
+    "industrias_clave": [
+      "Turismo",
+      "Automotriz",
+      "Energía"
+    ],
+    "embargo_status": "none",
+    "coordenadas": {
+      "lat": 40.4637,
+      "lon": -3.7492
+    }
+  },
+  {
+    "id": "BR",
+    "nombre": "Brasil",
+    "codigo": "BR",
+    "region": "Americas",
+    "gdp": 1839000000000,
+    "poblacion": 215313000,
+    "industrias_clave": [
+      "Minería",
+      "Agricultura",
+      "Energía"
+    ],
+    "embargo_status": "none",
+    "coordenadas": {
+      "lat": -14.235,
+      "lon": -51.9253
+    }
+  },
+  {
+    "id": "IN",
+    "nombre": "India",
+    "codigo": "IN",
+    "region": "Asia",
+    "gdp": 3385090000000,
+    "poblacion": 1417173173,
+    "industrias_clave": [
+      "Software",
+      "Telecomunicaciones",
+      "Manufactura"
+    ],
+    "embargo_status": "none",
+    "coordenadas": {
+      "lat": 20.5937,
+      "lon": 78.9629
+    }
+  },
+  {
+    "id": "MX",
+    "nombre": "México",
+    "codigo": "MX",
+    "region": "Americas",
+    "gdp": 1287000000000,
+    "poblacion": 128932753,
+    "industrias_clave": [
+      "Automotriz",
+      "Petróleo",
+      "Manufactura"
+    ],
+    "embargo_status": "none",
+    "coordenadas": {
+      "lat": 23.6345,
+      "lon": -102.5528
+    }
+  },
+  {
+    "id": "RU",
+    "nombre": "Rusia",
+    "codigo": "RU",
+    "region": "Europa",
+    "gdp": 1777000000000,
+    "poblacion": 144444359,
+    "industrias_clave": [
+      "Energía",
+      "Minerales",
+      "Defensa"
+    ],
+    "embargo_status": "partial",
+    "coordenadas": {
+      "lat": 61.524,
+      "lon": 105.3188
+    }
+  },
+  {
+    "id": "SG",
+    "nombre": "Singapur",
+    "codigo": "SG",
+    "region": "Asia",
+    "gdp": 501700000000,
+    "poblacion": 5917600,
+    "industrias_clave": [
+      "Petroquímica",
+      "Semiconductores",
+      "Logística"
+    ],
+    "embargo_status": "none",
+    "coordenadas": {
+      "lat": 1.3521,
+      "lon": 103.8198
+    }
+  },
+  {
+    "id": "SE",
+    "nombre": "Suecia",
+    "codigo": "SE",
+    "region": "Europa",
+    "gdp": 593000000000,
+    "poblacion": 10549347,
+    "industrias_clave": [
+      "Telecomunicaciones",
+      "Automotriz",
+      "Manufactura"
+    ],
+    "embargo_status": "none",
+    "coordenadas": {
+      "lat": 60.1282,
+      "lon": 18.6435
+    }
+  },
+  {
+    "id": "CH",
+    "nombre": "Suiza",
+    "codigo": "CH",
+    "region": "Europa",
+    "gdp": 920000000000,
+    "poblacion": 8776000,
+    "industrias_clave": [
+      "Farmacéutica",
+      "Banca",
+      "Relojería"
+    ],
+    "embargo_status": "none",
+    "coordenadas": {
+      "lat": 46.8182,
+      "lon": 8.2275
+    }
   }
 ]
