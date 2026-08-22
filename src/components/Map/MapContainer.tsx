@@ -185,9 +185,11 @@ export default function MapContainer({ onCountrySelect, selectedCountry }: MapCo
                 const nameToCode: {[key: string]: string} = {
                   'United States': 'US',
                   'United States of America': 'US',
+                  'USA': 'US',
                   'China': 'CN',
                   'Japan': 'JP',
                   'United Kingdom': 'GB',
+                  'UK': 'GB',
                   'Germany': 'DE',
                   'South Korea': 'KR',
                   'Korea': 'KR',
@@ -203,23 +205,46 @@ export default function MapContainer({ onCountrySelect, selectedCountry }: MapCo
                   'India': 'IN',
                   'Mexico': 'MX',
                   'Russia': 'RU',
+                  'Russian Federation': 'RU',
                   'Singapore': 'SG',
                   'Sweden': 'SE',
                   'Switzerland': 'CH',
                 }
-                countryCode = nameToCode[countryName] || ''
+
+                // Try exact match first
+                countryCode = nameToCode[countryName]
+
+                // If not found, try case-insensitive and partial matching
+                if (!countryCode) {
+                  const lowerName = countryName.toLowerCase()
+                  for (const [key, code] of Object.entries(nameToCode)) {
+                    if (key.toLowerCase() === lowerName) {
+                      countryCode = code
+                      break
+                    }
+                  }
+                }
+
+                console.log(`   Mapeo de nombre: ${countryName} → ${countryCode}`)
               }
 
               console.log(`📍 GeoJSON Feature: ${countryName} (${countryCode})`)
 
               // @ts-ignore
               layer.on('click', () => {
-                console.log('🎯 Click en país:', countryCode, countryName)
+                console.log('🎯 Click en país:', countryName)
+                console.log('   Código extraído:', countryCode)
+                console.log('   Callback disponible:', typeof onCountrySelect)
+
+                if (!countryCode) {
+                  console.warn(`⚠️ No se extrajo código para: ${countryName}`)
+                }
+
                 if (countryCode && onCountrySelect) {
                   onCountrySelect(countryCode)
                   console.log('✅ onCountrySelect llamado para:', countryCode)
                 } else {
-                  console.error('❌ No se pudo obtener código de país o callback no es función')
+                  console.error('❌ No se pudo obtener código de país:', countryCode, 'Callback:', typeof onCountrySelect)
                 }
                 // Resaltar
                 (layer as any).setStyle({
