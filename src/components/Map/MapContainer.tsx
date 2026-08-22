@@ -45,11 +45,16 @@ export default function MapContainer({
   useEffect(() => {
     const handleCountryClick = (event: Event) => {
       const customEvent = event as CustomEvent
-      if (customEvent.detail) {
+      console.log('selectCountry event received:', customEvent.detail)
+      if (customEvent.detail && typeof onCountrySelect === 'function') {
+        console.log('Calling onCountrySelect with:', customEvent.detail)
         onCountrySelect(customEvent.detail)
+      } else {
+        console.error('onCountrySelect is not a function or no detail')
       }
     }
 
+    console.log('Registering selectCountry listener, onCountrySelect:', typeof onCountrySelect)
     window.addEventListener('selectCountry', handleCountryClick)
     return () => window.removeEventListener('selectCountry', handleCountryClick)
   }, [onCountrySelect])
@@ -107,6 +112,7 @@ export default function MapContainer({
               // Configurar eventos ANTES de añadir al mapa
               layer.on('click', () => {
                 // Disparar evento personalizado
+                console.log('Country clicked:', countryCode)
                 ;(window as any).dispatchEvent(new CustomEvent('selectCountry', { detail: countryCode }))
                 // Resaltar
                 (layer as any).setStyle({
