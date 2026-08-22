@@ -624,6 +624,33 @@ puede sobrescribir silenciosamente z-index inline que Leaflet/JS aplica a panes
 específicos. Siempre usar selectores de clase específicos (`.leaflet-<nombre>-pane`)
 al forzar z-index con `!important` sobre paneles de Leaflet.
 
+### 🐛 BUG CORREGIDO #2 - Océano seguía gris, no negro
+
+**Síntoma:** Después de cambiar `fillColor` del CSS/JS a negro, el océano
+seguía viéndose gris/azulado en el mapa renderizado.
+
+**Causa:** El color del océano viene de las **tiles de CartoDB** (imágenes PNG
+del tile layer `dark_nolabels`/`dark_all`), no del CSS del `.leaflet-container`.
+El background CSS del container solo se ve donde no hay tiles cargados
+(brevemente al hacer pan/zoom). El color real del océano lo define CartoDB,
+que usa un gris-azulado oscuro, no negro puro.
+
+**Fix:** Forzar el color con un filtro CSS sobre el pane de tiles:
+```css
+.leaflet-tile-pane {
+  filter: brightness(0) !important;
+}
+```
+Esto convierte cualquier píxel del tile a negro puro, sin importar el color
+original de CartoDB. Los países se siguen viendo en gris porque nuestra capa
+GeoJSON (fillOpacity 0.95) se dibuja **encima** de los tiles, no depende de ellos.
+
+También se revirtió el tile layer de `dark_all` a `dark_nolabels` (evita
+etiquetas duplicadas de país, ya que mostramos el nombre vía tooltip propio).
+
+**Verificado visualmente con Playwright (screenshot):** océano negro puro,
+países gris medio, zonas de cuellos de botella visibles encima. Commit `1cc6da8`.
+
 ---
 
 **Próximo paso:** FASE 6 - Simulación de Escenarios (interactividad y visualización ya resueltas ✅)
