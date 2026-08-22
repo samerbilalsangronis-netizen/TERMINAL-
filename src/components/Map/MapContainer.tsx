@@ -96,8 +96,8 @@ export default function MapContainer({
             fillOpacity: 0.95,
           },
           onEachFeature: (feature: any, layer: any) => {
-            const countryName = feature.properties.ADMIN || 'País'
-            const countryCode = feature.properties.ISO_A2 || ''
+            const countryName = feature.properties.name || 'País'
+            const countryCode = feature.properties['ISO3166-1-Alpha-2'] || ''
             console.log('[MapContainer] onEachFeature:', countryName, countryCode)
 
             layer.on('click', () => {
