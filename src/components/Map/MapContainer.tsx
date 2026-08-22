@@ -158,17 +158,30 @@ export default function MapContainer({ onCountrySelect, selectedCountry }: MapCo
               fillOpacity: 0.95,
             },
             onEachFeature: ((feature: any, layer: any) => {
-              const countryName = feature.properties.ADMIN || 'País'
-              const countryCode = feature.properties.ISO_A2 || ''
+              // Extract country name from multiple possible properties
+              const countryName = feature.properties.ADMIN ||
+                                feature.properties.name ||
+                                feature.properties.NAME ||
+                                feature.properties.COUNTRY ||
+                                'País'
+
+              // Extract country code from multiple possible properties
+              const countryCode = feature.properties.ISO_A2 ||
+                                feature.properties.iso_a2 ||
+                                feature.properties.code ||
+                                feature.properties.ISO_A3 ||
+                                ''
+
+              console.log(`📍 GeoJSON Feature: ${countryName} (${countryCode})`, feature.properties)
 
               // @ts-ignore
               layer.on('click', () => {
                 console.log('🎯 Click en país:', countryCode, countryName)
-                if (onCountrySelect) {
+                if (countryCode && onCountrySelect) {
                   onCountrySelect(countryCode)
                   console.log('✅ onCountrySelect llamado para:', countryCode)
                 } else {
-                  console.error('❌ onCountrySelect no es una función')
+                  console.error('❌ No se pudo obtener código de país o callback no es función')
                 }
                 // Resaltar
                 (layer as any).setStyle({
@@ -185,8 +198,9 @@ export default function MapContainer({ onCountrySelect, selectedCountry }: MapCo
                   weight: 2,
                   opacity: 1,
                 })
-                // Tooltip
-                layer.bindTooltip(countryName, {
+                // Tooltip con nombre del país
+                const tooltip = countryName && countryName !== 'País' ? countryName : 'País'
+                layer.bindTooltip(tooltip, {
                   permanent: false,
                   direction: 'top',
                 }).openTooltip()
