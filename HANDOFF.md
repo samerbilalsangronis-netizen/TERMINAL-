@@ -81,6 +81,31 @@ Panel muestra:
 
 ---
 
+## 📊 ESTADÍSTICAS FASE 5
+
+```
+🔴 CUELLOS DE BOTELLA: 17
+   - Criticidad CRÍTICA: 4 (Taiwán, Holanda, Ormuz, Siria)
+   - Criticidad ALTA: 9 (Energía, Materiales, Transporte)
+   - Criticidad MEDIA: 4 (Gas ruso, Litio, Níquel, Trigo)
+
+📍 DISTRIBUCIÓN GLOBAL:
+   - Asia: Taiwán, China, Singapur, Indonesia
+   - Europa: Holanda, Rusia, Ucrania
+   - Oriente Medio: Irán/Omán, Qatar/UAE
+   - América: Panamá, Chile, Brasil
+   - África: Congo, Siria/Levante
+
+🌍 IMPACTO SECTORIAL:
+   - Semiconductores: 3 cuellos
+   - Energía: 4 cuellos
+   - Materiales: 5 cuellos
+   - Alimentos: 2 cuellos
+   - Transporte: 3 cuellos
+```
+
+---
+
 ## 🚀 PRÓXIMAS FASES
 
 ### **FASE 4: ✅ COMPLETADA** - Visualización D3.js
@@ -103,19 +128,33 @@ Panel muestra:
 
 ---
 
-### **FASE 5: Análisis Geopolítico (PENDIENTE)**
+### **FASE 5: ✅ COMPLETADA** - Análisis Geopolítico
 **Objetivo:** Resaltar cuellos de botella críticos
 
-Datos necesarios:
-- `cuellos_botella.json` (ya parcialmente definido)
-- Modo "Conflicto Iran/EEUU"
-- Líneas rojas para puntos críticos
+**Archivos creados:**
+- `scripts/generar_cuellos_botella.js` - script de generación de 17 cuellos de botella
+- `src/data/cuellos_botella.json` - 17 puntos críticos mapeados
+- `public/data/cuellos_botella.json` - datos públicos accesibles
+- `src/components/Map/BottleneckLayer.tsx` - visualización en mapa
+- `src/components/Panels/BottleneckPanel.tsx` - panel de detalles
 
-Puntos clave a mapear:
+**Características implementadas:**
+- ✅ 17 cuellos de botella geopolíticos críticos
+- ✅ Marcadores con colores de criticidad (rojo/naranja/amarillo)
+- ✅ Glows y efectos visuales en los marcadores
+- ✅ Panel detallado con vulnerabilidades, empresas afectadas, consecuencias
+- ✅ Conexiones entre cuellos de botella (líneas punteadas)
+- ✅ Leyenda actualizada en el mapa
+- ✅ Hover effects y selección interactiva
+
+**Puntos críticos mapeados:**
 - 🔴 **Taiwán**: 92% chips 5nm (TSMC monopolio)
 - 🔴 **Holanda**: ASML (única máquina de litografía)
 - 🔴 **Estrecho de Ormuz**: 35% petróleo global
 - 🔴 **China**: 85% tierras raras, 65% aluminio
+- 🟠 **Siria**: 50% fosfato (fertilizantes)
+- 🟠 **Singapur**: 18% refinería global
+- 🟠 Y 11 cuellos de botella más...
 
 ---
 
@@ -336,18 +375,56 @@ node scripts/generar_recursos_empresa.js
 
 ## 🔐 RAMA GIT
 
-**Rama de desarrollo:** `claude/ui-ux-pro-max-cli-install-k1wbdb`
+**Rama de desarrollo:** `claude/lee-el-handoff-kzxdwz`
 
-**Commits recientes:**
+**Commits completados:**
 1. FASE 1: Estructura Next.js + Mapa Bloomberg
 2. FASE 2: 500 Empresas + Dependencias + CompanyPanel
 3. FASE 3: Búsqueda Avanzada + Recursos Críticos
+4. FASE 4: Visualización D3.js de Grafos
+5. FASE 5: Análisis Geopolítico - Cuellos de Botella ✅
 
-**Para empezar nuevo chat:**
+**Para continuar en próximo chat:**
 ```bash
-git checkout claude/ui-ux-pro-max-cli-install-k1wbdb
-git pull origin claude/ui-ux-pro-max-cli-install-k1wbdb
+git checkout claude/lee-el-handoff-kzxdwz
+git pull origin claude/lee-el-handoff-kzxdwz
+npm install && npm run dev
+# Abrirá http://localhost:3000
 ```
+
+---
+
+## 🚀 FASE 6: PRÓXIMAS OPORTUNIDADES
+
+### **Sugerencia 1: Simulación de Escenarios**
+**Objetivo:** Modelar impacto de conflictos en cadenas de suministro
+
+```json
+Escenarios a implementar:
+- Crisis Taiwán: Bloqueo de TSMC → impacto en IA, smartphones
+- Bloqueo Ormuz: Aumento 300% precio petróleo → cascada global
+- Sanciones Rusia: Restricción de gas → Europa sin calefacción
+- Embargo Holanda→China: ASML no vende a Huawei
+```
+
+Datos a crear:
+- `src/data/escenarios.json` - conflictos simulados
+- `src/components/Panels/ScenarioPanel.tsx` - selector de escenarios
+- Cascada de impactos visualizada en grafo D3
+
+### **Sugerencia 2: Análisis de Resilencia**
+**Objetivo:** Sugerir estrategias de diversificación
+
+- Alternativas de proveedores por región
+- Oportunidades de nearshoring
+- Cálculo de "días de cobertura" por recurso
+- Matriz de riesgo país
+
+### **Sugerencia 3: Integración de Datos en Vivo**
+- API de precios de commodities (FRED, Quandl)
+- Alertas de conflictos geopolíticos (NewsAPI)
+- Datos de inversión (Crunchbase)
+- Base de datos de ONG (Toma de datos de conflictos)
 
 ---
 
@@ -387,6 +464,7 @@ git pull origin claude/ui-ux-pro-max-cli-install-k1wbdb
 
 ---
 
-**Última actualización:** 2025-08-22
-**Estado:** FASE 4 Completa - Listo para FASE 5
-**Siguiente paso:** Análisis Geopolítico - Resaltar cuellos de botella críticos
+**Última actualización:** 2026-08-22
+**Estado:** FASE 5 ✅ COMPLETADA - Listo para FASE 6
+**Siguiente paso:** Simulación de Escenarios Geopolíticos & Análisis de Resilencia
+**Rama actual:** `claude/lee-el-handoff-kzxdwz`
