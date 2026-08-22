@@ -323,6 +323,10 @@ body {
   font-family: var(--font-mono) !important;
 }
 
+.leaflet-tile-pane {
+  filter: brightness(0) !important;
+}
+
 .leaflet-bottleneck-pane {
   z-index: 9999 !important;
   pointer-events: auto !important;
