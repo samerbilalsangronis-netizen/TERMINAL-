@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from 'react'
 import { Pais, Empresa } from '@/types'
+import { supabase } from '@/lib/supabase'
 
 interface CountryPanelProps {
   countryId: string
@@ -17,20 +18,22 @@ export default function CountryPanel({ countryId, onCompanySelect }: CountryPane
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [paisesRes, empresasRes] = await Promise.all([
-          fetch('/data/paises.json'),
-          fetch('/data/empresas_500.json'),
-        ])
-
-        const paises = await paisesRes.json()
-        const empresas = await empresasRes.json()
-
-        const paisData = paises.find((p: any) => p.codigo === countryId)
+        const { data: paisData, error: paisError } = await supabase
+          .from('paises')
+          .select('*')
+          .eq('codigo', countryId)
+          .maybeSingle()
+        if (paisError) throw paisError
         setPais(paisData || null)
 
         if (paisData) {
-          const empresasDelPais = empresas.filter((e: any) => e.pais_id === paisData.id).slice(0, 10)
-          setEmpresasPais(empresasDelPais)
+          const { data: empresasDelPais, error: empresasError } = await supabase
+            .from('empresas')
+            .select('*')
+            .eq('pais_id', paisData.id)
+            .limit(10)
+          if (empresasError) throw empresasError
+          setEmpresasPais(empresasDelPais || [])
         }
       } catch (error) {
         console.error('Error loading data:', error)

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Empresa, Dependencia } from '@/types'
+import { supabase } from '@/lib/supabase'
 
 const DependencyGraph = dynamic(() => import('@/components/Graph/DependencyGraph'), {
   ssr: false,
@@ -28,14 +29,18 @@ export default function CompanyPanel({ companyId, onClose }: CompanyPanelProps) 
     const loadData = async () => {
       try {
         const [empresasRes, dependenciasRes, paisesRes] = await Promise.all([
-          fetch('/data/empresas_500.json'),
-          fetch('/data/dependencias.json'),
-          fetch('/data/paises.json'),
+          supabase.from('empresas').select('*'),
+          supabase.from('dependencias').select('*'),
+          supabase.from('paises').select('*'),
         ])
 
-        const empresasData = await empresasRes.json()
-        const dependenciasData = await dependenciasRes.json()
-        const paisesData = await paisesRes.json()
+        if (empresasRes.error) throw empresasRes.error
+        if (dependenciasRes.error) throw dependenciasRes.error
+        if (paisesRes.error) throw paisesRes.error
+
+        const empresasData = empresasRes.data || []
+        const dependenciasData = dependenciasRes.data || []
+        const paisesData = paisesRes.data || []
 
         setEmpresas(empresasData)
         setDependencias(dependenciasData)

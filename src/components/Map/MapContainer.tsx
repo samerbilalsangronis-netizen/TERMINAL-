@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+import { supabase } from '@/lib/supabase'
 
 const BottleneckLayer = dynamic(() => import('./BottleneckLayer'), { ssr: false })
 const VesselLayer = dynamic(() => import('./VesselLayer'), { ssr: false })
@@ -108,10 +109,16 @@ export default function MapContainer({
 
   // Cargar cuellos de botella
   useEffect(() => {
-    fetch('/data/cuellos_botella.json')
-      .then(res => res.json())
-      .then(data => setBottlenecks(data))
-      .catch(err => console.error('Error cargando cuellos:', err))
+    const loadBottlenecks = async () => {
+      try {
+        const { data, error } = await supabase.from('cuellos_botella').select('*')
+        if (error) throw error
+        setBottlenecks(data || [])
+      } catch (err) {
+        console.error('Error cargando cuellos:', err)
+      }
+    }
+    loadBottlenecks()
   }, [])
 
   // Inicializar mapa

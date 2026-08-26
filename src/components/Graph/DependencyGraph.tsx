@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import * as d3 from 'd3'
 import { Empresa, Dependencia } from '@/types'
+import { supabase } from '@/lib/supabase'
 
 interface DependencyGraphProps {
   companyId: string
@@ -45,12 +46,15 @@ export default function DependencyGraph({ companyId, onNodeClick }: DependencyGr
     const loadGraphData = async () => {
       try {
         const [empresasRes, dependenciasRes] = await Promise.all([
-          fetch('/data/empresas_500.json'),
-          fetch('/data/dependencias.json'),
+          supabase.from('empresas').select('*'),
+          supabase.from('dependencias').select('*'),
         ])
 
-        const empresas = await empresasRes.json()
-        const dependencias = await dependenciasRes.json()
+        if (empresasRes.error) throw empresasRes.error
+        if (dependenciasRes.error) throw dependenciasRes.error
+
+        const empresas = empresasRes.data || []
+        const dependencias = dependenciasRes.data || []
 
         // Construir grafo: empresa central + proveedores + clientes
         const mainEmpresa = empresas.find((e: any) => e.id === companyId)

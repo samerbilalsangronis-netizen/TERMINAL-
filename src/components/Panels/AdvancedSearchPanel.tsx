@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Empresa } from '@/types'
+import { supabase } from '@/lib/supabase'
 
 interface AdvancedSearchPanelProps {
   searchTerm: string
@@ -29,18 +30,18 @@ export default function AdvancedSearchPanel({ searchTerm, onCompanySelect }: Adv
     const loadData = async () => {
       try {
         const [empresasRes, recursosRes, recursosEmpresaRes] = await Promise.all([
-          fetch('/data/empresas_500.json'),
-          fetch('/data/recursos_criticos.json'),
-          fetch('/data/recursos_empresa.json'),
+          supabase.from('empresas').select('*'),
+          supabase.from('recursos_criticos').select('*'),
+          supabase.from('recursos_empresa').select('*'),
         ])
 
-        const empresasData = await empresasRes.json()
-        const recursosData = await recursosRes.json()
-        const recursosEmpresaData = await recursosEmpresaRes.json()
+        if (empresasRes.error) throw empresasRes.error
+        if (recursosRes.error) throw recursosRes.error
+        if (recursosEmpresaRes.error) throw recursosEmpresaRes.error
 
-        setEmpresas(empresasData)
-        setRecursos(recursosData)
-        setRecursosEmpresa(recursosEmpresaData)
+        setEmpresas(empresasRes.data || [])
+        setRecursos(recursosRes.data || [])
+        setRecursosEmpresa(recursosEmpresaRes.data || [])
         setDataLoaded(true)
       } catch (error) {
         console.error('Error loading data:', error)

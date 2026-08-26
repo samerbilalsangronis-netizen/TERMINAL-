@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from 'react'
 import { Empresa } from '@/types'
+import { supabase } from '@/lib/supabase'
 
 interface SearchPanelProps {
   searchTerm: string
@@ -17,9 +18,9 @@ export default function SearchPanel({ searchTerm, onCompanySelect }: SearchPanel
   useEffect(() => {
     const loadEmpresas = async () => {
       try {
-        const res = await fetch('/data/empresas_500.json')
-        const data = await res.json()
-        setEmpresas(data)
+        const { data, error } = await supabase.from('empresas').select('*')
+        if (error) throw error
+        setEmpresas(data || [])
       } catch (error) {
         console.error('Error loading empresas:', error)
       } finally {
