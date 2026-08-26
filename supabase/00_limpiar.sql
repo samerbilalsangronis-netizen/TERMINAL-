@@ -8,6 +8,4 @@
 -- intactas (truncarlas de todos modos no hace daño si prefieres limpiar
 -- todo).
 
-truncate table recursos_empresa;
-truncate table dependencias;
-truncate table empresas;
+truncate table recursos_empresa, dependencias, empresas cascade;
