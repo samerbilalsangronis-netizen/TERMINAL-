@@ -99,7 +99,7 @@ export default function Home() {
             />
           </div>
         ) : selectedCountry ? (
-          <div className="w-80 border-l border-[#333] overflow-y-auto bg-[#0a0a0a]">
+          <div className="w-[520px] border-l border-[#333] overflow-hidden bg-[#0a0a0a]">
             <CountryPanel
               countryId={selectedCountry}
               onCompanySelect={setSelectedCompany}

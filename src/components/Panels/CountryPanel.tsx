@@ -1,9 +1,14 @@
-// @ts-nocheck
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Pais, Empresa } from '@/types'
+import dynamic from 'next/dynamic'
+import { Pais } from '@/types'
 import { supabase } from '@/lib/supabase'
+
+const CountrySectorTree = dynamic(() => import('@/components/Graph/CountrySectorTree'), {
+  ssr: false,
+  loading: () => <div className="flex-1 flex items-center justify-center text-[#aaa] text-xs">Cargando mapa de empresas...</div>
+})
 
 interface CountryPanelProps {
   countryId: string
@@ -12,116 +17,77 @@ interface CountryPanelProps {
 
 export default function CountryPanel({ countryId, onCompanySelect }: CountryPanelProps) {
   const [pais, setPais] = useState<Pais | null>(null)
-  const [empresasPais, setEmpresasPais] = useState<Empresa[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const loadData = async () => {
+    const loadPais = async () => {
+      setLoading(true)
       try {
-        const { data: paisData, error: paisError } = await supabase
+        const { data, error } = await supabase
           .from('paises')
           .select('*')
           .eq('codigo', countryId)
           .maybeSingle()
-        if (paisError) throw paisError
-        setPais(paisData || null)
-
-        if (paisData) {
-          const { data: empresasDelPais, error: empresasError } = await supabase
-            .from('empresas')
-            .select('*')
-            .eq('pais_id', paisData.id)
-            .limit(10)
-          if (empresasError) throw empresasError
-          setEmpresasPais(empresasDelPais || [])
-        }
+        if (error) throw error
+        setPais(data || null)
       } catch (error) {
-        console.error('Error loading data:', error)
+        console.error('Error loading país:', error)
       } finally {
         setLoading(false)
       }
     }
 
-    loadData()
+    loadPais()
   }, [countryId])
 
-  if (!pais) {
+  if (loading) {
     return (
-      <div className="p-5 text-[#aaa]">
+      <div className="p-5 text-[#aaa] text-sm">
         Cargando información del país...
       </div>
     )
   }
 
+  if (!pais) {
+    return (
+      <div className="p-5 text-[#aaa] text-sm">
+        País no encontrado.
+      </div>
+    )
+  }
+
   return (
-    <div className="p-5 space-y-6 text-sm">
+    <div className="h-full flex flex-col">
       {/* Encabezado */}
-      <div>
-        <h2 className="text-xl font-bold text-white mb-2">{pais.nombre}</h2>
-        <div className="text-xs text-[#aaa] space-y-1">
-          <p>📊 GDP: ${(pais.gdp / 1e12).toFixed(1)}T</p>
-          <p>👥 Población: {(pais.poblacion / 1e6).toFixed(1)}M</p>
-          <p className="text-[#ff8c42]">Estado: {pais.embargo_status === 'none' ? '✓ Normal' : '⚠️ Embargo'}</p>
+      <div className="p-5 pb-3 space-y-3">
+        <div>
+          <h2 className="text-xl font-bold text-white mb-2">{pais.nombre}</h2>
+          <div className="text-xs text-[#aaa] space-y-1">
+            <p>📊 GDP: ${(pais.gdp / 1e12).toFixed(1)}T</p>
+            <p>👥 Población: {(pais.poblacion / 1e6).toFixed(1)}M</p>
+            <p className="text-[#ff8c42]">Estado: {pais.embargo_status === 'none' ? '✓ Normal' : '⚠️ Embargo'}</p>
+          </div>
         </div>
-      </div>
 
-      {/* Industrias Clave */}
-      <div>
-        <div className="panel-title">Industrias Clave</div>
-        <div className="flex flex-wrap gap-2">
-          {pais.industrias_clave.map((ind, idx) => (
-            <span
-              key={idx}
-              className="text-xs bg-[#1a1a1a] text-[#ff8c42] px-2 py-1 rounded border border-[#ff8c42]"
-            >
-              {ind}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* Empresas */}
-      <div>
-        <div className="panel-title">Empresas Clave</div>
-        <div className="space-y-2">
-          {empresasPais.length > 0 ? (
-            empresasPais.map(empresa => (
-              <div
-                key={empresa.id}
-                className="bg-[#1a1a1a] p-3 rounded border border-[#333] hover:border-[#ff8c42] cursor-pointer transition-all"
-                onClick={() => onCompanySelect(empresa.id)}
+        <div>
+          <div className="panel-title">Industrias Clave</div>
+          <div className="flex flex-wrap gap-2">
+            {pais.industrias_clave.map((ind, idx) => (
+              <span
+                key={idx}
+                className="text-xs bg-[#1a1a1a] text-[#ff8c42] px-2 py-1 rounded border border-[#ff8c42]"
               >
-                <div className="font-bold text-white">{empresa.nombre}</div>
-                <div className="text-xs text-[#aaa] mt-1">
-                  <p>{empresa.subsector}</p>
-                  <p className="text-[#ff8c42] mt-1">Cap: ${(empresa.cap_mercado / 1e9).toFixed(0)}B</p>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p className="text-[#aaa] text-xs">No hay empresas registradas</p>
-          )}
+                {ind}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Exportaciones Clave */}
-      <div>
-        <div className="panel-title">Exportaciones Principales</div>
-        <ul className="text-xs text-[#aaa] space-y-1 list-disc list-inside">
-          <li>Tecnología y Semiconductores</li>
-          <li>Manufactura Avanzada</li>
-          <li>Servicios Financieros</li>
-        </ul>
-      </div>
-
-      {/* Recursos Críticos */}
-      <div>
-        <div className="panel-title">Dependencias de Recursos</div>
-        <div className="text-xs text-[#aaa] space-y-1">
-          <p>🪨 Minerales críticos: Limitados</p>
-          <p>⚡ Energía: Importación parcial</p>
-          <p>💾 Semiconductores: Importación crítica</p>
-        </div>
+      {/* Mapa de empresas por sector */}
+      <div className="flex-1 border-t border-[#333] flex flex-col min-h-0">
+        <div className="panel-title px-5 pt-3">Empresas por Sector</div>
+        <CountrySectorTree countryId={countryId} onCompanySelect={onCompanySelect} />
       </div>
     </div>
   )
