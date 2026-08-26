@@ -1,13 +1,15 @@
-// Genera supabase/seed.sql a partir de los JSON en src/data/.
+// Genera supabase/seed/*.sql a partir de los JSON en src/data/.
 // Correr con: node scripts/generar_seed_sql.js
-// El resultado se pega y corre en el SQL Editor de Supabase (después de schema.sql).
+// El SQL Editor de Supabase tiene un límite de tamaño por consulta, así que
+// el seed se parte en varios archivos chicos en vez de uno solo grande.
+// Correr en orden (00, 01, 02...) en el SQL Editor, uno por uno.
 
 const fs = require('fs');
 const path = require('path');
 
 const DATA_DIR = path.join(__dirname, '..', 'src', 'data');
-const OUT_FILE = path.join(__dirname, '..', 'supabase', 'seed.sql');
-const BATCH_SIZE = 200;
+const OUT_DIR = path.join(__dirname, '..', 'supabase', 'seed');
+const ROWS_PER_INSERT = 100; // filas por sentencia INSERT dentro de un archivo
 
 function sqlStr(value) {
   if (value === null || value === undefined) return 'null';
@@ -28,11 +30,10 @@ function sqlJson(value) {
   return `'${json.replace(/'/g, "''")}'::jsonb`;
 }
 
-function insertBatches(table, columns, rows, rowToValues) {
-  if (rows.length === 0) return '';
+function buildInsertSql(table, columns, rows, rowToValues) {
   const parts = [];
-  for (let i = 0; i < rows.length; i += BATCH_SIZE) {
-    const batch = rows.slice(i, i + BATCH_SIZE);
+  for (let i = 0; i < rows.length; i += ROWS_PER_INSERT) {
+    const batch = rows.slice(i, i + ROWS_PER_INSERT);
     const values = batch.map((row) => `  (${rowToValues(row).join(', ')})`).join(',\n');
     parts.push(
       `insert into ${table} (${columns.join(', ')}) values\n${values}\non conflict (id) do nothing;`
@@ -45,6 +46,37 @@ function load(filename) {
   return JSON.parse(fs.readFileSync(path.join(DATA_DIR, filename), 'utf-8'));
 }
 
+// Parte `rows` en archivos de máx. ~targetKb kilobytes cada uno (estimado a
+// partir del tamaño del primer chunk) y los escribe como
+// OUT_DIR/{prefix}_N_of_M.sql
+function writeChunkedFiles(prefix, table, columns, rows, rowToValues, targetKb = 70) {
+  if (rows.length === 0) return [];
+
+  // Estimar filas por archivo a partir del tamaño de una muestra
+  const sampleSize = Math.min(50, rows.length);
+  const sampleSql = buildInsertSql(table, columns, rows.slice(0, sampleSize), rowToValues);
+  const bytesPerRow = Buffer.byteLength(sampleSql, 'utf-8') / sampleSize;
+  const rowsPerFile = Math.max(ROWS_PER_INSERT, Math.floor((targetKb * 1024) / bytesPerRow));
+
+  const files = [];
+  const totalFiles = Math.ceil(rows.length / rowsPerFile);
+  for (let i = 0, fileIdx = 1; i < rows.length; i += rowsPerFile, fileIdx++) {
+    const chunk = rows.slice(i, i + rowsPerFile);
+    const sql = buildInsertSql(table, columns, chunk, rowToValues);
+    const suffix = totalFiles > 1 ? `_${fileIdx}_de_${totalFiles}` : '';
+    const filename = `${prefix}_${table}${suffix}.sql`;
+    fs.writeFileSync(path.join(OUT_DIR, filename), `-- ${table}: filas ${i + 1}-${i + chunk.length} de ${rows.length}\n${sql}\n`);
+    files.push(filename);
+  }
+  return files;
+}
+
+fs.mkdirSync(OUT_DIR, { recursive: true });
+// Limpiar archivos previos para no dejar restos de una corrida anterior
+for (const f of fs.readdirSync(OUT_DIR)) {
+  if (f.endsWith('.sql')) fs.unlinkSync(path.join(OUT_DIR, f));
+}
+
 const paises = load('paises.json');
 const empresas = load('empresas_500.json');
 const dependencias = load('dependencias.json');
@@ -52,14 +84,10 @@ const recursosCriticos = load('recursos_criticos.json');
 const recursosEmpresa = load('recursos_empresa.json');
 const cuellosBotella = load('cuellos_botella.json');
 
-const sections = [];
+const allFiles = [];
 
-sections.push('-- Generado por scripts/generar_seed_sql.js — no editar a mano.');
-sections.push('-- Correr después de schema.sql en el SQL Editor de Supabase.\n');
-
-sections.push('-- ===== paises =====');
-sections.push(insertBatches(
-  'paises',
+allFiles.push(...writeChunkedFiles(
+  '01', 'paises',
   ['id', 'nombre', 'codigo', 'region', 'gdp', 'poblacion', 'industrias_clave', 'embargo_status', 'coordenadas'],
   paises,
   (p) => [
@@ -69,9 +97,8 @@ sections.push(insertBatches(
   ]
 ));
 
-sections.push('\n-- ===== empresas =====');
-sections.push(insertBatches(
-  'empresas',
+allFiles.push(...writeChunkedFiles(
+  '02', 'empresas',
   ['id', 'nombre', 'ticker', 'pais_id', 'sector', 'subsector', 'cap_mercado', 'ubicacion_hq', 'resumen_trimestral', 'estado_geopolitico', 'descripcion'],
   empresas,
   (e) => [
@@ -82,9 +109,8 @@ sections.push(insertBatches(
   ]
 ));
 
-sections.push('\n-- ===== dependencias =====');
-sections.push(insertBatches(
-  'dependencias',
+allFiles.push(...writeChunkedFiles(
+  '03', 'dependencias',
   ['id', 'empresa_a', 'empresa_b', 'tipo', 'porcentaje_suministro', 'es_critica', 'descripcion'],
   dependencias,
   (d) => [
@@ -93,9 +119,8 @@ sections.push(insertBatches(
   ]
 ));
 
-sections.push('\n-- ===== recursos_criticos =====');
-sections.push(insertBatches(
-  'recursos_criticos',
+allFiles.push(...writeChunkedFiles(
+  '04', 'recursos_criticos',
   ['id', 'nombre', 'tipo', 'descripcion', 'principales_productores', 'dependencia_global', 'precio_actual', 'volatilidad'],
   recursosCriticos,
   (r) => [
@@ -105,9 +130,8 @@ sections.push(insertBatches(
   ]
 ));
 
-sections.push('\n-- ===== recursos_empresa =====');
-sections.push(insertBatches(
-  'recursos_empresa',
+allFiles.push(...writeChunkedFiles(
+  '05', 'recursos_empresa',
   ['id', 'empresa_id', 'recurso_id', 'tipo', 'volumen_anual', 'porcentaje_produccion_global', 'descripcion'],
   recursosEmpresa,
   (r) => [
@@ -116,9 +140,8 @@ sections.push(insertBatches(
   ]
 ));
 
-sections.push('\n-- ===== cuellos_botella =====');
-sections.push(insertBatches(
-  'cuellos_botella',
+allFiles.push(...writeChunkedFiles(
+  '06', 'cuellos_botella',
   ['id', 'nombre', 'pais', 'latitud', 'longitud', 'tipo', 'criticidad', 'porcentaje_global', 'impacto_sectores', 'descripcion', 'vulnerabilidades', 'empresas_afectadas', 'consecuencias_si_falla', 'color'],
   cuellosBotella,
   (c) => [
@@ -129,9 +152,8 @@ sections.push(insertBatches(
   ]
 ));
 
-fs.writeFileSync(OUT_FILE, sections.join('\n') + '\n');
-
-console.log(`✅ ${OUT_FILE} generado:`);
-console.log(`   ${paises.length} países, ${empresas.length} empresas, ${dependencias.length} dependencias,`);
-console.log(`   ${recursosCriticos.length} recursos críticos, ${recursosEmpresa.length} relaciones recurso-empresa,`);
-console.log(`   ${cuellosBotella.length} cuellos de botella`);
+console.log(`✅ ${allFiles.length} archivos generados en supabase/seed/ (correr en orden):`);
+allFiles.sort().forEach((f) => {
+  const size = fs.statSync(path.join(OUT_DIR, f)).size;
+  console.log(`   ${f}  (${(size / 1024).toFixed(1)} KB)`);
+});
