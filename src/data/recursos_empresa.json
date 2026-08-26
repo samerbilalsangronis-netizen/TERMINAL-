@@ -4,7 +4,7 @@
     "empresa_id": "ALB",
     "recurso_id": "LITIO",
     "tipo": "fabrica",
-    "volumen_anual": 455372,
+    "volumen_anual": 442881,
     "porcentaje_produccion_global": 18,
     "descripcion": "Albemarle es uno de los mayores productores mundiales de litio"
   },
@@ -13,7 +13,7 @@
     "empresa_id": "PLS",
     "recurso_id": "LITIO",
     "tipo": "fabrica",
-    "volumen_anual": 13324,
+    "volumen_anual": 30496,
     "porcentaje_produccion_global": 8,
     "descripcion": "Pilbara Minerals opera una de las mayores minas de litio del mundo"
   },
@@ -22,7 +22,7 @@
     "empresa_id": "TSLA",
     "recurso_id": "LITIO",
     "tipo": "depende",
-    "volumen_anual": 117065,
+    "volumen_anual": 238074,
     "porcentaje_produccion_global": 6,
     "descripcion": "Tesla depende de litio para sus baterías de vehículos eléctricos"
   },
@@ -31,7 +31,7 @@
     "empresa_id": "6752",
     "recurso_id": "LITIO",
     "tipo": "depende",
-    "volumen_anual": 182524,
+    "volumen_anual": 263290,
     "porcentaje_produccion_global": 4,
     "descripcion": "Panasonic depende de litio para producir celdas de batería"
   },
@@ -40,7 +40,7 @@
     "empresa_id": "1211",
     "recurso_id": "LITIO",
     "tipo": "depende",
-    "volumen_anual": 237665,
+    "volumen_anual": 38598,
     "porcentaje_produccion_global": 5,
     "descripcion": "BYD depende de litio para su producción masiva de baterías LFP"
   },
@@ -49,7 +49,7 @@
     "empresa_id": "006400",
     "recurso_id": "LITIO",
     "tipo": "depende",
-    "volumen_anual": 480639,
+    "volumen_anual": 253862,
     "porcentaje_produccion_global": 4,
     "descripcion": "Samsung SDI depende de litio para baterías EV"
   },
@@ -58,7 +58,7 @@
     "empresa_id": "600111",
     "recurso_id": "IMANES",
     "tipo": "fabrica",
-    "volumen_anual": 440575,
+    "volumen_anual": 8927,
     "porcentaje_produccion_global": 35,
     "descripcion": "Mayor productora mundial de elementos de tierras raras"
   },
@@ -67,7 +67,7 @@
     "empresa_id": "AAPL",
     "recurso_id": "IMANES",
     "tipo": "depende",
-    "volumen_anual": 270244,
+    "volumen_anual": 211974,
     "porcentaje_produccion_global": 2,
     "descripcion": "Apple depende de imanes de tierras raras para hápticos y altavoces"
   },
@@ -76,7 +76,7 @@
     "empresa_id": "SIE",
     "recurso_id": "IMANES",
     "tipo": "depende",
-    "volumen_anual": 27788,
+    "volumen_anual": 198681,
     "porcentaje_produccion_global": 3,
     "descripcion": "Siemens depende de imanes para motores eléctricos y turbinas eólicas"
   },
@@ -85,7 +85,7 @@
     "empresa_id": "1211",
     "recurso_id": "IMANES",
     "tipo": "depende",
-    "volumen_anual": 221184,
+    "volumen_anual": 370322,
     "porcentaje_produccion_global": 3,
     "descripcion": "BYD depende de imanes de tierras raras para motores EV"
   },
@@ -94,7 +94,7 @@
     "empresa_id": "6723",
     "recurso_id": "IMANES",
     "tipo": "depende",
-    "volumen_anual": 405153,
+    "volumen_anual": 325770,
     "porcentaje_produccion_global": 1,
     "descripcion": "Renesas usa componentes magnéticos en su producción"
   },
@@ -103,7 +103,7 @@
     "empresa_id": "GLEN",
     "recurso_id": "COBALTO",
     "tipo": "fabrica",
-    "volumen_anual": 442990,
+    "volumen_anual": 388330,
     "porcentaje_produccion_global": 22,
     "descripcion": "Glencore es el mayor productor mundial de cobalto"
   },
@@ -112,7 +112,7 @@
     "empresa_id": "006400",
     "recurso_id": "COBALTO",
     "tipo": "depende",
-    "volumen_anual": 159412,
+    "volumen_anual": 190968,
     "porcentaje_produccion_global": 5,
     "descripcion": "Samsung SDI depende de cobalto para cátodos de batería"
   },
@@ -121,7 +121,7 @@
     "empresa_id": "6752",
     "recurso_id": "COBALTO",
     "tipo": "depende",
-    "volumen_anual": 24713,
+    "volumen_anual": 206198,
     "porcentaje_produccion_global": 4,
     "descripcion": "Panasonic depende de cobalto para celdas de batería de alto rendimiento"
   },
@@ -130,7 +130,7 @@
     "empresa_id": "TSLA",
     "recurso_id": "COBALTO",
     "tipo": "depende",
-    "volumen_anual": 14238,
+    "volumen_anual": 413919,
     "porcentaje_produccion_global": 3,
     "descripcion": "Tesla busca reducir su dependencia de cobalto en nuevas químicas de batería"
   },
@@ -139,7 +139,7 @@
     "empresa_id": "FCX",
     "recurso_id": "COBRE",
     "tipo": "fabrica",
-    "volumen_anual": 226272,
+    "volumen_anual": 191427,
     "porcentaje_produccion_global": 8,
     "descripcion": "Uno de los mayores productores de cobre del mundo"
   },
@@ -148,7 +148,7 @@
     "empresa_id": "2899",
     "recurso_id": "COBRE",
     "tipo": "fabrica",
-    "volumen_anual": 76763,
+    "volumen_anual": 284041,
     "porcentaje_produccion_global": 6,
     "descripcion": "Zijin Mining opera importantes minas de cobre a nivel global"
   },
@@ -157,7 +157,7 @@
     "empresa_id": "RIO",
     "recurso_id": "COBRE",
     "tipo": "fabrica",
-    "volumen_anual": 379200,
+    "volumen_anual": 68347,
     "porcentaje_produccion_global": 5,
     "descripcion": "Rio Tinto produce cobre en múltiples operaciones globales"
   },
@@ -166,7 +166,7 @@
     "empresa_id": "BHP",
     "recurso_id": "COBRE",
     "tipo": "fabrica",
-    "volumen_anual": 36422,
+    "volumen_anual": 237476,
     "porcentaje_produccion_global": 7,
     "descripcion": "BHP opera Escondida, la mayor mina de cobre del mundo"
   },
@@ -175,7 +175,7 @@
     "empresa_id": "TECK",
     "recurso_id": "COBRE",
     "tipo": "fabrica",
-    "volumen_anual": 452034,
+    "volumen_anual": 160930,
     "porcentaje_produccion_global": 3,
     "descripcion": "Teck Resources produce cobre en Canadá y Chile"
   },
@@ -184,7 +184,7 @@
     "empresa_id": "GMEXICOB",
     "recurso_id": "COBRE",
     "tipo": "fabrica",
-    "volumen_anual": 449940,
+    "volumen_anual": 149167,
     "porcentaje_produccion_global": 4,
     "descripcion": "Mayor productora de cobre de México"
   },
@@ -193,7 +193,7 @@
     "empresa_id": "SIE",
     "recurso_id": "COBRE",
     "tipo": "depende",
-    "volumen_anual": 444592,
+    "volumen_anual": 240426,
     "porcentaje_produccion_global": 2,
     "descripcion": "Siemens depende de cobre para cableado y motores eléctricos"
   },
@@ -202,7 +202,7 @@
     "empresa_id": "ABBN",
     "recurso_id": "COBRE",
     "tipo": "depende",
-    "volumen_anual": 104833,
+    "volumen_anual": 73798,
     "porcentaje_produccion_global": 2,
     "descripcion": "ABB depende de cobre para equipos eléctricos industriales"
   },
@@ -211,7 +211,7 @@
     "empresa_id": "2330",
     "recurso_id": "SEMICONDUCTORES_CHIPS",
     "tipo": "fabrica",
-    "volumen_anual": 160459,
+    "volumen_anual": 73804,
     "porcentaje_produccion_global": 60,
     "descripcion": "TSMC fabrica la mayoría de los chips avanzados del mundo"
   },
@@ -220,7 +220,7 @@
     "empresa_id": "005930",
     "recurso_id": "SEMICONDUCTORES_CHIPS",
     "tipo": "fabrica",
-    "volumen_anual": 461738,
+    "volumen_anual": 152936,
     "porcentaje_produccion_global": 18,
     "descripcion": "Segundo mayor fabricante mundial de semiconductores"
   },
@@ -229,7 +229,7 @@
     "empresa_id": "INTC",
     "recurso_id": "SEMICONDUCTORES_CHIPS",
     "tipo": "fabrica",
-    "volumen_anual": 237598,
+    "volumen_anual": 404720,
     "porcentaje_produccion_global": 10,
     "descripcion": "Intel fabrica sus propios procesadores y busca ampliar su fundición"
   },
@@ -238,7 +238,7 @@
     "empresa_id": "0981",
     "recurso_id": "SEMICONDUCTORES_CHIPS",
     "tipo": "fabrica",
-    "volumen_anual": 171220,
+    "volumen_anual": 128163,
     "porcentaje_produccion_global": 5,
     "descripcion": "Mayor fundición de China, limitada por controles de exportación"
   },
@@ -247,7 +247,7 @@
     "empresa_id": "2303",
     "recurso_id": "SEMICONDUCTORES_CHIPS",
     "tipo": "fabrica",
-    "volumen_anual": 471626,
+    "volumen_anual": 485212,
     "porcentaje_produccion_global": 4,
     "descripcion": "Tercera mayor fundición de semiconductores del mundo"
   },
@@ -256,7 +256,7 @@
     "empresa_id": "GFS",
     "recurso_id": "SEMICONDUCTORES_CHIPS",
     "tipo": "fabrica",
-    "volumen_anual": 15526,
+    "volumen_anual": 130747,
     "porcentaje_produccion_global": 3,
     "descripcion": "Fundición independiente con operaciones en EEUU, Alemania y Singapur"
   },
@@ -265,7 +265,7 @@
     "empresa_id": "AAPL",
     "recurso_id": "SEMICONDUCTORES_CHIPS",
     "tipo": "depende",
-    "volumen_anual": 290823,
+    "volumen_anual": 440950,
     "porcentaje_produccion_global": 8,
     "descripcion": "Apple depende de TSMC para todos sus chips propios"
   },
@@ -274,7 +274,7 @@
     "empresa_id": "NVDA",
     "recurso_id": "SEMICONDUCTORES_CHIPS",
     "tipo": "depende",
-    "volumen_anual": 98042,
+    "volumen_anual": 237205,
     "porcentaje_produccion_global": 7,
     "descripcion": "NVIDIA depende de fundiciones externas para fabricar sus GPUs"
   },
@@ -283,7 +283,7 @@
     "empresa_id": "DELL",
     "recurso_id": "SEMICONDUCTORES_CHIPS",
     "tipo": "depende",
-    "volumen_anual": 60752,
+    "volumen_anual": 147606,
     "porcentaje_produccion_global": 3,
     "descripcion": "Dell depende de semiconductores para todos sus equipos"
   },
@@ -292,7 +292,7 @@
     "empresa_id": "7203",
     "recurso_id": "SEMICONDUCTORES_CHIPS",
     "tipo": "depende",
-    "volumen_anual": 97572,
+    "volumen_anual": 39396,
     "porcentaje_produccion_global": 2,
     "descripcion": "Toyota depende de semiconductores automotrices, escasos en 2021-2022"
   },
@@ -301,7 +301,7 @@
     "empresa_id": "BMW",
     "recurso_id": "SEMICONDUCTORES_CHIPS",
     "tipo": "depende",
-    "volumen_anual": 418275,
+    "volumen_anual": 74836,
     "porcentaje_produccion_global": 2,
     "descripcion": "BMW depende de semiconductores para sistemas electrónicos del vehículo"
   },
@@ -310,7 +310,7 @@
     "empresa_id": "XOM",
     "recurso_id": "PETROLEO",
     "tipo": "fabrica",
-    "volumen_anual": 104072,
+    "volumen_anual": 120915,
     "porcentaje_produccion_global": 3,
     "descripcion": "Una de las mayores productoras de petróleo del mundo"
   },
@@ -319,7 +319,7 @@
     "empresa_id": "CVX",
     "recurso_id": "PETROLEO",
     "tipo": "fabrica",
-    "volumen_anual": 380399,
+    "volumen_anual": 238383,
     "porcentaje_produccion_global": 2,
     "descripcion": "Chevron produce petróleo en múltiples cuencas globales"
   },
@@ -328,7 +328,7 @@
     "empresa_id": "SHEL",
     "recurso_id": "PETROLEO",
     "tipo": "fabrica",
-    "volumen_anual": 69063,
+    "volumen_anual": 298873,
     "porcentaje_produccion_global": 2,
     "descripcion": "Shell es una de las petroleras integradas más grandes del mundo"
   },
@@ -337,7 +337,7 @@
     "empresa_id": "BP",
     "recurso_id": "PETROLEO",
     "tipo": "fabrica",
-    "volumen_anual": 372071,
+    "volumen_anual": 138127,
     "porcentaje_produccion_global": 2,
     "descripcion": "BP produce y refina petróleo a escala global"
   },
@@ -346,7 +346,7 @@
     "empresa_id": "0857",
     "recurso_id": "PETROLEO",
     "tipo": "fabrica",
-    "volumen_anual": 423901,
+    "volumen_anual": 41322,
     "porcentaje_produccion_global": 4,
     "descripcion": "Mayor productora de petróleo de China"
   },
@@ -355,7 +355,7 @@
     "empresa_id": "NATIONAL",
     "recurso_id": "PETROLEO",
     "tipo": "exporta",
-    "volumen_anual": 379588,
+    "volumen_anual": 345460,
     "porcentaje_produccion_global": 3,
     "descripcion": "Exporta petróleo iraní bajo restricciones de sanciones internacionales"
   },
@@ -364,7 +364,7 @@
     "empresa_id": "PETR4",
     "recurso_id": "PETROLEO",
     "tipo": "fabrica",
-    "volumen_anual": 185254,
+    "volumen_anual": 159228,
     "porcentaje_produccion_global": 3,
     "descripcion": "Petrobras lidera la producción de petróleo en aguas profundas de Brasil"
   },
@@ -373,7 +373,7 @@
     "empresa_id": "RELIANCE",
     "recurso_id": "PETROLEO",
     "tipo": "importa",
-    "volumen_anual": 242568,
+    "volumen_anual": 123187,
     "porcentaje_produccion_global": 2,
     "descripcion": "Reliance importa y refina crudo en la mayor refinería del mundo"
   },
@@ -382,7 +382,7 @@
     "empresa_id": "ONGC",
     "recurso_id": "PETROLEO",
     "tipo": "fabrica",
-    "volumen_anual": 279332,
+    "volumen_anual": 58984,
     "porcentaje_produccion_global": 1,
     "descripcion": "Mayor productora de petróleo y gas de India"
   },
@@ -391,7 +391,7 @@
     "empresa_id": "SU",
     "recurso_id": "PETROLEO",
     "tipo": "fabrica",
-    "volumen_anual": 19389,
+    "volumen_anual": 162234,
     "porcentaje_produccion_global": 1,
     "descripcion": "Suncor produce petróleo a partir de arenas bituminosas canadienses"
   },
@@ -400,7 +400,7 @@
     "empresa_id": "PTT",
     "recurso_id": "PETROLEO",
     "tipo": "importa",
-    "volumen_anual": 61333,
+    "volumen_anual": 162647,
     "porcentaje_produccion_global": 1,
     "descripcion": "PTT importa petróleo para el mercado energético tailandés"
   },
@@ -409,7 +409,7 @@
     "empresa_id": "PEMEX",
     "recurso_id": "PETROLEO",
     "tipo": "fabrica",
-    "volumen_anual": 294191,
+    "volumen_anual": 367518,
     "porcentaje_produccion_global": 2,
     "descripcion": "Petrolera estatal mexicana"
   },
@@ -418,7 +418,7 @@
     "empresa_id": "7203",
     "recurso_id": "PETROLEO",
     "tipo": "depende",
-    "volumen_anual": 470102,
+    "volumen_anual": 36130,
     "porcentaje_produccion_global": 1,
     "descripcion": "Depende de derivados del petróleo para combustibles y plásticos"
   },
@@ -427,7 +427,7 @@
     "empresa_id": "SHEL",
     "recurso_id": "GAS_NATURAL",
     "tipo": "fabrica",
-    "volumen_anual": 148310,
+    "volumen_anual": 250955,
     "porcentaje_produccion_global": 4,
     "descripcion": "Shell es líder mundial en gas natural licuado (GNL)"
   },
@@ -436,7 +436,7 @@
     "empresa_id": "TTE",
     "recurso_id": "GAS_NATURAL",
     "tipo": "fabrica",
-    "volumen_anual": 237219,
+    "volumen_anual": 353803,
     "porcentaje_produccion_global": 3,
     "descripcion": "TotalEnergies opera importantes proyectos de GNL"
   },
@@ -445,7 +445,7 @@
     "empresa_id": "WDS",
     "recurso_id": "GAS_NATURAL",
     "tipo": "fabrica",
-    "volumen_anual": 12052,
+    "volumen_anual": 459989,
     "porcentaje_produccion_global": 2,
     "descripcion": "Mayor productora de gas natural de Australia"
   },
@@ -454,7 +454,7 @@
     "empresa_id": "NATIONAL",
     "recurso_id": "GAS_NATURAL",
     "tipo": "fabrica",
-    "volumen_anual": 279073,
+    "volumen_anual": 115311,
     "porcentaje_produccion_global": 3,
     "descripcion": "Irán tiene una de las mayores reservas de gas natural del mundo"
   },
@@ -463,7 +463,7 @@
     "empresa_id": "RWE",
     "recurso_id": "GAS_NATURAL",
     "tipo": "importa",
-    "volumen_anual": 471387,
+    "volumen_anual": 345981,
     "porcentaje_produccion_global": 2,
     "descripcion": "RWE importa gas natural para generación eléctrica en Alemania"
   },
@@ -472,7 +472,7 @@
     "empresa_id": "PTT",
     "recurso_id": "GAS_NATURAL",
     "tipo": "importa",
-    "volumen_anual": 218471,
+    "volumen_anual": 489727,
     "porcentaje_produccion_global": 1,
     "descripcion": "PTT importa GNL para el mercado tailandés"
   },
@@ -481,7 +481,7 @@
     "empresa_id": "2330",
     "recurso_id": "SILICIO",
     "tipo": "depende",
-    "volumen_anual": 221272,
+    "volumen_anual": 216077,
     "porcentaje_produccion_global": 15,
     "descripcion": "TSMC depende de obleas de silicio de alta pureza"
   },
@@ -490,7 +490,7 @@
     "empresa_id": "005930",
     "recurso_id": "SILICIO",
     "tipo": "depende",
-    "volumen_anual": 363714,
+    "volumen_anual": 142155,
     "porcentaje_produccion_global": 12,
     "descripcion": "Samsung depende de silicio para fabricación de chips"
   },
@@ -499,7 +499,7 @@
     "empresa_id": "INTC",
     "recurso_id": "SILICIO",
     "tipo": "depende",
-    "volumen_anual": 279536,
+    "volumen_anual": 362231,
     "porcentaje_produccion_global": 8,
     "descripcion": "Intel depende de obleas de silicio para sus fábricas"
   },
@@ -508,7 +508,7 @@
     "empresa_id": "GFS",
     "recurso_id": "SILICIO",
     "tipo": "depende",
-    "volumen_anual": 372428,
+    "volumen_anual": 112475,
     "porcentaje_produccion_global": 3,
     "descripcion": "GlobalFoundries depende de silicio de alta pureza"
   },
@@ -517,7 +517,7 @@
     "empresa_id": "RIO",
     "recurso_id": "ALUMINIO",
     "tipo": "fabrica",
-    "volumen_anual": 65680,
+    "volumen_anual": 56318,
     "porcentaje_produccion_global": 5,
     "descripcion": "Rio Tinto es uno de los mayores productores de aluminio del mundo"
   },
@@ -526,7 +526,7 @@
     "empresa_id": "BHP",
     "recurso_id": "ALUMINIO",
     "tipo": "fabrica",
-    "volumen_anual": 324941,
+    "volumen_anual": 154380,
     "porcentaje_produccion_global": 2,
     "descripcion": "BHP produce alúmina y aluminio en operaciones globales"
   },
@@ -535,7 +535,7 @@
     "empresa_id": "S32",
     "recurso_id": "ALUMINIO",
     "tipo": "fabrica",
-    "volumen_anual": 200311,
+    "volumen_anual": 284852,
     "porcentaje_produccion_global": 2,
     "descripcion": "South32 produce aluminio y alúmina"
   },
@@ -544,7 +544,7 @@
     "empresa_id": "VOW3",
     "recurso_id": "ALUMINIO",
     "tipo": "depende",
-    "volumen_anual": 87958,
+    "volumen_anual": 93212,
     "porcentaje_produccion_global": 2,
     "descripcion": "Volkswagen depende de aluminio para carrocerías más ligeras"
   },
@@ -553,7 +553,7 @@
     "empresa_id": "BMW",
     "recurso_id": "ALUMINIO",
     "tipo": "depende",
-    "volumen_anual": 410086,
+    "volumen_anual": 218934,
     "porcentaje_produccion_global": 2,
     "descripcion": "BMW depende de aluminio para componentes estructurales"
   },
@@ -562,7 +562,7 @@
     "empresa_id": "F",
     "recurso_id": "ALUMINIO",
     "tipo": "depende",
-    "volumen_anual": 48736,
+    "volumen_anual": 458783,
     "porcentaje_produccion_global": 2,
     "descripcion": "Ford usa aluminio extensivamente en su línea F-150"
   },
@@ -571,7 +571,7 @@
     "empresa_id": "NEM",
     "recurso_id": "ORO",
     "tipo": "fabrica",
-    "volumen_anual": 412887,
+    "volumen_anual": 215468,
     "porcentaje_produccion_global": 5,
     "descripcion": "Mayor productora de oro del mundo"
   },
@@ -580,7 +580,7 @@
     "empresa_id": "ABX",
     "recurso_id": "ORO",
     "tipo": "fabrica",
-    "volumen_anual": 85974,
+    "volumen_anual": 215986,
     "porcentaje_produccion_global": 4,
     "descripcion": "Una de las mayores mineras de oro del mundo"
   },
@@ -589,7 +589,7 @@
     "empresa_id": "AEM",
     "recurso_id": "ORO",
     "tipo": "fabrica",
-    "volumen_anual": 254065,
+    "volumen_anual": 345352,
     "porcentaje_produccion_global": 2,
     "descripcion": "Importante productora de oro canadiense"
   },
@@ -598,7 +598,7 @@
     "empresa_id": "2899",
     "recurso_id": "ORO",
     "tipo": "fabrica",
-    "volumen_anual": 28141,
+    "volumen_anual": 389046,
     "porcentaje_produccion_global": 2,
     "descripcion": "Zijin Mining también produce oro junto con cobre"
   },
@@ -607,7 +607,7 @@
     "empresa_id": "005930",
     "recurso_id": "PANTALLAS_OLED",
     "tipo": "fabrica",
-    "volumen_anual": 246194,
+    "volumen_anual": 80562,
     "porcentaje_produccion_global": 45,
     "descripcion": "Mayor fabricante mundial de pantallas OLED"
   },
@@ -616,7 +616,7 @@
     "empresa_id": "034220",
     "recurso_id": "PANTALLAS_OLED",
     "tipo": "fabrica",
-    "volumen_anual": 186641,
+    "volumen_anual": 437298,
     "porcentaje_produccion_global": 25,
     "descripcion": "Segundo mayor fabricante de pantallas OLED, principal proveedor de TVs"
   },
@@ -625,7 +625,7 @@
     "empresa_id": "000725",
     "recurso_id": "PANTALLAS_OLED",
     "tipo": "fabrica",
-    "volumen_anual": 471684,
+    "volumen_anual": 286369,
     "porcentaje_produccion_global": 15,
     "descripcion": "BOE es el mayor fabricante de pantallas de China"
   },
@@ -634,7 +634,7 @@
     "empresa_id": "AAPL",
     "recurso_id": "PANTALLAS_OLED",
     "tipo": "depende",
-    "volumen_anual": 79555,
+    "volumen_anual": 22794,
     "porcentaje_produccion_global": 10,
     "descripcion": "Apple depende de Samsung y LG para pantallas OLED del iPhone"
   },
@@ -643,7 +643,7 @@
     "empresa_id": "1810",
     "recurso_id": "PANTALLAS_OLED",
     "tipo": "depende",
-    "volumen_anual": 244109,
+    "volumen_anual": 166792,
     "porcentaje_produccion_global": 4,
     "descripcion": "Xiaomi depende de pantallas OLED de proveedores externos"
   },
@@ -652,7 +652,7 @@
     "empresa_id": "6758",
     "recurso_id": "PANTALLAS_OLED",
     "tipo": "depende",
-    "volumen_anual": 378251,
+    "volumen_anual": 68631,
     "porcentaje_produccion_global": 3,
     "descripcion": "Sony depende de paneles OLED para sus televisores premium"
   },
@@ -661,7 +661,7 @@
     "empresa_id": "006400",
     "recurso_id": "BATERIAS_LITIO",
     "tipo": "fabrica",
-    "volumen_anual": 210742,
+    "volumen_anual": 204566,
     "porcentaje_produccion_global": 12,
     "descripcion": "Samsung SDI es uno de los mayores fabricantes de baterías de litio"
   },
@@ -670,7 +670,7 @@
     "empresa_id": "6752",
     "recurso_id": "BATERIAS_LITIO",
     "tipo": "fabrica",
-    "volumen_anual": 199772,
+    "volumen_anual": 188330,
     "porcentaje_produccion_global": 10,
     "descripcion": "Panasonic fabrica las celdas de batería usadas por Tesla"
   },
@@ -679,7 +679,7 @@
     "empresa_id": "TSLA",
     "recurso_id": "BATERIAS_LITIO",
     "tipo": "depende",
-    "volumen_anual": 466823,
+    "volumen_anual": 252344,
     "porcentaje_produccion_global": 8,
     "descripcion": "Tesla depende de baterías de litio para todos sus vehículos"
   },
@@ -688,7 +688,7 @@
     "empresa_id": "BMW",
     "recurso_id": "BATERIAS_LITIO",
     "tipo": "depende",
-    "volumen_anual": 226010,
+    "volumen_anual": 245402,
     "porcentaje_produccion_global": 4,
     "descripcion": "BMW depende de baterías de litio para su línea de EVs"
   },
@@ -697,7 +697,7 @@
     "empresa_id": "VOW3",
     "recurso_id": "BATERIAS_LITIO",
     "tipo": "depende",
-    "volumen_anual": 447889,
+    "volumen_anual": 74639,
     "porcentaje_produccion_global": 5,
     "descripcion": "Volkswagen depende de baterías de litio para su transición a EVs"
   },
@@ -706,7 +706,7 @@
     "empresa_id": "1211",
     "recurso_id": "BATERIAS_LITIO",
     "tipo": "fabrica",
-    "volumen_anual": 166424,
+    "volumen_anual": 476289,
     "porcentaje_produccion_global": 15,
     "descripcion": "BYD fabrica sus propias baterías LFP para vehículos eléctricos"
   },
@@ -715,7 +715,7 @@
     "empresa_id": "005930",
     "recurso_id": "MEMORIA_DRAM",
     "tipo": "fabrica",
-    "volumen_anual": 334916,
+    "volumen_anual": 44935,
     "porcentaje_produccion_global": 40,
     "descripcion": "Mayor fabricante mundial de memoria DRAM"
   },
@@ -724,7 +724,7 @@
     "empresa_id": "000660",
     "recurso_id": "MEMORIA_DRAM",
     "tipo": "fabrica",
-    "volumen_anual": 230806,
+    "volumen_anual": 304932,
     "porcentaje_produccion_global": 28,
     "descripcion": "Segundo mayor fabricante mundial de memoria DRAM"
   },
@@ -733,7 +733,7 @@
     "empresa_id": "MU",
     "recurso_id": "MEMORIA_DRAM",
     "tipo": "fabrica",
-    "volumen_anual": 251959,
+    "volumen_anual": 258304,
     "porcentaje_produccion_global": 22,
     "descripcion": "Tercer mayor fabricante mundial de memoria DRAM"
   },
@@ -742,7 +742,7 @@
     "empresa_id": "NVDA",
     "recurso_id": "MEMORIA_DRAM",
     "tipo": "depende",
-    "volumen_anual": 369486,
+    "volumen_anual": 415376,
     "porcentaje_produccion_global": 8,
     "descripcion": "NVIDIA depende de memoria HBM para sus GPUs de IA"
   },
@@ -751,7 +751,7 @@
     "empresa_id": "DELL",
     "recurso_id": "MEMORIA_DRAM",
     "tipo": "depende",
-    "volumen_anual": 54896,
+    "volumen_anual": 280572,
     "porcentaje_produccion_global": 4,
     "descripcion": "Dell depende de memoria DRAM para servidores y PCs"
   },
@@ -760,7 +760,7 @@
     "empresa_id": "AAPL",
     "recurso_id": "MEMORIA_DRAM",
     "tipo": "depende",
-    "volumen_anual": 398564,
+    "volumen_anual": 91241,
     "porcentaje_produccion_global": 5,
     "descripcion": "Apple depende de memoria DRAM de Samsung y SK Hynix"
   },
@@ -769,7 +769,7 @@
     "empresa_id": "005930",
     "recurso_id": "SSD_NAND",
     "tipo": "fabrica",
-    "volumen_anual": 296706,
+    "volumen_anual": 140951,
     "porcentaje_produccion_global": 33,
     "descripcion": "Líder mundial en fabricación de memoria NAND flash"
   },
@@ -778,7 +778,7 @@
     "empresa_id": "000660",
     "recurso_id": "SSD_NAND",
     "tipo": "fabrica",
-    "volumen_anual": 277806,
+    "volumen_anual": 430030,
     "porcentaje_produccion_global": 20,
     "descripcion": "SK Hynix es uno de los mayores fabricantes de NAND flash"
   },
@@ -787,7 +787,7 @@
     "empresa_id": "KIOXIA",
     "recurso_id": "SSD_NAND",
     "tipo": "fabrica",
-    "volumen_anual": 383632,
+    "volumen_anual": 262613,
     "porcentaje_produccion_global": 18,
     "descripcion": "Kioxia (ex-Toshiba Memory) es líder histórico en NAND flash"
   },
@@ -796,7 +796,7 @@
     "empresa_id": "MU",
     "recurso_id": "SSD_NAND",
     "tipo": "fabrica",
-    "volumen_anual": 305887,
+    "volumen_anual": 154953,
     "porcentaje_produccion_global": 12,
     "descripcion": "Micron fabrica memoria NAND flash para almacenamiento SSD"
   },
@@ -805,7 +805,7 @@
     "empresa_id": "DELL",
     "recurso_id": "SSD_NAND",
     "tipo": "depende",
-    "volumen_anual": 209837,
+    "volumen_anual": 115541,
     "porcentaje_produccion_global": 4,
     "descripcion": "Dell depende de NAND flash para almacenamiento en servidores y laptops"
   },
@@ -814,7 +814,7 @@
     "empresa_id": "HPQ",
     "recurso_id": "SSD_NAND",
     "tipo": "depende",
-    "volumen_anual": 283703,
+    "volumen_anual": 381551,
     "porcentaje_produccion_global": 3,
     "descripcion": "HP depende de almacenamiento SSD para sus equipos"
   }

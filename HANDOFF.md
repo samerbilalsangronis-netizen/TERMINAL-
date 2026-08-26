@@ -9,9 +9,48 @@ Plataforma interactiva tipo Bloomberg Terminal que mapea conexiones entre empres
 
 ---
 
+## ⚠️ ACCIÓN PENDIENTE DEL USUARIO (sesión 2026-08-26, tarde)
+
+El código de esta sesión ya está en `main`, pero **el dataset nuevo (S&P 500 + Nasdaq-100) todavía NO está en producción** porque requiere correr SQL en el SQL Editor de Supabase, y este sandbox no tiene las credenciales del proyecto. Pasos, en orden:
+
+1. `supabase/00_limpiar.sql` (vacía `empresas`, `dependencias`, `recursos_empresa` — `paises` y `cuellos_botella` quedan intactos)
+2. `supabase/seed/01_paises.sql`
+3. `supabase/seed/02_empresas_1_de_3.sql`, `02_empresas_2_de_3.sql`, `02_empresas_3_de_3.sql` (antes era un solo `02_empresas.sql`; ahora son 3 archivos porque el dataset pasó de 184 a 649 empresas)
+4. `supabase/seed/03_dependencias.sql`
+5. `supabase/seed/04_recursos_criticos.sql`
+6. `supabase/seed/05_recursos_empresa.sql`
+7. `supabase/seed/06_cuellos_botella.sql`
+
+Hasta que se corra esto, la producción sigue mostrando el dataset de 184 empresas (la UI del árbol nuevo sí está desplegada y funciona con lo que haya en la base).
+
 ## ✅ ESTADO ACTUAL (última sesión: 2026-08-26)
 
-Todo lo de abajo está en `main` y desplegado en producción.
+Todo lo de abajo está en `main` y desplegado en producción (salvo el dataset ampliado, ver arriba).
+
+### Árbol jerárquico del país (reemplaza el grafo de fuerza D3)
+
+A pedido del usuario, que mandó un mockup a mano: al hacer click en un país ya no se abre un panel lateral angosto con nodos flotando libremente. Ahora es un **overlay a pantalla completa** sobre el mapa (`src/components/Panels/CountryPanel.tsx` + `src/components/Graph/CountrySectorTree.tsx`):
+
+- Árbol **rígido top-down** con `d3.hierarchy`/`d3.tree()` (ya no `d3.forceSimulation`): la caja del país arriba al centro, ramas curvas (`d3.linkVertical`) hacia cajas de sector, y de ahí hacia chips de empresa clickeables.
+- **Revelado escalonado**: la raíz aparece primero, después cada sector con un pequeño delay, después las empresas de cada sector — simula que el árbol "crece" desde el país en vez de aparecer todo de golpe.
+- **Botón X** arriba a la derecha para cerrar y volver al mapa completo (antes no existía forma de cerrar el panel de país salvo clickeando otra cosa).
+- Al hacer click en una empresa del árbol, el overlay se oculta (pasa a mostrarse el `CompanyPanel` como panel lateral, igual que antes) y **reaparece automáticamente** al cerrar el panel de la empresa — implementado con estado en `page.tsx` (`selectedCountry && !selectedCompany`), no con eventos custom.
+- Sigue soportando pan (arrastrar) y zoom con rueda; auto-encuadra el árbol completo al abrir.
+- Validado en sandbox con Playwright interceptando las respuestas de Supabase con datos mock (la red del sandbox no llega a Supabase real ni a las tiles de CartoDB) — el flujo completo abrir país → click empresa → cerrar empresa → reaparece árbol → cerrar árbol funciona.
+
+Nota: se evaluó rescatar una rama huérfana vieja (`claude/d3-dependency-graph-viz-6vsh05`, antes de la migración a Supabase) que agregaba líneas de cadena de suministro sobre el mapa entre una empresa y sus proveedores. El usuario pidió cancelar esa tarea a mitad de camino — **se revirtió por completo, no quedó nada de eso en el código**. Si se retoma la idea más adelante, esa rama sigue existiendo sin mergear como referencia.
+
+### Dataset de EEUU ampliado: S&P 500 + Nasdaq-100 (505 empresas, antes ~40)
+
+El usuario pidió explícitamente "todas las empresas del NASDAQ y el S&P 500" para EEUU. Se le preguntó el alcance real (NASDAQ completo son ~3300+ tickers, en su mayoría microcaps/ETFs sin relevancia geopolítica) y eligió **S&P 500 + Nasdaq-100**.
+
+- Fuente real: wikitext crudo de Wikipedia ("List of S&P 500 companies" y "List of NASDAQ-100 companies", snapshot de agosto 2026), parseado con un script Python puntual (no comiteado, vivió en el scratchpad de la sesión) → `scripts/sp500_nasdaq100_data.js` (**sí comiteado**, 465 filas). Nombre, ticker, sector/subsector real (GICS) y ciudad sede son reales; cap_mercado y las cifras trimestrales siguen siendo estimaciones ilustrativas por tier, igual que el resto del dataset.
+- **Dedupe automático por ticker**: `scripts/generar_empresas_reales.js` ahora hace merge de `empresas_reales_data.js` (curada a mano, con descripciones y dependencias reales) + `sp500_nasdaq100_data.js` (índice completo), descartando cualquier ticker del índice que ya esté en la lista curada — así NVIDIA, Apple, Microsoft, etc. no quedan duplicadas.
+- Mapeo de sector GICS → taxonomía en español: reutiliza los sectores existentes donde tiene sentido (Semiconductores, Software y Nube, Automotriz, Energía, Manufactura, Logística, Telecomunicaciones, Equipamiento, Electrónica de Consumo, Minería y Recursos) y agrega nuevos donde el S&P 500 tiene sectores que el dataset original no cubría (bancos, salud, utilities, real estate, etc.): Finanzas, Salud, Consumo Discrecional, Consumo Básico, Consumo y Retail, Materiales, Servicios Públicos, Bienes Raíces, Industrial, Defensa y Aeroespacial, Comunicación y Medios. No requirió tocar código — el árbol de sectores colorea cualquier sector nuevo automáticamente (paleta de respaldo por hash).
+- HQ geocodificado con una tabla de ~250 ciudades reales (`scratchpad`, no comiteada — las coordenadas finales quedan embebidas en `sp500_nasdaq100_data.js`); fallback a centroide del estado si la ciudad no está en la tabla.
+- Tier (mega/large/mid, controla el rango de cifras ilustrativas) asignado con listas de tickers conocidos a mano — no es precisión financiera real, es la misma estimación por catálogo que ya se usaba.
+- Las **465 empresas nuevas no tienen proveedores/dependencias cargadas** (a propósito: solo las ~66 dependencias curadas a mano en `dependencias_reales_data.js` son relaciones reales y documentadas; no se fabricaron dependencias falsas para las nuevas). En su panel se ve "No hay dependencias registradas", es el estado esperado.
+- Total dataset: **649 empresas** (505 EEUU + 144 del resto del mundo, sin cambios). Ver "ACCIÓN PENDIENTE" arriba: falta correr el seed en Supabase para que esto se vea en producción.
 
 ### Cambio de arquitectura grande: datos en Supabase, no JSON estático
 
@@ -23,7 +62,7 @@ La app ya **no lee `/public/data/*.json` en runtime** (excepto `countries.geojso
 - **Para actualizar datos:** regenerar el JSON correspondiente en `src/data/`, correr `node scripts/generar_seed_sql.js` (produce `supabase/seed/*.sql`), y pegar/correr esos archivos en el SQL Editor de Supabase. El editor de Supabase **tiene un límite de tamaño por query** — por eso el seed sale partido en archivos chicos por tabla, no uno solo gigante.
 - Si hay que reemplazar datos existentes (no solo agregar), correr `supabase/00_limpiar.sql` primero. **Importante:** Postgres no deja truncar una tabla individual si hay una FK apuntando a ella, aunque la tabla referenciante esté vacía — hay que truncar todas las tablas relacionadas en una sola sentencia (`truncate table a, b, c cascade;`), no una por una.
 
-### Dataset: 184 empresas **reales** (ya no son inventadas)
+### Dataset: 184 empresas **reales** (ya no son inventadas) — historial; ver "Dataset de EEUU ampliado" arriba para el estado actual (649)
 
 El dataset original (Fase 2, sesiones anteriores) generaba nombres de empresa combinando palabras al azar — nunca tuvo NVIDIA, Meta, AMD ni ningún nombre real, pese a que el HANDOFF viejo decía "500 empresas reales". Se reemplazó por completo:
 
@@ -87,6 +126,8 @@ TERMINAL/
 ├── scripts/
 │   ├── empresas_reales_data.js, dependencias_reales_data.js,
 │   │   recursos_empresa_reales_data.js   (listas curadas, EDITAR ACÁ)
+│   ├── sp500_nasdaq100_data.js         (índice S&P 500 + Nasdaq-100, generado
+│   │   una vez desde Wikipedia, 465 filas — no editar a mano, sin dependencias)
 │   ├── generar_empresas_reales.js, generar_dependencias_reales.js,
 │   │   generar_recursos_empresa_reales.js (nombre→id, escriben src/data/*.json)
 │   ├── generar_seed_sql.js            (src/data/*.json → supabase/seed/*.sql)
@@ -132,9 +173,9 @@ npm run dev   # http://localhost:3000
 
 - Fondo UI: `#0a0a0a` · Océano (mapa): negro puro · Países (mapa): `#4a4a4a` · Bordes: `#ff8c42` (naranja) · Accent: `#00d4ff` (cian) · Crítico: `#ff3333` (rojo)
 - Tipografía: `-apple-system` / mono para cifras
-- Paneles laterales: `CompanyPanel`/`AdvancedSearchPanel` 384px, `CountryPanel` 520px (necesita más espacio por el árbol de sectores)
+- Paneles laterales: `CompanyPanel`/`AdvancedSearchPanel` 384px; `CountryPanel` ahora es overlay a pantalla completa sobre el mapa, no un panel lateral angosto
 
 ---
 
-**Última actualización:** 2026-08-26
-**Rama actual:** `claude/repo-visual-details-p8zogw` (sincronizada con `main`, fast-forward, sin PRs pendientes)
+**Última actualización:** 2026-08-26 (tarde)
+**Rama actual:** `claude/lee-el-handoff-2gwhpj`, pusheada directo a `main` a pedido del usuario

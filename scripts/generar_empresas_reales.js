@@ -8,7 +8,15 @@
 
 const fs = require('fs');
 const path = require('path');
-const empresas = require('./empresas_reales_data');
+const curadas = require('./empresas_reales_data');
+const indiceUS = require('./sp500_nasdaq100_data');
+
+// El índice (S&P 500 / Nasdaq-100) es nombre/ticker/sector/sede reales pero
+// sin dependencias curadas a mano; si un ticker ya está en la lista curada
+// (con sus dependencias reales), se descarta la versión del índice para no
+// duplicar la empresa.
+const tickersCurados = new Set(curadas.map((e) => e.ticker))
+const empresas = [...curadas, ...indiceUS.filter((e) => !tickersCurados.has(e.ticker))]
 
 // Empresas cuyo estado geopolítico refleja un riesgo real y documentado
 // (dependencia de un solo proveedor, sanciones, tensión geopolítica activa).
