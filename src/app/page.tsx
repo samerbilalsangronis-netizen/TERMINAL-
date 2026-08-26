@@ -74,13 +74,22 @@ export default function Home() {
       {/* Contenido Principal */}
       <div className="flex flex-1 overflow-hidden">
         {/* Mapa */}
-        <div className="flex-1">
+        <div className="flex-1 relative">
           <MapContainer
             onCountrySelect={setSelectedCountry}
             selectedCountry={selectedCountry}
             onBottleneckSelect={setSelectedBottleneck}
             selectedBottleneck={selectedBottleneck?.id || null}
           />
+
+          {/* Mapa de empresas del país: overlay a pantalla completa sobre el mapa */}
+          {selectedCountry && !selectedCompany && (
+            <CountryPanel
+              countryId={selectedCountry}
+              onCompanySelect={setSelectedCompany}
+              onClose={() => setSelectedCountry(null)}
+            />
+          )}
         </div>
 
         {/* Panel Lateral */}
@@ -96,13 +105,6 @@ export default function Home() {
             <BottleneckPanel
               bottleneck={selectedBottleneck}
               onClose={() => setSelectedBottleneck(null)}
-            />
-          </div>
-        ) : selectedCountry ? (
-          <div className="w-[520px] border-l border-[#333] overflow-hidden bg-[#0a0a0a]">
-            <CountryPanel
-              countryId={selectedCountry}
-              onCompanySelect={setSelectedCompany}
             />
           </div>
         ) : searchTerm ? (

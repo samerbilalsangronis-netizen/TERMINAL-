@@ -40,20 +40,19 @@ const ESTADO_BORDER: Record<string, string> = {
   critico: '#ff3333',
 }
 
-interface TreeNode extends d3.SimulationNodeDatum {
+interface NodeDatum {
   id: string
   kind: 'root' | 'sector' | 'empresa'
   label: string
   color: string
   border?: string
   empresa?: Empresa
-  radius: number
+  children?: NodeDatum[]
 }
 
-interface TreeLink extends d3.SimulationLinkDatum<TreeNode> {
-  source: string | TreeNode
-  target: string | TreeNode
-}
+const ROOT_W = 200, ROOT_H = 64
+const SECTOR_W = 150, SECTOR_H = 44
+const CHIP_W = 112, CHIP_H = 30
 
 export default function CountrySectorTree({ countryId, onCompanySelect }: CountrySectorTreeProps) {
   const svgRef = useRef<SVGSVGElement>(null)
@@ -90,12 +89,13 @@ export default function CountrySectorTree({ countryId, onCompanySelect }: Countr
   useEffect(() => {
     if (!svgRef.current || !pais || empresas.length === 0) return
 
-    const width = svgRef.current.clientWidth || 400
-    const height = svgRef.current.clientHeight || 500
+    const el = svgRef.current
+    const width = el.clientWidth || 900
+    const height = el.clientHeight || 600
 
-    d3.select(svgRef.current).selectAll('*').remove()
+    d3.select(el).selectAll('*').remove()
 
-    const svg = d3.select(svgRef.current)
+    const svg = d3.select(el)
       .attr('width', width)
       .attr('height', height)
       .attr('viewBox', [0, 0, width, height])
@@ -103,11 +103,11 @@ export default function CountrySectorTree({ countryId, onCompanySelect }: Countr
     const g = svg.append('g')
 
     const zoom = d3.zoom<SVGSVGElement, unknown>()
-      .scaleExtent([0.2, 4])
+      .scaleExtent([0.3, 3])
       .on('zoom', (event) => g.attr('transform', event.transform))
     svg.call(zoom)
 
-    // Construir jerarquía: país (raíz) → sectores → empresas
+    // Construir jerarquía rígida: país (raíz) → sectores → empresas
     const porSector = new Map<string, Empresa[]>()
     empresas.forEach((e) => {
       const list = porSector.get(e.sector) || []
@@ -115,119 +115,129 @@ export default function CountrySectorTree({ countryId, onCompanySelect }: Countr
       porSector.set(e.sector, list)
     })
 
-    const nodes: TreeNode[] = []
-    const links: TreeLink[] = []
-
-    const rootId = 'root'
-    nodes.push({ id: rootId, kind: 'root', label: pais.nombre, color: '#ff8c42', radius: 30 })
-
-    porSector.forEach((empresasDelSector, sector) => {
-      const sectorId = `sector-${sector}`
-      const color = colorForSector(sector)
-      nodes.push({ id: sectorId, kind: 'sector', label: `${sector} (${empresasDelSector.length})`, color, radius: 16 })
-      links.push({ source: rootId, target: sectorId })
-
-      empresasDelSector.forEach((empresa) => {
-        const empresaId = `empresa-${empresa.id}`
-        nodes.push({
-          id: empresaId,
-          kind: 'empresa',
-          label: empresa.nombre,
+    const data: NodeDatum = {
+      id: 'root',
+      kind: 'root',
+      label: pais.nombre,
+      color: '#ff8c42',
+      children: Array.from(porSector.entries()).map(([sector, empresasDelSector]) => {
+        const color = colorForSector(sector)
+        return {
+          id: `sector-${sector}`,
+          kind: 'sector',
+          label: `${sector} (${empresasDelSector.length})`,
           color,
-          border: ESTADO_BORDER[empresa.estado_geopolitico] || '#333',
-          empresa,
-          radius: 9,
-        })
-        links.push({ source: sectorId, target: empresaId })
-      })
-    })
+          children: empresasDelSector.map((empresa) => ({
+            id: `empresa-${empresa.id}`,
+            kind: 'empresa',
+            label: empresa.nombre,
+            color,
+            border: ESTADO_BORDER[empresa.estado_geopolitico] || '#333',
+            empresa,
+          })),
+        }
+      }),
+    }
 
-    const simulation = d3.forceSimulation<TreeNode>(nodes)
-      .force('link', d3.forceLink<TreeNode, TreeLink>(links)
-        .id((d) => d.id)
-        .distance((l) => {
-          const target = l.target as TreeNode
-          return target.kind === 'sector' ? 110 : 46
-        })
-        .strength(0.9)
-      )
-      .force('charge', d3.forceManyBody().strength((d) => (d as TreeNode).kind === 'root' ? -400 : -90))
-      .force('center', d3.forceCenter(width / 2, height / 2))
-      .force('collision', d3.forceCollide<TreeNode>().radius((d) => d.radius + (d.kind === 'empresa' ? 34 : 10)))
+    const root = d3.hierarchy(data)
+    const layout = d3.tree<NodeDatum>().nodeSize([CHIP_W + 26, 150])
+    layout(root)
 
-    // Links
+    const nodes = root.descendants()
+    const links = root.links()
+
+    // Centrar horizontalmente y dejar margen arriba para la raíz
+    const xs = nodes.map((n) => n.x)
+    const minX = Math.min(...xs), maxX = Math.max(...xs)
+    const offsetX = width / 2 - (minX + maxX) / 2
+    const offsetY = 50
+
+    const px = (n: d3.HierarchyPointNode<NodeDatum>) => n.x + offsetX
+    const py = (n: d3.HierarchyPointNode<NodeDatum>) => n.y + offsetY
+
+    const nodeSize = (n: NodeDatum) =>
+      n.kind === 'root' ? [ROOT_W, ROOT_H] : n.kind === 'sector' ? [SECTOR_W, SECTOR_H] : [CHIP_W, CHIP_H]
+
+    // Ramas: curva vertical desde el borde inferior del nodo padre al
+    // borde superior del nodo hijo (no desde el centro, para que no
+    // atraviesen las cajas).
+    const linkGen = d3.linkVertical<unknown, { x: number; y: number }>()
+      .x((d: any) => d.x)
+      .y((d: any) => d.y)
+
     const link = g.append('g')
-      .selectAll('line')
+      .selectAll('path')
       .data(links)
-      .join('line')
-      .attr('stroke', (d) => (d.target as TreeNode).color)
-      .attr('stroke-opacity', 0.35)
-      .attr('stroke-width', 1)
+      .join('path')
+      .attr('fill', 'none')
+      .attr('stroke', (d) => (d.target.data.color))
+      .attr('stroke-opacity', 0)
+      .attr('stroke-width', 1.5)
+      .attr('d', (d) => {
+        const [, sh] = nodeSize(d.source.data)
+        const [, th] = nodeSize(d.target.data)
+        const sx = px(d.source as any), sy = py(d.source as any) + sh / 2
+        const tx = px(d.target as any), ty = py(d.target as any) - th / 2
+        return linkGen({ source: { x: sx, y: sy }, target: { x: tx, y: ty } } as any)
+      })
 
-    // Nodos: raíz y sectores como círculos, empresas como chips redondeados
     const node = g.append('g')
-      .selectAll<SVGGElement, TreeNode>('g')
+      .selectAll<SVGGElement, d3.HierarchyPointNode<NodeDatum>>('g')
       .data(nodes)
       .join('g')
-      .attr('cursor', (d) => d.kind === 'empresa' ? 'pointer' : 'default')
-      .call(d3.drag<SVGGElement, TreeNode>()
-        .on('start', (event, d) => {
-          if (!event.active) simulation.alphaTarget(0.3).restart()
-          d.fx = d.x; d.fy = d.y
-        })
-        .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y })
-        .on('end', (event, d) => {
-          if (!event.active) simulation.alphaTarget(0)
-          d.fx = null; d.fy = null
-        }) as any
-      )
+      .attr('cursor', (d) => d.data.kind === 'empresa' ? 'pointer' : 'default')
+      .attr('opacity', 0)
+      .attr('transform', (d) => `translate(${px(d as any)}, ${py(d as any)})`)
 
-    node.filter((d) => d.kind !== 'empresa')
-      .append('circle')
-      .attr('r', (d) => d.radius)
-      .attr('fill', (d) => d.kind === 'root' ? d.color : '#0a0a0a')
-      .attr('stroke', (d) => d.color)
-      .attr('stroke-width', 2)
+    // Raíz y sectores: caja redondeada con el nombre centrado
+    const box = node.filter((d) => d.data.kind !== 'empresa')
+    box.append('rect')
+      .attr('x', (d) => -nodeSize(d.data)[0] / 2)
+      .attr('y', (d) => -nodeSize(d.data)[1] / 2)
+      .attr('width', (d) => nodeSize(d.data)[0])
+      .attr('height', (d) => nodeSize(d.data)[1])
+      .attr('rx', 8).attr('ry', 8)
+      .attr('fill', (d) => d.data.kind === 'root' ? d.data.color : '#0a0a0a')
+      .attr('stroke', (d) => d.data.color)
+      .attr('stroke-width', (d) => d.data.kind === 'root' ? 2.5 : 2)
 
-    node.filter((d) => d.kind !== 'empresa')
-      .append('text')
-      .text((d) => d.label)
+    box.append('text')
+      .text((d) => d.data.label)
       .attr('text-anchor', 'middle')
-      .attr('dy', (d) => d.kind === 'root' ? '0.31em' : -d.radius - 6)
-      .attr('font-size', (d) => d.kind === 'root' ? '12px' : '10px')
+      .attr('dy', '0.32em')
+      .attr('font-size', (d) => d.data.kind === 'root' ? '15px' : '11px')
       .attr('font-weight', 'bold')
-      .attr('fill', (d) => d.kind === 'root' ? '#0a0a0a' : d.color)
+      .attr('fill', (d) => d.data.kind === 'root' ? '#0a0a0a' : d.data.color)
       .attr('pointer-events', 'none')
 
-    // Chips de empresa: rectángulo redondeado + texto truncado
-    const chip = node.filter((d) => d.kind === 'empresa')
+    // Empresas: chip más chico, clickeable
+    const chip = node.filter((d) => d.data.kind === 'empresa')
     const truncate = (s: string, n: number) => s.length > n ? `${s.slice(0, n - 1)}…` : s
 
     chip.append('rect')
-      .attr('x', -32).attr('y', -10)
-      .attr('width', 64).attr('height', 20)
+      .attr('x', -CHIP_W / 2).attr('y', -CHIP_H / 2)
+      .attr('width', CHIP_W).attr('height', CHIP_H)
       .attr('rx', 10).attr('ry', 10)
-      .attr('fill', (d) => d.color)
+      .attr('fill', (d) => d.data.color)
       .attr('fill-opacity', 0.18)
-      .attr('stroke', (d) => d.border || d.color)
+      .attr('stroke', (d) => d.data.border || d.data.color)
       .attr('stroke-width', 1.5)
 
     chip.append('text')
-      .text((d) => truncate(d.label, 12))
+      .text((d) => truncate(d.data.label, 14))
       .attr('text-anchor', 'middle')
       .attr('dy', '0.32em')
-      .attr('font-size', '8.5px')
+      .attr('font-size', '9px')
       .attr('font-weight', 'bold')
       .attr('fill', '#fff')
       .attr('pointer-events', 'none')
 
-    chip.append('title').text((d) => d.label)
+    chip.append('title').text((d) => d.data.label)
 
     chip.on('click', (event, d) => {
       event.stopPropagation()
-      if (d.empresa) onCompanySelect(d.empresa.id)
+      if (d.data.empresa) onCompanySelect(d.data.empresa.id)
     })
-
     chip.on('mouseenter', function () {
       d3.select(this).select('rect').attr('fill-opacity', 0.5)
     })
@@ -235,32 +245,43 @@ export default function CountrySectorTree({ countryId, onCompanySelect }: Countr
       d3.select(this).select('rect').attr('fill-opacity', 0.18)
     })
 
-    simulation.on('tick', () => {
-      link
-        .attr('x1', (d) => (d.source as TreeNode).x || 0)
-        .attr('y1', (d) => (d.source as TreeNode).y || 0)
-        .attr('x2', (d) => (d.target as TreeNode).x || 0)
-        .attr('y2', (d) => (d.target as TreeNode).y || 0)
-      node.attr('transform', (d) => `translate(${d.x || 0}, ${d.y || 0})`)
-    })
+    // Revelado escalonado: la raíz aparece primero, luego cada nivel de
+    // ramas se despliega hacia abajo (simula el país "asentándose" arriba
+    // y las ramas creciendo desde él).
+    node.filter((d) => d.data.kind === 'root')
+      .transition().duration(400).ease(d3.easeCubicOut)
+      .attr('opacity', 1)
 
-    // Ajustar zoom para que quepa todo el árbol al terminar de acomodarse
-    simulation.on('end', () => {
-      const xs = nodes.map((n) => n.x || 0)
-      const ys = nodes.map((n) => n.y || 0)
-      const minX = Math.min(...xs) - 40, maxX = Math.max(...xs) + 40
-      const minY = Math.min(...ys) - 40, maxY = Math.max(...ys) + 40
-      const bboxW = maxX - minX, bboxH = maxY - minY
-      const scale = Math.min(1.5, 0.72 / Math.max(bboxW / width, bboxH / height))
-      const tx = width / 2 - scale * (minX + maxX) / 2
-      const ty = height / 2 - scale * (minY + maxY) / 2
-      svg.transition().duration(500).call(
-        zoom.transform as any,
-        d3.zoomIdentity.translate(tx, ty).scale(scale)
-      )
-    })
+    node.filter((d) => d.data.kind === 'sector')
+      .transition().delay((d, i) => 350 + i * 60).duration(400).ease(d3.easeCubicOut)
+      .attr('opacity', 1)
 
-    return () => { simulation.stop() }
+    node.filter((d) => d.data.kind === 'empresa')
+      .transition().delay((d) => {
+        const sectorIdx = root.children ? root.children.indexOf(d.parent!) : 0
+        const empresaIdx = d.parent?.children ? d.parent.children.indexOf(d) : 0
+        return 600 + sectorIdx * 60 + empresaIdx * 35
+      })
+      .duration(350).ease(d3.easeCubicOut)
+      .attr('opacity', 1)
+
+    link.transition()
+      .delay((d) => d.target.data.kind === 'sector' ? 200 : 500)
+      .duration(400)
+      .attr('stroke-opacity', 0.45)
+
+    // Encuadre inicial para que se vea todo el árbol
+    const xs2 = nodes.map((n) => px(n as any))
+    const ys2 = nodes.map((n) => py(n as any))
+    const minX2 = Math.min(...xs2) - 70, maxX2 = Math.max(...xs2) + 70
+    const minY2 = Math.min(...ys2) - 60, maxY2 = Math.max(...ys2) + 60
+    const bboxW = maxX2 - minX2, bboxH = maxY2 - minY2
+    const scale = Math.min(1.1, 0.94 / Math.max(bboxW / width, bboxH / height))
+    const tx = width / 2 - scale * (minX2 + maxX2) / 2
+    const ty = height / 2 - scale * (minY2 + maxY2) / 2
+    svg.call(zoom.transform as any, d3.zoomIdentity.translate(tx, ty).scale(scale))
+
+    return () => { svg.selectAll('*').interrupt() }
   }, [pais, empresas, onCompanySelect])
 
   if (loading) {
