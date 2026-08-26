@@ -9,23 +9,11 @@ Plataforma interactiva tipo Bloomberg Terminal que mapea conexiones entre empres
 
 ---
 
-## ⚠️ ACCIÓN PENDIENTE DEL USUARIO (sesión 2026-08-26, tarde)
-
-El código de esta sesión ya está en `main`, pero **el dataset nuevo (S&P 500 + Nasdaq-100) todavía NO está en producción** porque requiere correr SQL en el SQL Editor de Supabase, y este sandbox no tiene las credenciales del proyecto. Pasos, en orden:
-
-1. `supabase/00_limpiar.sql` (vacía `empresas`, `dependencias`, `recursos_empresa` — `paises` y `cuellos_botella` quedan intactos)
-2. `supabase/seed/01_paises.sql`
-3. `supabase/seed/02_empresas_1_de_3.sql`, `02_empresas_2_de_3.sql`, `02_empresas_3_de_3.sql` (antes era un solo `02_empresas.sql`; ahora son 3 archivos porque el dataset pasó de 184 a 649 empresas)
-4. `supabase/seed/03_dependencias.sql`
-5. `supabase/seed/04_recursos_criticos.sql`
-6. `supabase/seed/05_recursos_empresa.sql`
-7. `supabase/seed/06_cuellos_botella.sql`
-
-Hasta que se corra esto, la producción sigue mostrando el dataset de 184 empresas (la UI del árbol nuevo sí está desplegada y funciona con lo que haya en la base).
-
 ## ✅ ESTADO ACTUAL (última sesión: 2026-08-26)
 
-Todo lo de abajo está en `main` y desplegado en producción (salvo el dataset ampliado, ver arriba).
+Todo lo de abajo está en `main`, desplegado en producción, **y el dataset nuevo ya está cargado en Supabase** (649 empresas, 505 en EEUU — verificado con una lectura en vivo a la REST API tras la carga).
+
+**Cómo se cargó**, para la próxima vez que haga falta actualizar datos en producción sin acceso a la dashboard de Supabase: este sandbox bloquea conexiones TCP directas a Postgres (puerto 5432, incluso a la connection string del pooler) — solo permite HTTPS/443 saliente. `psql` no funciona acá. La solución fue pedirle al usuario la **`service_role` key** (Project Settings → API, no la `anon` key) y hacer los DELETE/INSERT equivalentes al SQL vía la **REST API de Supabase** (`https://<project-ref>.supabase.co/rest/v1/<tabla>`, headers `apikey`/`Authorization: Bearer` con la service key, que bypasea RLS): borrar `recursos_empresa` → `dependencias` → `empresas` (en ese orden por las FK, con `?id=not.is.null` como filtro para "todas las filas"), después insertar `empresas` → `dependencias` → `recursos_empresa` en tandas de 100 filas por `POST` (`Prefer: return=minimal`). `paises` y `cuellos_botella` no se tocaron (no cambiaron esta sesión). El script vivió en el scratchpad de la sesión, no se comiteó — si hace falta repetir esto, los SQL en `supabase/00_limpiar.sql` + `supabase/seed/*.sql` siguen siendo la fuente de verdad de qué hay que borrar/insertar y en qué orden, solo que ejecutados vía REST en vez de SQL Editor.
 
 ### Árbol jerárquico del país (reemplaza el grafo de fuerza D3)
 
@@ -50,7 +38,7 @@ El usuario pidió explícitamente "todas las empresas del NASDAQ y el S&P 500" p
 - HQ geocodificado con una tabla de ~250 ciudades reales (`scratchpad`, no comiteada — las coordenadas finales quedan embebidas en `sp500_nasdaq100_data.js`); fallback a centroide del estado si la ciudad no está en la tabla.
 - Tier (mega/large/mid, controla el rango de cifras ilustrativas) asignado con listas de tickers conocidos a mano — no es precisión financiera real, es la misma estimación por catálogo que ya se usaba.
 - Las **465 empresas nuevas no tienen proveedores/dependencias cargadas** (a propósito: solo las ~66 dependencias curadas a mano en `dependencias_reales_data.js` son relaciones reales y documentadas; no se fabricaron dependencias falsas para las nuevas). En su panel se ve "No hay dependencias registradas", es el estado esperado.
-- Total dataset: **649 empresas** (505 EEUU + 144 del resto del mundo, sin cambios). Ver "ACCIÓN PENDIENTE" arriba: falta correr el seed en Supabase para que esto se vea en producción.
+- Total dataset: **649 empresas** (505 EEUU + 144 del resto del mundo, sin cambios). Ya cargado en Supabase y visible en producción — ver arriba cómo se cargó sin SQL Editor.
 
 ### Cambio de arquitectura grande: datos en Supabase, no JSON estático
 
