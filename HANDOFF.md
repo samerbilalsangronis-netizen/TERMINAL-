@@ -2,655 +2,139 @@
 
 ## 📊 VISIÓN DEL PROYECTO
 
-**Terminal Bloomberg de Análisis Geopolítico y Dependencias Económicas Globales**
+Plataforma interactiva tipo Bloomberg Terminal que mapea conexiones entre empresas, países, sectores y recursos críticos para entender vulnerabilidades en cadenas de suministro global y puntos críticos geopolíticos.
 
-Una plataforma interactiva que mapea conexiones entre empresas, países, sectores y recursos críticos para entender vulnerabilidades en cadenas de suministro global, puntos críticos geopolíticos y dependencias económicas.
-
----
-
-## ✅ ESTADO ACTUAL DEL PROYECTO
-
-**RESUMEN:** Plataforma interactiva completa con mapa, búsqueda avanzada, panel de empresas Y AHORA visualización D3.js de grafos.
-
-### **FASE 1: ✅ COMPLETADA** - Estructura Base
-- ✅ Next.js 14 con TypeScript
-- ✅ Mapa Bloomberg (Leaflet.js) con bordes **NARANJA**
-- ✅ Header, Componentes, Styling
-- ✅ 11 países iniciales
-
-**Archivos creados:**
-- `src/app/layout.tsx`, `page.tsx`
-- `src/components/Header/TerminalHeader.tsx`
-- `src/components/Map/MapContainer.tsx`
-- `src/styles/globals.css`, `tailwind.config.js`
+**Producción:** `terminal-chi-one.vercel.app` (deploy automático desde `main`)
+**Repo:** `samerbilalsangronis-netizen/TERMINAL-`
 
 ---
 
-### **FASE 2: ✅ COMPLETADA** - Dataset Masivo + Dependencias
-- ✅ **500 empresas reales** (20 países, 10 sectores)
-- ✅ **340 dependencias** entre empresas (30.6% críticas)
-- ✅ Datos trimestrales realistas
-- ✅ CompanyPanel con detalles completos
+## ✅ ESTADO ACTUAL (última sesión: 2026-08-26)
 
-**Archivos creados:**
-- `src/data/empresas_500.json` (500 empresas)
-- `src/data/dependencias.json` (340 relaciones)
-- `src/components/Panels/CompanyPanel.tsx`
-- `scripts/generar_empresas.js`
-- `scripts/generar_dependencias.js`
+Todo lo de abajo está en `main` y desplegado en producción.
 
-**Datos:**
-```
-📦 500 EMPRESAS:
-  - NVIDIA, TSMC, ASML, Apple, Microsoft, etc.
-  - 10 sectores: Semiconductores, Software, Automotriz, etc.
-  - Estados: normal, riesgo, crítico
+### Cambio de arquitectura grande: datos en Supabase, no JSON estático
 
-🔗 340 DEPENDENCIAS:
-  - Nvidia → TSMC → ASML (cadena crítica)
-  - Samsung → múltiples proveedores
-  - 104 clasificadas como CRÍTICAS
-```
+La app ya **no lee `/public/data/*.json` en runtime** (excepto `countries.geojson`, que sigue siendo estático porque es solo geometría de bordes). Todos los `fetch('/data/...')` se reemplazaron por queries a Supabase (`src/lib/supabase.ts`, cliente único). Los JSON en `src/data/` siguen existiendo como **fuente de verdad editable** — de ahí se generan los `INSERT` que se corren en Supabase.
 
----
+- Proyecto Supabase: `sbuzmkpfxlcvrjusfofm` (cuenta personal del usuario, no vinculada a su GitHub)
+- Variables de entorno: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` (ya configuradas en Vercel y en `.env.local` local)
+- Esquema: `supabase/schema.sql` (6 tablas: `paises`, `empresas`, `dependencias`, `recursos_criticos`, `recursos_empresa`, `cuellos_botella`; RLS habilitado con policy de solo lectura para el rol `anon`)
+- **Para actualizar datos:** regenerar el JSON correspondiente en `src/data/`, correr `node scripts/generar_seed_sql.js` (produce `supabase/seed/*.sql`), y pegar/correr esos archivos en el SQL Editor de Supabase. El editor de Supabase **tiene un límite de tamaño por query** — por eso el seed sale partido en archivos chicos por tabla, no uno solo gigante.
+- Si hay que reemplazar datos existentes (no solo agregar), correr `supabase/00_limpiar.sql` primero. **Importante:** Postgres no deja truncar una tabla individual si hay una FK apuntando a ella, aunque la tabla referenciante esté vacía — hay que truncar todas las tablas relacionadas en una sola sentencia (`truncate table a, b, c cascade;`), no una por una.
 
-### **FASE 3: ✅ COMPLETADA** - Búsqueda Avanzada de Recursos
-- ✅ **15 recursos críticos** (IMANES, LITIO, COBALTO, SEMICONDUCTORES, etc.)
-- ✅ **2,821 relaciones empresa-recurso**
-- ✅ Panel de búsqueda inteligente
-- ✅ Resultados agrupados por tipo de relación
+### Dataset: 184 empresas **reales** (ya no son inventadas)
 
-**Archivos creados:**
-- `src/data/recursos_criticos.json` (15 recursos)
-- `src/data/recursos_empresa.json` (2,821 relaciones)
-- `src/components/Panels/AdvancedSearchPanel.tsx`
-- `scripts/generar_recursos_empresa.js`
+El dataset original (Fase 2, sesiones anteriores) generaba nombres de empresa combinando palabras al azar — nunca tuvo NVIDIA, Meta, AMD ni ningún nombre real, pese a que el HANDOFF viejo decía "500 empresas reales". Se reemplazó por completo:
 
-**Búsqueda en acción:**
-```
-Usuario busca: "IMANES"
-↓
-Sistema encuentra: 15 recursos críticos
+- **184 empresas reales y reconocibles** (NVIDIA, TSMC, ASML, Apple, Samsung, Meta, AMD, Huawei, Toyota, Tesla, BMW, Alibaba, Infosys, Vale, etc.), curadas a mano en `scripts/empresas_reales_data.js`
+- Distribución **geográfica realista, no pareja a propósito**: EEUU (40), China (22), Japón (16), Alemania/Taiwán/India (11 c/u)... hasta Nueva Zelanda (2) y Tailandia (3) — forzar 500 parejo habría significado inventar nombres para países que no tienen esa cantidad de empresas globales reales en estos sectores
+- **66 dependencias reales y documentadas** (`scripts/dependencias_reales_data.js`): Apple→TSMC, TSMC→ASML, Huawei→SMIC (tras sanciones de EEUU), Tesla→Panasonic, etc. — ya no son 340 combinaciones aleatorias
+- **91 relaciones empresa-recurso reales** (`scripts/recursos_empresa_reales_data.js`) — ya no son 2,821 combinaciones aleatorias
+- **Las cifras financieras (cap_mercado, ingresos trimestrales) siguen siendo estimaciones ilustrativas** generadas por rango según el tamaño real de cada empresa (mega/large/mid tier) — no hay acceso a datos financieros oficiales en vivo. Esto se le explicó al usuario y lo aceptó conscientemente.
+- Scripts viejos (`generar_empresas.js`, `generar_dependencias.js`, `generar_recursos_empresa.js`) se dejaron sin tocar como referencia histórica, ya no se usan. Los nuevos son `generar_empresas_reales.js`, `generar_dependencias_reales.js`, `generar_recursos_empresa_reales.js` — todos resuelven nombre→id contra `empresas_500.json` ya generado, así que **siempre correr `generar_empresas_reales.js` primero**.
+- `paises.json` tiene 21 países (se completaron 10 que faltaban en una sesión anterior — antes solo había 11 y la mitad de las empresas mostraba "Desconocido" como país)
 
-Panel muestra:
-✏️ FABRICAN (7 empresas) - Hitachi, Shin-Etsu, etc.
-📥 IMPORTAN (12 empresas) - Apple, Tesla, BMW
-📤 EXPORTAN (25 empresas) - Ingresos $500M/año
-🔗 DEPENDEN (18 empresas) - Criticidad: 45-78%
-```
+### Fase 5 (cuellos de botella geopolíticos): completa, viene de una rama huérfana
 
----
+En una sesión anterior, otro chat de Claude había completado la Fase 5 (17 cuellos de botella, colores del mapa invertidos, interactividad de países) en una rama (`claude/lee-el-handoff-kzxdwz`) que **nunca se mergeó a `main`**. Esta sesión encontró y mergeó ese trabajo. Lección: si abres un chat nuevo y el sitio en producción se ve "atrasado" respecto a lo que otro chat hizo, probablemente el trabajo quedó en una rama sin mergear — revisar `git branch -a` y comparar con `main` antes de asumir que hay que rehacer algo.
 
-## 📊 ESTADÍSTICAS FASE 5
+- `src/components/Map/BottleneckLayer.tsx`, `src/components/Panels/BottleneckPanel.tsx`
+- Colores del mapa: océano negro puro (filtro CSS `brightness(0)` sobre `.leaflet-tile-pane`, porque el color real viene de las tiles de CartoDB, no del CSS del container), países en gris `#4a4a4a`, bordes naranja `#ff8c42`
+- GeoJSON de países servido localmente (`public/data/countries.geojson`), no desde GitHub remoto
 
-```
-🔴 CUELLOS DE BOTELLA: 17
-   - Criticidad CRÍTICA: 4 (Taiwán, Holanda, Ormuz, Siria)
-   - Criticidad ALTA: 9 (Energía, Materiales, Transporte)
-   - Criticidad MEDIA: 4 (Gas ruso, Litio, Níquel, Trigo)
+### Mapa de red por sector (reemplaza la lista de 10 empresas por país)
 
-📍 DISTRIBUCIÓN GLOBAL:
-   - Asia: Taiwán, China, Singapur, Indonesia
-   - Europa: Holanda, Rusia, Ucrania
-   - Oriente Medio: Irán/Omán, Qatar/UAE
-   - América: Panamá, Chile, Brasil
-   - África: Congo, Siria/Levante
+Al hacer click en un país, en vez de una lista plana capada a 10 empresas, se ve un **grafo de fuerza D3** (`src/components/Graph/CountrySectorTree.tsx`): el país al centro, ramas de colores por sector (con conteo), cada empresa como un chip clickeable en la punta que abre `CompanyPanel`. Muestra **todas** las empresas del país (no solo 10), y los sectores se arman dinámicamente desde los datos — si se agregan más empresas o sectores nuevos, el árbol los levanta solo. Auto-encuadra el zoom al terminar de acomodarse la simulación de fuerzas.
 
-🌍 IMPACTO SECTORIAL:
-   - Semiconductores: 3 cuellos
-   - Energía: 4 cuellos
-   - Materiales: 5 cuellos
-   - Alimentos: 2 cuellos
-   - Transporte: 3 cuellos
-```
+### Tráfico marítimo en vivo (AISStream)
+
+Botón "🚢 Tráfico Marítimo en Vivo" en el mapa (`src/components/Map/VesselLayer.tsx`). Conecta por WebSocket a `wss://stream.aisstream.io/v0/stream` (API gratuita) y muestra buques en movimiento dentro de cajas delimitadoras alrededor de Ormuz, Malaca, Singapur y Panamá.
+
+- API key en `NEXT_PUBLIC_AISSTREAM_API_KEY` (Vercel + `.env.local`) — pública por diseño (se embebe en el bundle del cliente, como recomienda el propio patrón de esta app), pero **nunca se commitea al repo**. Si no está configurada, cada visitante puede pegar su propia key gratuita desde la UI (se guarda solo en su navegador).
+- **Límite real:** AISStream permite máximo 3 conexiones simultáneas por key/cuenta. Con tráfico concurrente alto, los visitantes después del 3° verán error. Para escalar esto haría falta un backend propio (ej. una Edge Function de Supabase) que mantenga una sola conexión y la retransmita a todos los visitantes vía Realtime — no implementado.
+- **Bug real encontrado y corregido:** el WebSocket se cerraba y reabría en loop apenas conectaba ("WebSocket is closed before the connection is established"), en cualquier red/navegador. La causa no era la red ni la key: `onStatusChange` se pasaba como función inline en el JSX de `MapContainer.tsx`, se recreaba en cada render, y como el `useEffect` de `VesselLayer` depende de esa función, cada actualización de estado (conectando→conectado) mataba el socket recién abierto. Se arregló memoizando el callback con `useCallback`. Mismo patrón se corrigió en `BottleneckLayer` (reconstruía todas las capas del mapa en cada render).
+
+### Otras correcciones de esta sesión
+
+- **Bug de stacking CSS real:** el `<div id="map">` (Leaflet, `position:relative` sin `z-index` propio) no creaba su propio *stacking context*, así que los panes internos de Leaflet (z-index hasta 9999/10000) se "escapaban" y se pintaban por encima de cualquier modal/overlay de la app. Fix: agregar `isolate` al contenedor del mapa. Si se agregan más overlays/modales sobre el mapa en el futuro y aparecen "detrás" del mapa sin explicación, este es el primer sospechoso.
+- Reloj UTC en vivo en el header (reemplaza el texto estático "Custom Map")
+- `DependencyGraph.tsx`: los nodos ahora muestran el nombre de la empresa (antes mostraba el ticker crudo), leyenda de colores, tooltip flotante con posicionamiento corregido
 
 ---
 
-## 🚀 PRÓXIMAS FASES
-
-### **FASE 4: ✅ COMPLETADA** - Visualización D3.js
-**Objetivo:** Grafo interactivo de dependencias
-
-**Archivos creados:**
-- `src/components/Graph/DependencyGraph.tsx` - Visualización D3.js completa
-- Integración en `CompanyPanel.tsx` - botón "Ver Cadena de Suministro"
-- Actualización de `page.tsx` - soporte para eventos de selección
-
-**Características implementadas:**
-- ✅ Grafo con force simulation (D3.js v7.8.5)
-- ✅ Nodos = empresas (tamaño por cap. mercado en escala logarítmica)
-- ✅ Líneas = dependencias (grosor por % suministro)
-- ✅ Colores = estado geopolítico (cian/naranja/rojo)
-- ✅ Interactividad completa: zoom, pan, drag de nodos, hover
-- ✅ Resalte dinámico: pasar mouse destaca proveedores/clientes
-- ✅ Click en nodo → selecciona empresa
-- ✅ Vista toggleable entre detalles y grafo
-
----
-
-### **FASE 5: ✅ COMPLETADA** - Análisis Geopolítico
-**Objetivo:** Resaltar cuellos de botella críticos
-
-**Archivos creados:**
-- `scripts/generar_cuellos_botella.js` - script de generación de 17 cuellos de botella
-- `src/data/cuellos_botella.json` - 17 puntos críticos mapeados
-- `public/data/cuellos_botella.json` - datos públicos accesibles
-- `src/components/Map/BottleneckLayer.tsx` - visualización en mapa
-- `src/components/Panels/BottleneckPanel.tsx` - panel de detalles
-
-**Características implementadas:**
-- ✅ 17 cuellos de botella geopolíticos críticos
-- ✅ Zonas geográficas resaltadas con círculos (no marcadores puntuales, ver SESIÓN 3)
-- ✅ Colores de criticidad (rojo/naranja/amarillo) con relleno semitransparente
-- ✅ Panel detallado con vulnerabilidades, empresas afectadas, consecuencias
-- ✅ Conexiones entre cuellos de botella (líneas punteadas)
-- ✅ Leyenda actualizada en el mapa
-- ✅ Hover effects y selección interactiva
-- ✅ Interactividad y visibilidad corregidas en SESIÓN 3 (ver detalle abajo)
-
-**Puntos críticos mapeados:**
-- 🔴 **Taiwán**: 92% chips 5nm (TSMC monopolio)
-- 🔴 **Holanda**: ASML (única máquina de litografía)
-- 🔴 **Estrecho de Ormuz**: 35% petróleo global
-- 🔴 **China**: 85% tierras raras, 65% aluminio
-- 🟠 **Siria**: 50% fosfato (fertilizantes)
-- 🟠 **Singapur**: 18% refinería global
-- 🟠 Y 11 cuellos de botella más...
-
----
-
-## 📂 ESTRUCTURA DEL PROYECTO
+## 🗂️ ESTRUCTURA ACTUAL
 
 ```
 TERMINAL/
-├── public/
-│   └── data/ (generado automáticamente)
 ├── src/
-│   ├── app/
-│   │   ├── layout.tsx
-│   │   └── page.tsx
+│   ├── app/page.tsx, layout.tsx
 │   ├── components/
 │   │   ├── Map/
-│   │   │   └── MapContainer.tsx
+│   │   │   ├── MapContainer.tsx       (mapa Leaflet + tráfico marítimo + toggle AIS)
+│   │   │   ├── BottleneckLayer.tsx    (cuellos de botella geopolíticos)
+│   │   │   └── VesselLayer.tsx        (buques en vivo vía AISStream)
+│   │   ├── Graph/
+│   │   │   ├── DependencyGraph.tsx    (cadena de suministro de una empresa)
+│   │   │   └── CountrySectorTree.tsx  (mapa de red: país → sectores → empresas)
 │   │   ├── Panels/
-│   │   │   ├── CountryPanel.tsx
-│   │   │   ├── CompanyPanel.tsx
-│   │   │   ├── SearchPanel.tsx
-│   │   │   └── AdvancedSearchPanel.tsx ⭐ NUEVO
-│   │   └── Header/
-│   │       └── TerminalHeader.tsx
-│   ├── data/
-│   │   ├── paises.json
-│   │   ├── empresas_500.json ⭐ GENERADO
-│   │   ├── dependencias.json ⭐ GENERADO
-│   │   ├── recursos_criticos.json ⭐ NUEVO
-│   │   └── recursos_empresa.json ⭐ GENERADO
-│   ├── types/
-│   ├── styles/
-│   └── hooks/
+│   │   │   ├── CompanyPanel.tsx, CountryPanel.tsx, SearchPanel.tsx
+│   │   │   ├── AdvancedSearchPanel.tsx, BottleneckPanel.tsx
+│   │   └── Header/TerminalHeader.tsx  (reloj UTC, buscador, tabs Map/Table/News)
+│   ├── lib/supabase.ts                (cliente único de Supabase)
+│   ├── data/*.json                    (fuente de verdad editable, YA NO se lee en runtime)
+│   └── types/index.ts
 ├── scripts/
-│   ├── generar_empresas.js
-│   ├── generar_dependencias.js
-│   └── generar_recursos_empresa.js ⭐ NUEVO
-├── HANDOFF.md (este archivo)
-├── package.json
-├── next.config.js
-├── tsconfig.json
-└── tailwind.config.js
-```
-
----
-
-## 🎯 FLUJO DE USUARIO ACTUAL
-
-### **1. Exploración por País**
-```
-Mapa → Click País (ej: EEUU)
-  ↓
-Panel muestra:
-  - Top 25 empresas del país
-  - Sectores clave
-  - Exportaciones/Importaciones
-  ↓
-Click en Empresa → CompanyPanel completo
-```
-
-### **2. Búsqueda Global**
-```
-Buscador → "IMANES"
-  ↓
-AdvancedSearchPanel muestra:
-  - Info del recurso (precio, volatilidad, productores)
-  - 7 fabricantes
-  - 12 importadores
-  - 25 exportadores
-  - 18 dependientes
-  ↓
-Click en empresa → CompanyPanel
-```
-
-### **3. Visualización D3.js (FASE 4 ACTIVA)**
-```
-CompanyPanel → Click "Ver Cadena de Suministro Completa"
-  ↓
-Grafo D3.js interactivo:
-  - Nodos: proveedores + empresa central + clientes
-  - Líneas: dependencias (grosor según % suministro)
-  - Colores: estado geopolítico (cian/naranja/rojo)
-  - Interactividad completa:
-    • Zoom con rueda del mouse
-    • Pan arrastrando el fondo
-    • Drag de nodos para reorganizar
-    • Hover resalta conexiones
-    • Click en nodo → selecciona empresa
+│   ├── empresas_reales_data.js, dependencias_reales_data.js,
+│   │   recursos_empresa_reales_data.js   (listas curadas, EDITAR ACÁ)
+│   ├── generar_empresas_reales.js, generar_dependencias_reales.js,
+│   │   generar_recursos_empresa_reales.js (nombre→id, escriben src/data/*.json)
+│   ├── generar_seed_sql.js            (src/data/*.json → supabase/seed/*.sql)
+│   └── generar_empresas.js, generar_dependencias.js,
+│       generar_recursos_empresa.js    (VIEJOS, ya no se usan — dataset inventado)
+├── supabase/
+│   ├── schema.sql                     (correr una sola vez, crea las tablas)
+│   ├── 00_limpiar.sql                 (trunca antes de recargar con datos nuevos)
+│   └── seed/*.sql                     (generado, correr en el SQL Editor)
+├── .env.local (gitignorado), .env.example (plantilla)
+└── HANDOFF.md (este archivo)
 ```
 
 ---
 
 ## 🔧 CÓMO CONTINUAR EN EL PRÓXIMO CHAT
 
-### **Paso 1: Verificar Estado**
 ```bash
-git status
-git log --oneline -5
+git checkout claude/repo-visual-details-p8zogw   # o main, están sincronizadas
+git pull
+npm install
+npm run dev   # http://localhost:3000
 ```
 
-### **Paso 2: Ver Datos Generados**
-```bash
-wc -l src/data/*.json
-# Debería ver:
-# - empresas_500.json: ~14,000 líneas
-# - dependencias.json: ~1,400 líneas
-# - recursos_empresa.json: ~8,000 líneas
-```
+**Nota sobre pruebas en sandbox:** el entorno de ejecución de Claude Code (esta sesión) tiene restricciones de red que bloquean fetches del navegador (Chromium/Playwright) hacia hosts externos no permitidos (CartoDB, y a veces Supabase/AISStream desde el navegador, aunque `curl` desde bash sí funciona). Si algo "no carga" al probarlo con Playwright en sandbox pero el código y los datos están verificados por `curl`/API directa, probablemente es la red del sandbox, no un bug real — confirmar interceptando la respuesta con `page.route()` y datos mock antes de asumir que el código está roto.
 
-### **Paso 3: Ejecutar la App**
-```bash
-npm run dev
-# Abrirá http://localhost:3000
-```
-
-### **Paso 4: Testear**
-- ✅ Click en un país → Panel de país
-- ✅ Click en una empresa → CompanyPanel
-- ✅ Buscar "IMANES" → AdvancedSearchPanel
-- ✅ Ver proveedores críticos resaltados
-
-### **Paso 5: Continuar FASE 4**
-Ver abajo: "INSTRUCCIONES PARA FASE 4"
+**Estado de las cuentas externas:**
+- Supabase y AISStream son cuentas personales del usuario, no conectadas a su GitHub — cualquier cambio de key/URL hay que pedírselo directamente, no se puede gestionar por integración.
+- No hay acceso a la dashboard de Vercel desde el chat — cualquier variable de entorno nueva hay que pedirle al usuario que la agregue manualmente y haga redeploy.
 
 ---
 
-## 📋 INSTRUCCIONES PARA FASE 5 (Análisis Geopolítico)
+## 💡 PENDIENTE / IDEAS SIN DECIDIR
 
-### **Objetivo:** Resaltar cuellos de botella críticos en el mapa
-
-**Datos necesarios a crear:**
-1. `src/data/cuellos_botella.json` - 15-20 puntos críticos
-2. Integración en MapContainer para visualizar puntos rojos
-3. Modal de detalles para cada cuello de botella
-
-**Puntos clave a mapear:**
-```
-🔴 TAIWÁN (92% chips 5nm)
-   - TSMC monopolio mundial
-   - Vulnerabilidad: conflicto US-China
-   - Impacto: semis, IA, smartphones
-
-🔴 HOLANDA (única máquina ASML)
-   - Producción de máquinas de litografía
-   - Vulnerabilidad: embargo a China
-   - Impacto: todos los chips
-
-🔴 ESTRECHO DE ORMUZ (35% petróleo)
-   - Paso obligado Golfo Pérsico
-   - Vulnerabilidad: cierre iranio
-   - Impacto: energía global
-
-🔴 CHINA (85% tierras raras, 65% aluminio)
-   - Dominio de REE y metales
-   - Vulnerabilidad: restricciones de exportación
-   - Impacto: tecnología, defensa
-
-🔴 SIRIA/LEVANTE (fosfato para fertilizantes)
-   - 50% producción mundial
-   - Vulnerabilidad: conflicto regional
-   - Impacto: agricultura global
-```
-
-### **Archivos a crear:**
-- `scripts/generar_cuellos_botella.js` - script de generación
-- `src/data/cuellos_botella.json` - datos geoespaciales
-- `src/components/Map/BottleneckLayer.tsx` - visualización en mapa
-- `src/components/Panels/BottleneckPanel.tsx` - detalles de puntos críticos
-
----
-
-## 💾 DATOS GENERADOS AUTOMÁTICAMENTE
-
-Si necesitas **regenerar datos**, ejecuta:
-
-```bash
-# Regenerar 500 empresas
-node scripts/generar_empresas.js
-
-# Regenerar 340 dependencias
-node scripts/generar_dependencias.js
-
-# Regenerar 2,821 relaciones empresa-recurso
-node scripts/generar_recursos_empresa.js
-```
-
-**Nota:** Los scripts son idempotentes (pueden ejecutarse sin riesgo)
-
----
-
-## 📊 ESTADÍSTICAS ACTUALES
-
-```
-📦 EMPRESAS: 500
-   - 20 países
-   - 10 sectores
-   - Cap mercado: $10B - $3.5T
-
-🔗 DEPENDENCIAS: 340
-   - Críticas: 104 (30.6%)
-   - Promedio: 2-3 proveedores por empresa
-
-💰 RECURSOS: 15
-   - Relaciones: 2,821
-   - Distribución:
-     • 610 fabrican
-     • 543 importan
-     • 1,240 exportan
-     • 428 dependen
-
-🌍 COBERTURA:
-   - EEUU, China, Japón, Corea, Taiwán
-   - Alemania, Holanda, Reino Unido, Francia
-   - Canadá, Australia, Nueva Zelanda
-   - + 8 países adicionales
-```
-
----
-
-## 🔐 RAMA GIT
-
-**Rama de desarrollo:** `claude/lee-el-handoff-kzxdwz`
-
-**Commits completados:**
-1. FASE 1: Estructura Next.js + Mapa Bloomberg
-2. FASE 2: 500 Empresas + Dependencias + CompanyPanel
-3. FASE 3: Búsqueda Avanzada + Recursos Críticos
-4. FASE 4: Visualización D3.js de Grafos
-5. FASE 5: Análisis Geopolítico - Cuellos de Botella ✅
-
-**Para continuar en próximo chat:**
-```bash
-git checkout claude/lee-el-handoff-kzxdwz
-git pull origin claude/lee-el-handoff-kzxdwz
-npm install && npm run dev
-# Abrirá http://localhost:3000
-```
-
----
-
-## 🚀 FASE 6: PRÓXIMAS OPORTUNIDADES
-
-### **Sugerencia 1: Simulación de Escenarios**
-**Objetivo:** Modelar impacto de conflictos en cadenas de suministro
-
-```json
-Escenarios a implementar:
-- Crisis Taiwán: Bloqueo de TSMC → impacto en IA, smartphones
-- Bloqueo Ormuz: Aumento 300% precio petróleo → cascada global
-- Sanciones Rusia: Restricción de gas → Europa sin calefacción
-- Embargo Holanda→China: ASML no vende a Huawei
-```
-
-Datos a crear:
-- `src/data/escenarios.json` - conflictos simulados
-- `src/components/Panels/ScenarioPanel.tsx` - selector de escenarios
-- Cascada de impactos visualizada en grafo D3
-
-### **Sugerencia 2: Análisis de Resilencia**
-**Objetivo:** Sugerir estrategias de diversificación
-
-- Alternativas de proveedores por región
-- Oportunidades de nearshoring
-- Cálculo de "días de cobertura" por recurso
-- Matriz de riesgo país
-
-### **Sugerencia 3: Integración de Datos en Vivo**
-- API de precios de commodities (FRED, Quandl)
-- Alertas de conflictos geopolíticos (NewsAPI)
-- Datos de inversión (Crunchbase)
-- Base de datos de ONG (Toma de datos de conflictos)
+- **Botón "Table" del header:** decorativo, nunca tuvo contenido (viene así desde la Fase 1). Se le sugirió al usuario una tabla comparativa ordenable de las 184 empresas (nombre, país, sector, cap. mercado, estado geopolítico, YoY) con click→CompanyPanel, pero no se decidió ni se implementó. Retomar esa conversación.
+- **Botón "News":** también decorativo, sin discutir aún.
+- **AISStream a escala:** si el tráfico concurrente crece, migrar a un backend propio (Supabase Edge Function) que centralice la conexión — ver nota arriba.
+- **Bug preexistente menor:** 2 de las 500 empresas del dataset viejo compartían ticker por colisión aleatoria del generador — ya no aplica, el dataset nuevo (184 empresas reales) no tiene este problema.
 
 ---
 
 ## 🎨 DISEÑO VISUAL
 
-**Colores Bloomberg Terminal (actualizado SESIÓN 3):**
-- Fondo general (UI): `#0a0a0a`
-- Océanos (mapa): `#000000` (negro puro)
-- Continentes/países (mapa): `#4a4a4a` (gris medio)
-- **Bordes países: `#ff8c42` (NARANJA)**
-- Accent: `#00d4ff` (Cian)
-- Crítico: `#ff3333` (Rojo)
-- Header: Naranja + Rojo
-
-**Tipografía:**
-- Terminal: `-apple-system, BlinkMacSystemFont, Segoe UI`
-- Mono: `Courier New` para precios/valores
+- Fondo UI: `#0a0a0a` · Océano (mapa): negro puro · Países (mapa): `#4a4a4a` · Bordes: `#ff8c42` (naranja) · Accent: `#00d4ff` (cian) · Crítico: `#ff3333` (rojo)
+- Tipografía: `-apple-system` / mono para cifras
+- Paneles laterales: `CompanyPanel`/`AdvancedSearchPanel` 384px, `CountryPanel` 520px (necesita más espacio por el árbol de sectores)
 
 ---
 
-## 📝 NOTAS IMPORTANTES
-
-1. **Datos JSON:** Están diseñados para ser fáciles de actualizar manualmente o mediante scripts
-2. **Supabase:** Cuando se pague la cuenta, solo hay que cambiar las rutas de datos
-3. **Performance:** Con 500 empresas, considerar lazy loading si crece
-4. **Búsqueda:** Full-text search actualmente es básico pero funcional
-5. **D3.js:** Para FASE 4, el grafo debe ser fluido con zoom/pan
-
----
-
-## 🔗 REFERENCIAS ÚTILES
-
-- Bloomberg Terminal (estética visual)
-- Global Supply Chain Data (investigar fuentes públicas)
-- D3.js Documentation: https://d3js.org
-- Cytoscape.js (alternativa a D3): https://cytoscape.org
-
----
-
-**Última actualización:** 2026-08-22 - SESIÓN 3
-**Estado:** FASE 5 ✅ COMPLETADA - Mapa 100% interactivo y visualmente corregido
-**Rama actual:** `claude/lee-el-handoff-kzxdwz`
-
----
-
-## 🔧 HISTORIAL DE PROBLEMAS Y FIXES - SESIÓN 2 → 3 (2026-08-22)
-
-### ❌ Síntoma Reportado (fin de SESIÓN 2)
-✅ Mapa carga (bordes naranja, gridlines visibles)
-❌ NO hay tooltips al pasar ratón
-❌ NO abre panel al click (sin errores en consola)
-❌ NO se ven cuellos de botella (puntos rojos)
-
-### 🔍 DIAGNÓSTICO COMPLETADO - SESIÓN 3 (2026-08-22)
-
-**PROBLEMA RAÍZ IDENTIFICADO:** Las propiedades del GeoJSON no coincidían
-
-El archivo GeoJSON original de GitHub tiene propiedades diferentes:
-```
-Esperado:  ADMIN, ISO_A2
-Encontrado: name, ISO3166-1-Alpha-2
-```
-
-### ✅ SOLUCIONES IMPLEMENTADAS
-
-1. **Descargar GeoJSON localmente**
-   - Archivo agregado: `/public/data/countries.geojson`
-   - Razón: Evita dependencias remotas y problemas de CORS
-
-2. **Usar archivo local en MapContainer**
-   - Cambio: `fetch('https://raw.githubusercontent.com/...')` → `fetch('/data/countries.geojson')`
-   - Línea modificada: `src/components/Map/MapContainer.tsx:83`
-
-3. **Corregir nombres de propiedades**
-   - `ADMIN` → `name` (nombre del país)
-   - `ISO_A2` → `ISO3166-1-Alpha-2` (código del país)
-   - Líneas modificadas: `src/components/Map/MapContainer.tsx:99-100`
-
-4. **Agregar logs de debug**
-   - Console logs para verificar fetch, onEachFeature, clicks
-   - Verificación de BottleneckLayer
-
-### ✅ VERIFICACIÓN CON PLAYWRIGHT
-
-Corrida de test con Playwright confirmó:
-```
-✓ GeoJSON cargado: 258 características
-✓ 258 países procesados correctamente en onEachFeature
-✓ 17 cuellos de botella renderizados
-✓ 285 elementos interactivos encontrados en el mapa
-✓ BottleneckLayer ejecuta correctamente
-```
-
-**Conclusión:** Todo funciona. El mapa, países y cuellos de botella están operacionales.
-
-### Rama y commits
-- Rama: `claude/lee-el-handoff-kzxdwz`
-- Commits agregados en esta sesión:
-  - `8b59ea0` - Agregar logs de debug
-  - `e5290cf` - Usar GeoJSON local
-  - `efb6a9c` - Corregir propiedades
-  - `c3892ca` - Agregar Playwright como dev dependency
-- Build: ✅ Compila sin errores
-- Runtime: ✅ Todos los eventos funcionan (confirmado por Playwright logs)
-
-### 🎨 MEJORA VISUAL - Zonas Geográficas + Esquema de Colores
-
-**CAMBIO 1: Visualización de Cuellos de Botella**
-- De: Puntos rojos pequeños con baja opacidad (0.08)
-- A: Círculos Leaflet que representan zonas geográficas
-- Opacidad aumentada: 0.20/0.35 (mucho más visibles)
-- Radio proporcional a: criticidad + impacto global (%)
-- Relleno semitransparente para ver países debajo
-- Bordes punteados (normal) → sólidos (seleccionado)
-
-**CAMBIO 2: Esquema de Colores Invertido**
-- Océano: Negro puro (#0a0a0a)
-- Países: Gris medio (#4a4a4a)
-- Bordes países: Naranja (#ff8c42)
-- Gridlines: Gris claro (#333333)
-- Tile layer: CartoDB dark_all (más oscuro)
-
-**Visualmente:**
-```
-Fondo:  Negro puro (océano)
-Tierra: Gris (países)
-Crítico: Zona roja semitransparente + borde rojo
-Alto:    Zona naranja + borde naranja
-```
-
-**Ejemplos de zonas:**
-- Taiwán: zona roja amplia (92% chips 5nm)
-- Holanda: zona naranja (100% litografía)
-- Ormuz: zona roja (35% petróleo global)
-
-**Interactividad completa:**
-- Click: abre panel de detalles
-- Hover: resalta zona, muestra popup
-- Selección: zona se centra y oscurece
-
-### 🐛 BUG CORREGIDO - Z-index sobrescrito por CSS
-
-**Síntoma:** Océano no negro puro + cuellos de botella debajo del mapa
-
-**Causa:** CSS con `.leaflet-pane { z-index: 100 !important; }` sobrescribía
-el z-index:9999 que JavaScript aplicaba al bottleneckPane vía inline styles.
-El !important en CSS externo gana sobre inline styles de menor especificidad.
-
-**Fix:** Cambiar selector genérico a específico:
-```css
-.leaflet-bottleneck-pane {
-  z-index: 9999 !important;
-  pointer-events: auto !important;
-}
-```
-
-**Verificado con Playwright:**
-```
-leaflet-bottleneck-pane: z-index 9999 ✓
-Todos los demás panes: 200-700 ✓
-Fondo del mapa: rgb(0,0,0) ✓
-```
-
-### 📌 RESUMEN FINAL DE SESIÓN 3
-
-**Estado del mapa:** ✅ 100% funcional
-
-| Elemento | Estado |
-|----------|--------|
-| Nombres de países (tooltip) | ✅ Funciona |
-| Click país → panel de info | ✅ Funciona |
-| Cuellos de botella (zonas) | ✅ Visibles por encima del mapa |
-| Océano negro puro | ✅ `rgb(0,0,0)` |
-| Países en gris | ✅ `#4a4a4a` |
-| Build | ✅ Compila sin errores |
-
-**Todos los commits de la sesión (orden cronológico):**
-```
-8b59ea0 - Agregar logs de debug para diagnóstico
-e5290cf - Usar GeoJSON local en lugar de fetch remoto
-efb6a9c - Corregir propiedades del GeoJSON (ADMIN→name, ISO_A2→ISO3166-1-Alpha-2)
-c3892ca - Agregar @playwright/test como dependencia de dev
-10e569a - Corregir z-index de cuellos de botella (primer intento)
-8d3b5cb - Actualizar HANDOFF con diagnóstico y soluciones
-0fc3c1b - Cambiar visualización de cuellos de botella a zonas geográficas (círculos)
-49c321a - Actualizar HANDOFF con visualización de zonas geográficas
-c73f3a9 - Mejorar opacidad y invertir colores del mapa (océano negro, países gris)
-7455bb9 - Documentar cambios de visualización e inversión de colores
-9dd0b87 - Corregir z-index y color de fondo del mapa
-dcebeac - Corregir z-index de bottleneckPane sobrescrito por CSS (bug real fix)
-273295e - Documentar fix de z-index sobrescrito por CSS
-```
-
-**Lección aprendida:** Un `.leaflet-pane { z-index: 100 !important }` genérico en CSS
-puede sobrescribir silenciosamente z-index inline que Leaflet/JS aplica a panes
-específicos. Siempre usar selectores de clase específicos (`.leaflet-<nombre>-pane`)
-al forzar z-index con `!important` sobre paneles de Leaflet.
-
-### 🐛 BUG CORREGIDO #2 - Océano seguía gris, no negro
-
-**Síntoma:** Después de cambiar `fillColor` del CSS/JS a negro, el océano
-seguía viéndose gris/azulado en el mapa renderizado.
-
-**Causa:** El color del océano viene de las **tiles de CartoDB** (imágenes PNG
-del tile layer `dark_nolabels`/`dark_all`), no del CSS del `.leaflet-container`.
-El background CSS del container solo se ve donde no hay tiles cargados
-(brevemente al hacer pan/zoom). El color real del océano lo define CartoDB,
-que usa un gris-azulado oscuro, no negro puro.
-
-**Fix:** Forzar el color con un filtro CSS sobre el pane de tiles:
-```css
-.leaflet-tile-pane {
-  filter: brightness(0) !important;
-}
-```
-Esto convierte cualquier píxel del tile a negro puro, sin importar el color
-original de CartoDB. Los países se siguen viendo en gris porque nuestra capa
-GeoJSON (fillOpacity 0.95) se dibuja **encima** de los tiles, no depende de ellos.
-
-También se revirtió el tile layer de `dark_all` a `dark_nolabels` (evita
-etiquetas duplicadas de país, ya que mostramos el nombre vía tooltip propio).
-
-**Verificado visualmente con Playwright (screenshot):** océano negro puro,
-países gris medio, zonas de cuellos de botella visibles encima. Commit `1cc6da8`.
-
----
-
-**Próximo paso:** FASE 6 - Simulación de Escenarios (interactividad y visualización ya resueltas ✅)
+**Última actualización:** 2026-08-26
+**Rama actual:** `claude/repo-visual-details-p8zogw` (sincronizada con `main`, fast-forward, sin PRs pendientes)
